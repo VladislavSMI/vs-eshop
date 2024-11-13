@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TermsConditions Component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="mt-10 text-center"
+  >
+    <h1
+      class="text-4xl"
+    >
+      About Us
+    </h1>
+    <p
+      class="m-10 text-justify md:text-lg"
+    >
+      Welcome to VS Skate Shop!
+    </p>
+  </div>
+</DocumentFragment>
+`;

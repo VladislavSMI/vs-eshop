@@ -1,8 +1,18 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+const withNextIntl = createNextIntlPlugin();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['dummyimage.com', 'cdn11.bigcommerce.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn11.bigcommerce.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

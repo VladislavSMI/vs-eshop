@@ -2,7 +2,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Inserting common product categories
 INSERT INTO product_categories (category_name) VALUES 
-    ('Skateboard'), ('Truck'), ('Wheel');
+    ('Decks'), ('Trucks'), ('Wheels');
 
 -- Inserting common tags
 INSERT INTO tags (tag_name) VALUES 
@@ -10,48 +10,48 @@ INSERT INTO tags (tag_name) VALUES
 
 -- Inserting specific products for skateboards, trucks, and wheels
 INSERT INTO products (product_id, category_id, product_name, price, image_url) VALUES
-    (uuid_generate_v4(), 1, 'Element Section Complete Skateboard', 120.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Santa Cruz Classic Dot Skateboard', 130.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Enjoi Whitey Panda Skateboard', 115.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Almost Mullen Uber Light Skateboard', 140.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Powell Peralta Ripper Skateboard', 135.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Globe G1 Argo Skateboard', 110.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Zero Single Skull Skateboard', 125.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Girl Carroll 93 Til Skateboard', 128.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Plan B Team OG Skateboard', 145.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Blind OG Logo Skateboard', 118.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Baker Brand Logo Skateboard', 125.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Chocolate Alvarez Hologram Skateboard', 132.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Anti-Hero Classic Eagle Skateboard', 127.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Toy Machine Vice Dead Monster Skateboard', 122.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Creature Logo Complete Skateboard', 130.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Real Classic Oval Complete Skateboard', 138.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Foundation Star & Moon Skateboard', 115.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Primitive Rodriguez Samurai Skateboard', 150.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Darkstar First Push Skateboard', 112.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 1, 'Jart Classic Complete Skateboard', 119.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
+    (uuid_generate_v4(), 1, 'Element Section Complete Skateboard', 120.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/600x600/products/911/4724/Wavy-Davy-C5_Hero__55266.1729638867.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Santa Cruz Classic Dot Skateboard', 130.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/676/3800/CarverHoboDeck2021_REVS2-1__95601.1682428803.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Enjoi Whitey Panda Skateboard', 115.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/506/3014/CarverAipaDeck__55789.1686061692.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Almost Mullen Uber Light Skateboard', 140.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/505/3013/CarverTyler777Deck__76503.1686061667.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Powell Peralta Ripper Skateboard', 135.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/362/2901/Carver2020GlassOffDeck__88947.1686060559.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Globe G1 Argo Skateboard', 110.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/361/2900/Carver2020BlueHazeDeck__32701.1676680379.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Zero Single Skull Skateboard', 125.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/360/2899/Carver2020EmeraldPeakDeck__05392.1685461074.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Girl Carroll 93 Til Skateboard', 128.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/354/4088/CarverUSABoosterDeck__23968.1693956486.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Plan B Team OG Skateboard', 145.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/921/4727/Psychedelic-Sunset-Deck__79585.1729690900.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Blind OG Logo Skateboard', 118.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/912/4725/Wavy-Davy_Deck__39602.1729638935.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Baker Brand Logo Skateboard', 125.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/924/4726/Space-Case-Deck__04314.1729690824.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Chocolate Alvarez Hologram Skateboard', 132.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/600x600/products/911/4724/Wavy-Davy-C5_Hero__55266.1729638867.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Anti-Hero Classic Eagle Skateboard', 127.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/600x600/products/911/4724/Wavy-Davy-C5_Hero__55266.1729638867.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Toy Machine Vice Dead Monster Skateboard', 122.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/600x600/products/911/4724/Wavy-Davy-C5_Hero__55266.1729638867.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Creature Logo Complete Skateboard', 130.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/600x600/products/911/4724/Wavy-Davy-C5_Hero__55266.1729638867.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Real Classic Oval Complete Skateboard', 138.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/600x600/products/911/4724/Wavy-Davy-C5_Hero__55266.1729638867.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Foundation Star & Moon Skateboard', 115.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/674/3744/2023_decks_17__45584.1685460864.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Primitive Rodriguez Samurai Skateboard', 150.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/673/3743/2023_decks_5__34141.1685460849.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Darkstar First Push Skateboard', 112.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/675/3745/2023_decks_16__43613.1685460873.jpg?c=1'),
+    (uuid_generate_v4(), 1, 'Jart Classic Complete Skateboard', 119.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/918/4728/Sunburst-Deck__43995.1729690972.jpg?c=1'),
 
-    (uuid_generate_v4(), 2, 'Independent Stage 11 Standard Trucks', 60.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 2, 'Thunder Polished Team Trucks', 58.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 2, 'Venture Polished Low Trucks', 55.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 2, 'Tensor Mag Light Trucks', 65.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 2, 'Krux K5 Galaxy Trucks', 62.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 2, 'Ace AF1 Trucks', 64.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 2, 'Royal Trucks Raw', 57.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 2, 'Gullwing Mission Trucks', 59.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 2, 'Paris V3 Trucks', 66.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 2, 'Caliber II Fifty Trucks', 63.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
+    (uuid_generate_v4(), 2, 'Independent Stage 11 Standard Trucks', 60.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
+    (uuid_generate_v4(), 2, 'Thunder Polished Team Trucks', 58.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
+    (uuid_generate_v4(), 2, 'Venture Polished Low Trucks', 55.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
+    (uuid_generate_v4(), 2, 'Tensor Mag Light Trucks', 65.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
+    (uuid_generate_v4(), 2, 'Krux K5 Galaxy Trucks', 62.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
+    (uuid_generate_v4(), 2, 'Ace AF1 Trucks', 64.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
+    (uuid_generate_v4(), 2, 'Royal Trucks Raw', 57.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
+    (uuid_generate_v4(), 2, 'Gullwing Mission Trucks', 59.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
+    (uuid_generate_v4(), 2, 'Paris V3 Trucks', 66.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
+    (uuid_generate_v4(), 2, 'Caliber II Fifty Trucks', 63.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
 
-    (uuid_generate_v4(), 3, 'Spitfire Formula Four Wheels', 40.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 3, 'Bones STF V1 Wheels', 45.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 3, 'Ricta Clouds Cruiser Wheels', 42.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 3, 'OJ Super Juice Wheels', 38.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 3, 'Sector 9 Nineballs Wheels', 43.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 3, 'Powell Peralta G-Slides Wheels', 44.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 3, 'Slime Balls OG Wheels', 39.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 3, 'Orangatang Kegel Wheels', 50.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 3, 'Cloud Ride Cruiser Wheels', 41.00, 'https://dummyimage.com/600x400/05807a/1e2626'),
-    (uuid_generate_v4(), 3, 'Arbor Easyrider Bogart Wheels', 46.00, 'https://dummyimage.com/600x400/05807a/1e2626');
+    (uuid_generate_v4(), 3, 'Spitfire Formula Four Wheels', 40.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
+    (uuid_generate_v4(), 3, 'Bones STF V1 Wheels', 45.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
+    (uuid_generate_v4(), 3, 'Ricta Clouds Cruiser Wheels', 42.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
+    (uuid_generate_v4(), 3, 'OJ Super Juice Wheels', 38.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
+    (uuid_generate_v4(), 3, 'Sector 9 Nineballs Wheels', 43.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
+    (uuid_generate_v4(), 3, 'Powell Peralta G-Slides Wheels', 44.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
+    (uuid_generate_v4(), 3, 'Slime Balls OG Wheels', 39.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
+    (uuid_generate_v4(), 3, 'Orangatang Kegel Wheels', 50.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
+    (uuid_generate_v4(), 3, 'Cloud Ride Cruiser Wheels', 41.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
+    (uuid_generate_v4(), 3, 'Arbor Easyrider Bogart Wheels', 46.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1');
 
 -- Inserting product descriptions (in English and Dutch)
 INSERT INTO product_descriptions (product_id, language_code, description) VALUES

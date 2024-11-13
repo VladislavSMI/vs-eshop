@@ -1,12 +1,18 @@
-export type Product = {
-  product_id: string;            
-  product_name: string;          
-  category_id: number;           
-  category_name: string;        
-  price: number;                 
-  image_url: string;           
-  tags: Tag[];                   
+import { VALID_TAGS } from '../const';
+
+export type Tag = (typeof VALID_TAGS)[number];
+
+export type Category = {
+  categoryId: number;
+  categoryName: string;
 };
 
-type Tag = 'On Sale' | 'New' | 'Last in Inventory'; 
-
+export type Product = {
+  productId: string;
+  productName: string;
+  categoryId: Category['categoryId'];
+  categoryName: Category['categoryName'];
+  price: number;
+  imageUrl: string;
+  tags: Tag[];
+};

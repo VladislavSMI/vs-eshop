@@ -1,0 +1,68 @@
+{
+  "components": {
+    "header": {
+      "cart": "Winkelwagen",
+      "login": "Inloggen",
+      "logout": "Uitloggen",
+      "register": "Registreren",
+      "search": "Zoeken",
+      "welcome": "Welkom"
+    },
+    "product": {
+      "addToCart": "Toevoegen aan winkelwagen",
+      "price": "Prijs: {price, currency}"
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "VS Skate Winkel",
+      "description": "E-shop voor skateboards, wielen, trucks en meer"
+    },
+    "product": {
+      "title": "Productpagina voor skateboards, wielen, trucks en meer",
+      "description": "Zoek naar skateboards, wielen, trucks en meer"
+    },
+    "aboutUs": {
+      "title": "Over ons",
+      "text": "Welkom bij VS Skate Shop! Sinds onze oprichting hebben we ons toegewijd aan het leveren van skateboards en accessoires van de hoogste kwaliteit. Onze missie is het promoten van skateboardcultuur en het ondersteunen van skateboarders van alle niveaus. We geloven in gemeenschap, passie en het plezier van skateboarden. Ons team selecteert zorgvuldig de beste producten op de markt om ervoor te zorgen dat elke klant de beste ervaring heeft. Of je nu net begint of een doorgewinterde professional bent, we hebben alles wat je nodig hebt om je passie voor skateboarden na te jagen."
+    },
+    "privacyPolicy": {
+      "title": "Privacybeleid",
+      "text": "Uw privacy is belangrijk voor ons. Bij VS Skate Shop zetten we ons in om de persoonlijke informatie van onze klanten te beschermen. Dit beleid legt uit hoe we uw gegevens verzamelen, gebruiken en beschermen. We verzamelen informatie om onze diensten te verbeteren en u een betere winkelervaring te bieden. Alle gegevens worden strikt vertrouwelijk behandeld en we zullen uw informatie nooit delen met derden zonder toestemming. Voor vragen over ons privacybeleid kunt u contact met ons opnemen."
+    },
+    "shippingReturnPolicy": {
+      "title": "Verzend- en retourbeleid",
+      "text": "We streven ernaar om alle bestellingen binnen 2-3 werkdagen te verwerken en te verzenden. Verzendkosten variëren afhankelijk van uw locatie en bestelhoeveelheid. Als u niet tevreden bent met uw aankoop, kunt u ongebruikte artikelen binnen 30 dagen na ontvangst retourneren voor een volledige terugbetaling. Neem contact op met onze klantenservice om een retour te starten. We zetten ons in voor klanttevredenheid en zullen met u samenwerken om eventuele problemen op te lossen."
+    },
+    "termsConditions": {
+      "title": "Algemene voorwaarden",
+      "text": "Door gebruik te maken van onze website en diensten, gaat u akkoord met de hier beschreven algemene voorwaarden. VS Skate Shop behoudt zich het recht voor om deze voorwaarden op elk moment te wijzigen. We raden u aan deze pagina regelmatig te controleren. Alle aankopen zijn onderhevig aan beschikbaarheid en onze goedkeuring. Onze producten zijn alleen voor persoonlijk gebruik en mogen niet zonder toestemming worden doorverkocht. Als u vragen heeft over deze voorwaarden, neem dan contact met ons op voor verduidelijking."
+    }
+  },
+  "errors": {
+    "404": {
+      "title": "Pagina Niet Gevonden",
+      "message": "Sorry, de pagina die u zoekt bestaat niet.",
+      "goBack": "Ga terug"
+    },
+    "generic": {
+      "title": "Er is iets fout gegaan!",
+      "description": "We hebben helaas een fout ondervonden.",
+      "retry": "Pagina opnieuw laden"
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "cart": "Winkelwagentje",
+    "profile": "Profiel",
+    "allProducts": "Alle producten",
+    "searchPlaceholder": "Zoek naar producten..."
+  },
+  "footer": {
+    "aboutUs": "Over ons",
+    "privacyPolicy": "Privacybeleid",
+    "shippingReturnPolicy": "Verzend- en retourbeleid",
+    "termsConditions": "Algemene voorwaarden",
+    "allRightsReserved": "© 2022 VS Skate Shop. Alle rechten voorbehouden."
+  }
+}

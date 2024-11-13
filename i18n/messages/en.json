@@ -1,0 +1,68 @@
+{
+  "components": {
+    "header": {
+      "cart": "Cart",
+      "login": "Login",
+      "logout": "Logout",
+      "register": "Register",
+      "search": "Search",
+      "welcome": "Welcome"
+    },
+    "product": {
+      "addToCart": "Add to cart",
+      "price": "Price: {price, currency}"
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "VS Skate Shop",
+      "description": "E-shop for skateboards, wheels, trucks, and more"
+    },
+    "product": {
+      "title": "Product page for skateboards, wheels, trucks, and more",
+      "description": "Search for skateboards, wheels, trucks, and more"
+    },
+    "aboutUs": {
+      "title": "About Us",
+      "text": "Welcome to VS Skate Shop! Since our founding, we have dedicated ourselves to providing the highest quality skateboards and accessories. Our mission is to promote skateboarding culture and support skateboarders of all levels. We believe in community, passion, and the joy of skateboarding. Our team carefully selects the best products on the market to ensure every customer has the best experience. Whether you’re just starting or a seasoned pro, we have everything you need to pursue your skateboarding passion."
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "text": "Your privacy is important to us. At VS Skate Shop, we are committed to protecting the personal information of our customers. This policy explains how we collect, use, and protect your data. We collect information to improve our services and provide you with a better shopping experience. All data is handled with strict confidentiality, and we will never share your information with third parties without consent. For questions about our privacy practices, please contact us."
+    },
+    "shippingReturnPolicy": {
+      "title": "Shipping & Return Policy",
+      "text": "We strive to process and ship all orders within 2-3 business days. Shipping fees vary depending on your location and order size. If you are not satisfied with your purchase, you may return unused items within 30 days of receipt for a full refund. To initiate a return, please contact our customer service. We are committed to ensuring customer satisfaction and will work with you to resolve any issues."
+    },
+    "termsConditions": {
+      "title": "Terms & Conditions",
+      "text": "By using our website and services, you agree to the terms and conditions outlined here. VS Skate Shop reserves the right to modify these terms at any time. We encourage you to review this page regularly. All purchases are subject to availability and our approval. Our products are for personal use only and cannot be resold without permission. If you have any questions about these terms, please reach out to us for clarification."
+    }
+  },
+  "errors": {
+    "404": {
+      "title": "Page Not Found",
+      "message": "Sorry, the page you are looking for does not exist.",
+      "goBack": "Go Back"
+    },
+    "generic": {
+      "title": "Something went wrong!",
+      "description": "We've unfortunately encountered an error.",
+      "retry": "Reload the page"
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "cart": "Cart",
+    "profile": "Profile",
+    "allProducts": "All Products",
+    "searchPlaceholder": "Search for products..."
+  },
+  "footer": {
+    "aboutUs": "About Us",
+    "privacyPolicy": "Privacy Policy",
+    "shippingReturnPolicy": "Shipping & Return Policy",
+    "termsConditions": "Terms & Conditions",
+    "allRightsReserved": "© 2022 VS Skate Shop. All rights reserved."
+  }
+}

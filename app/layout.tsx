@@ -1,20 +1,12 @@
-import { inter } from "@/styles/fonts";
-import type { Metadata } from "next";
-import "@/styles/globals.css";
+import { ReactNode } from 'react';
+import '@/styles/globals.css';
 
-export const metadata: Metadata = {
-  title: "VS skateboard shop",
-  description: "E-shop for skateboards, wheels, trucks, and more",
+type Props = {
+  children: ReactNode;
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en" data-theme="business">
-      <body className={`${inter.className} antialiased`}>{children}</body>
-    </html>
-  );
+// Root layout is required to wrap the localized `not-found.tsx` page for i18n handling, even if it only passes children through
+
+export default function RootLayout({ children }: Props) {
+  return children;
 }

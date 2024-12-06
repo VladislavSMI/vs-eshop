@@ -57,7 +57,7 @@ export function Dropdown({
       <button
         type="button"
         onClick={toggleDropdown}
-        className="btn btn-circle btn-ghost"
+        className="btn btn-circle btn-ghost text-primary"
         aria-label={ariaLabel}
       >
         {icon}

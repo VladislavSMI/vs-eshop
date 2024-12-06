@@ -1,27 +1,14 @@
 import { executeQuery } from '@/lib/db';
-import { log } from '@/lib/log';
-import { Category, Product } from '@/lib/types';
-import { ProductRow, CategoryRow } from '../dbTypes';
-import { isMockEnabled, isValidTag } from '@/lib/utils';
+import { log } from '@/lib/logging/log';
+import { Category, Product, ProductDetails } from '@/lib/types';
+import { ProductRow, CategoryRow, ProductRowDetails } from '../QueryResults';
+import { isMockEnabled } from '@/lib/utils/utils';
 import {
   mockCategories,
   mockProducts,
 } from '@/__test__/mocks/ProductRepositoryMocks';
-
-const mapProduct = (row: ProductRow): Product => ({
-  productId: row.product_id,
-  productName: row.product_name,
-  categoryId: row.category_id,
-  categoryName: row.category_name,
-  price: parseFloat(row.price),
-  imageUrl: row.image_url,
-  tags: row.tags.filter(isValidTag),
-});
-
-const mapCategory = (row: CategoryRow): Category => ({
-  categoryId: row.category_id,
-  categoryName: row.category_name,
-});
+import { buildProductQuery } from '../queries/productQueryBuilder';
+import { CategoryMappers, ProductMappers } from '../mappers';
 
 // The `isMockEnabled` check enables testing without direct database access, which is
 // essential here due to calling this function directly from a server-side component.
@@ -35,37 +22,43 @@ export async function getAllProducts(): Promise<Product[]> {
     return mockProducts;
   }
 
+  const query = `
+    ${buildProductQuery()} 
+    GROUP BY p.product_id, pc.category_name 
+    ORDER BY p.product_name;`;
+
   try {
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
-
-    // console.log("Fetching revenue data...");
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const data = await executeQuery<ProductRow>({
-      query: `SELECT 
-                p.product_id,
-                p.product_name,
-                p.category_id,
-                pc.category_name,
-                p.price,
-                p.image_url,
-                COALESCE(array_remove(array_agg(t.tag_name), NULL), '{}') AS tags
-              FROM products p
-              LEFT JOIN product_categories pc ON p.category_id = pc.category_id
-              LEFT JOIN product_tags pt ON p.product_id = pt.product_id
-              LEFT JOIN tags t ON pt.tag_id = t.tag_id
-              WHERE p.deleted_at IS NULL
-              GROUP BY p.product_id, pc.category_name
-              ORDER BY p.product_name
-           `,
+      query,
     });
 
-    // ToDo: Create DTO for admin and normal users, don't just return rows.
-    return data.rows.map(mapProduct);
+    return data.rows.map(ProductMappers.base);
   } catch (error) {
     log.error({ error }, 'Database Error');
     throw new Error('Failed to get all products.');
+  }
+}
+
+export async function getProductById(
+  productId: ProductDetails['productId'],
+  locale: string = 'en',
+): Promise<ProductDetails> {
+  const query = `
+    ${buildProductQuery({ isProductDetails: true })}
+    WHERE p.product_id = $1
+    GROUP BY p.product_id, pc.category_name;
+    `;
+
+  try {
+    const data = await executeQuery<ProductRowDetails>({
+      query,
+      values: [productId, locale],
+    });
+
+    return ProductMappers.withDetails(data.rows[0]);
+  } catch (error) {
+    log.error({ error }, 'Database Error');
+    throw new Error('Failed to get product details.');
   }
 }
 
@@ -79,7 +72,7 @@ export async function getAllCategories(): Promise<Category[]> {
       query: `SELECT * FROM product_categories`,
     });
 
-    return data.rows.map(mapCategory);
+    return data.rows.map(CategoryMappers.base);
   } catch (error) {
     log.error({ error }, 'Database Error');
     throw new Error('Failed to get all categories.');

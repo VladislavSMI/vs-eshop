@@ -1,36 +1,31 @@
 import { ReactNode } from 'react';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
 import { clsx } from 'clsx';
 
-import { montserrat } from '@/styles/fonts';
+import { poppins } from '@/styles/fonts';
+import { Locale } from '@/lib/types';
 import '@/styles/globals.css';
 
-import NavbarWrapper from './navbar/NavbarWrapper';
 import Footer from './footer/Footer';
+import Navbar from './navbar/Navbar';
 
 type Props = {
   children: ReactNode;
-  locale?: string;
+  locale: Locale;
 };
 
 export default async function BaseLayout({ children, locale }: Props) {
-  const messages = await getMessages();
-
   return (
-    <html lang={locale} data-theme="luxury" className="h-full">
+    <html lang={locale} data-theme="vsShopDark" className="h-full">
       <body
         className={clsx(
-          montserrat.className,
+          poppins.className,
           'antialiased',
           'flex h-full flex-col',
         )}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <NavbarWrapper />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-        </NextIntlClientProvider>
+        <Navbar />
+        <main className="flex-grow">{children}</main>
+        <Footer />
       </body>
     </html>
   );

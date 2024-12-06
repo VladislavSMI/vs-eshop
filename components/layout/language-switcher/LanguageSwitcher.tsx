@@ -6,8 +6,9 @@ import { useLocale } from 'next-intl';
 import { clsx } from 'clsx';
 import { GlobeAltIcon } from '@heroicons/react/24/outline';
 import { Dropdown } from '@/components/ui/DropDown';
-import { Locale, locales } from '@/i18n/routing';
-import { changeLanguage } from '@/lib/changeLanguage';
+import { routing } from '@/i18n/routing';
+import { changeLanguage } from '@/lib/utils/changeLanguage';
+import { Locale } from '@/lib/types';
 
 export default function LanguageSwitcher() {
   const router = useRouter();
@@ -27,7 +28,7 @@ export default function LanguageSwitcher() {
       ariaLabel="Change language dropdown"
     >
       <ul className="menu p-2">
-        {locales.map((lng) => (
+        {routing.locales.map((lng) => (
           <button
             type="button"
             key={lng}

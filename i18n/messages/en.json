@@ -8,9 +8,22 @@
       "search": "Search",
       "welcome": "Welcome"
     },
-    "product": {
+    "cart": {
       "addToCart": "Add to cart",
-      "price": "Price: {price, currency}"
+      "goToCart": "Go to cart",
+      "myCart": "My Cart",
+      "remove": "Remove",
+      "price": "Price",
+      "size": "Size",
+      "quantity": "Quantity",
+      "total": "Total",
+      "totalQuantity": "Total Quantity",
+      "totalPrice": "Total Price",
+      "emptyCart": "Your cart is empty.",
+      "adding": "Adding...",
+      "emptyCartMessage": "Your cart is empty. Add some items to continue.",
+      "checkoutNow": "Checkout Now",
+      "outOfStock": "Out of stock"
     }
   },
   "pages": {
@@ -37,9 +50,23 @@
     "termsConditions": {
       "title": "Terms & Conditions",
       "text": "By using our website and services, you agree to the terms and conditions outlined here. VS Skate Shop reserves the right to modify these terms at any time. We encourage you to review this page regularly. All purchases are subject to availability and our approval. Our products are for personal use only and cannot be resold without permission. If you have any questions about these terms, please reach out to us for clarification."
+    },
+    "checkout": {
+      "title": "Checkout",
+      "description": "Review your cart and proceed to payment."
     }
   },
-  "errors": {
+  "sections": {
+    "featuredProducts": {
+      "title": "Featured Products",
+      "description": "Check out our latest products"
+    },
+    "newArrivals": {
+      "title": "New Arrivals",
+      "description": "Discover our newest products"
+    }
+  },
+  "generalErrors": {
     "404": {
       "title": "Page Not Found",
       "message": "Sorry, the page you are looking for does not exist.",
@@ -50,6 +77,31 @@
       "description": "We've unfortunately encountered an error.",
       "retry": "Reload the page"
     }
+  },
+  "responseError": {
+    "validation": {
+      "general": {
+        "invalidType": "Invalid input type."
+      },
+      "productId": {
+        "required": "The product name is required.",
+        "invalid": "The product name is invalid."
+      },
+      "sizeId": {
+        "required": "Please select a size.",
+        "invalid": "The size selection is invalid."
+      },
+      "quantity": {
+        "required": "Quantity is required.",
+        "invalid": "Quantity must be between 1 and 100."
+      }
+    },
+    "unexpected": "An unexpected error occurred. Please try again later.",
+    "notFound": "The requested resource was not found.",
+    "outOfStock": "The product is out of stock."
+  },
+  "responseSuccess": {
+    "addToCart": "Product added to cart successfully."
   },
   "navigation": {
     "home": "Home",
@@ -63,6 +115,6 @@
     "privacyPolicy": "Privacy Policy",
     "shippingReturnPolicy": "Shipping & Return Policy",
     "termsConditions": "Terms & Conditions",
-    "allRightsReserved": "© 2022 VS Skate Shop. All rights reserved."
+    "allRightsReserved": "VS Skate Shop. All rights reserved."
   }
 }

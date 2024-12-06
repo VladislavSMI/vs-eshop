@@ -2,8 +2,9 @@ import { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 import '@/styles/globals.css';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Locale, routing } from '@/i18n/routing';
+import { routing } from '@/i18n/routing';
 import BaseLayout from '@/components/layout/BaseLayout';
+import { Locale } from '@/lib/types';
 
 type Props = {
   children: ReactNode;
@@ -41,9 +42,9 @@ export default async function LocaleLayout({
   params: { locale },
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: Locale };
 }>) {
-  if (!routing.locales.includes(locale as Locale)) {
+  if (!routing.locales.includes(locale)) {
     notFound();
   }
 

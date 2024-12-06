@@ -1,6 +1,5 @@
-import en from '@/i18n/messages/en.json';
+import { TranslationKeys } from './i18n/TranslationKeys';
 
-type Messages = typeof en;
 declare global {
-  type IntlMessages = Messages;
+  type IntlMessages = TranslationKeys;
 }

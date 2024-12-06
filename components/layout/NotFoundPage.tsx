@@ -3,7 +3,7 @@ import { FaceFrownIcon } from '@heroicons/react/24/outline';
 import { useTranslations } from 'next-intl';
 
 export default function NotFoundPage() {
-  const t = useTranslations('errors.404');
+  const t = useTranslations('generalErrors.404');
 
   return (
     <div className="flex min-h-[calc(100vh-6rem)] flex-col items-center justify-center text-center">

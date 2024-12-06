@@ -8,9 +8,22 @@
       "search": "Zoeken",
       "welcome": "Welkom"
     },
-    "product": {
+    "cart": {
       "addToCart": "Toevoegen aan winkelwagen",
-      "price": "Prijs: {price, currency}"
+      "goToCart": "Ga naar winkelwagen",
+      "myCart": "Mijn Winkelwagen",
+      "remove": "Verwijderen",
+      "price": "Prijs",
+      "size": "Maat",
+      "quantity": "Aantal",
+      "total": "Totaal",
+      "totalQuantity": "Totaal Aantal",
+      "totalPrice": "Totale Prijs",
+      "emptyCart": "Uw winkelwagen is leeg.",
+      "adding": "Toevoegen...",
+      "emptyCartMessage": "Uw winkelwagen is leeg. Voeg artikelen toe om door te gaan.",
+      "checkoutNow": "Nu Afrekenen",
+      "outOfStock": "Uitverkocht"
     }
   },
   "pages": {
@@ -37,9 +50,23 @@
     "termsConditions": {
       "title": "Algemene voorwaarden",
       "text": "Door gebruik te maken van onze website en diensten, gaat u akkoord met de hier beschreven algemene voorwaarden. VS Skate Shop behoudt zich het recht voor om deze voorwaarden op elk moment te wijzigen. We raden u aan deze pagina regelmatig te controleren. Alle aankopen zijn onderhevig aan beschikbaarheid en onze goedkeuring. Onze producten zijn alleen voor persoonlijk gebruik en mogen niet zonder toestemming worden doorverkocht. Als u vragen heeft over deze voorwaarden, neem dan contact met ons op voor verduidelijking."
+    },
+    "checkout": {
+      "title": "Afrekenen",
+      "description": "Controleer uw winkelwagen en ga verder naar betaling."
     }
   },
-  "errors": {
+  "sections": {
+    "featuredProducts": {
+      "title": "Aanbevolen producten",
+      "description": "Bekijk onze nieuwste producten"
+    },
+    "newArrivals": {
+      "title": "Nieuw Binnen",
+      "description": "Ontdek onze nieuwste producten"
+    }
+  },
+  "generalErrors": {
     "404": {
       "title": "Pagina Niet Gevonden",
       "message": "Sorry, de pagina die u zoekt bestaat niet.",
@@ -63,6 +90,31 @@
     "privacyPolicy": "Privacybeleid",
     "shippingReturnPolicy": "Verzend- en retourbeleid",
     "termsConditions": "Algemene voorwaarden",
-    "allRightsReserved": "© 2022 VS Skate Shop. Alle rechten voorbehouden."
+    "allRightsReserved": "VS Skate Shop. Alle rechten voorbehouden."
+  },
+  "responseError": {
+    "validation": {
+      "general": {
+        "invalidType": "Ongeldig invoertype."
+      },
+      "productId": {
+        "required": "De productnaam is verplicht.",
+        "invalid": "De productnaam is ongeldig."
+      },
+      "sizeId": {
+        "required": "Selecteer een maat.",
+        "invalid": "De maatselectie is ongeldig."
+      },
+      "quantity": {
+        "required": "De hoeveelheid is verplicht.",
+        "invalid": "De hoeveelheid moet tussen 1 en 100 liggen."
+      }
+    },
+    "unexpected": "Er is een onverwachte fout opgetreden. Probeer het later opnieuw.",
+    "notFound": "De opgevraagde bron is niet gevonden.",
+    "outOfStock": "Het product is uitverkocht."
+  },
+  "responseSuccess": {
+    "addToCart": "Product succesvol toegevoegd aan het winkelwagentje."
   }
 }

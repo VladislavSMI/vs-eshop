@@ -1,10 +1,46 @@
-import { VALID_TAGS } from '../const';
+import { Locale, Tag } from './Shared';
 
-export type Tag = (typeof VALID_TAGS)[number];
+export type Size = {
+  sizeId: number;
+  size: string;
+};
 
 export type Category = {
   categoryId: number;
   categoryName: string;
+};
+
+export type ProductDescription = {
+  languageCode: Locale;
+  description: string;
+};
+
+type BaseProductVariation = Size & {
+  variationId: string;
+};
+
+// For non-admin
+export type ProductVariation = BaseProductVariation & {
+  stockQuantity: boolean;
+};
+
+// For admin
+export type ProductVariationAdmin = BaseProductVariation & {
+  stockQuantity: number;
+};
+
+export type ProductReview = {
+  customerName: string;
+  rating: number;
+  reviewText: string;
+  reviewDate: string;
+  helpfulVotes: number;
+};
+
+export type ProductDiscount = {
+  discountPercentage: number;
+  validFrom: string;
+  validUntil: string | null;
 };
 
 export type Product = {
@@ -15,4 +51,18 @@ export type Product = {
   price: number;
   imageUrl: string;
   tags: Tag[];
+};
+
+export type ProductDetails = Product & {
+  descriptions: ProductDescription[];
+  variations: ProductVariation[];
+  reviews: ProductReview[];
+  discounts: ProductDiscount[];
+  relatedProducts: string[];
+};
+
+export type ProductAdmin = Omit<ProductDetails, 'variations'> & {
+  variations: ProductVariationAdmin[];
+  createdAt: string;
+  deletedAt?: string | null;
 };

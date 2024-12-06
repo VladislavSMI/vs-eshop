@@ -1,16 +1,15 @@
-import { ProductCard } from '@/components/product/ProductCard';
-import { getAllProducts } from '@/data/repository/ProductRepository';
+import { Carousel } from '@/components/ui/Carousel';
+import { HeroProducts } from '@/components/product/HeroProducts';
+import { LocalizedSectionHeader } from '@/components/ui/LocalizedSectionHeader';
+import { getAllProductsUseCase } from '@/use-cases/product';
 
 export default async function Home() {
-  const products = await getAllProducts();
-
+  const products = await getAllProductsUseCase();
   return (
-    <div className="min-h-screen p-8 pb-20 sm:p-20">
-      <div className="flex flex-wrap justify-between gap-8">
-        {products.map((product) => (
-          <ProductCard product={product} key={product.productId} />
-        ))}
-      </div>
-    </div>
+    <>
+      <HeroProducts />
+      <LocalizedSectionHeader translationKey="sections.featuredProducts.title" />
+      <Carousel products={products} />
+    </>
   );
 }

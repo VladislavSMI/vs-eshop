@@ -1,5 +1,5 @@
 import { Pool, QueryResult, QueryResultRow } from 'pg';
-import { log } from './log';
+import { log } from './logging/log';
 import { QueryParams } from './types';
 
 /* eslint-disable no-underscore-dangle */
@@ -22,13 +22,14 @@ const createPool = () =>
 const pool = globalThis._pool ?? createPool();
 if (process.env.NODE_ENV !== 'production') globalThis._pool = pool;
 
-pool.on('connect', () => {
-  log.info(`New PostgreSQL connection at ${new Date().toISOString()}`);
-});
+// For debugging purposes
+// pool.on('connect', () => {
+//   log.info(`New PostgreSQL connection at ${new Date().toISOString()}`);
+// });
 
-pool.on('remove', () => {
-  log.info(`PostgreSQL connection removed at ${new Date().toISOString()}`);
-});
+// pool.on('remove', () => {
+//   log.info(`PostgreSQL connection removed at ${new Date().toISOString()}`);
+// });
 
 pool.on('error', (error) => {
   log.error(

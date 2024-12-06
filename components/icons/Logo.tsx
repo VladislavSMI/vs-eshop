@@ -9,7 +9,7 @@ export function Logo({
 }) {
   return (
     <Image
-      src="/assets/logo_v1.png"
+      src="/assets/logo_v2.png"
       height={height}
       width={width}
       alt="logo"

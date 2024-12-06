@@ -3,6 +3,8 @@ import { setRequestLocale } from 'next-intl/server';
 import StaticPageFooter from '@/components/layout/StaticPageFooter';
 import { PageProps } from '@/lib/types';
 
+export const dynamic = 'force-static';
+
 export default function ShippingReturnPolicy({
   params: { locale },
 }: PageProps) {

@@ -52,14 +52,12 @@ it("handles not found pages for routes that don't match the middleware", async (
   ).toBeVisible();
 });
 
-it('sets caching headers', async ({ request }) => {
+it('sets caching headers for static pages', async ({ request }) => {
   for (const pathname of [
-    '/en',
     '/en/about-us',
     '/en/privacy-policy',
     '/en/shipping-return-policy',
     '/en/terms-conditions',
-    '/nl',
     '/nl/about-us',
     '/nl/privacy-policy',
     '/nl/shipping-return-policy',

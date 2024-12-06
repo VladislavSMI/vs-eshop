@@ -1,12 +1,20 @@
-'use client';
-
 import React from 'react';
+import { ProductCardWrapper } from '@/components/product/ProductCard/ProductCardWrapper';
+import { getAllProductsUseCase } from '@/use-cases/product';
 
-export default function Product() {
+export default async function Product() {
+  const products = await getAllProductsUseCase();
+
   return (
-    <div className="mt-5 text-center text-4xl">
-      <h1>Products</h1>
-      <p>Showing all products</p>
+    <div className="mx-auto mt-5 grid max-w-screen-2xl grid-cols-1 gap-8 px-5 pb-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {products.map((product) => (
+        <ProductCardWrapper
+          product={product}
+          useTilt={false}
+          useLink
+          key={product.productId}
+        />
+      ))}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import pino from 'pino';
-import { isBrowser, isProduction } from './utils';
+import { isBrowser, isProduction } from '../utils/utils';
 
 const logLevel = isProduction() ? 'info' : 'debug';
 

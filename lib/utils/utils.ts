@@ -48,3 +48,8 @@ export const setCursor = (type: 'default' | 'grab' | 'grabbing') => {
 };
 
 export const normalizeSQL = (sql: string) => sql.replace(/\s+/g, ' ').trim();
+
+/**
+ * Get array from 0..(n-1) containing `n` entries
+ */
+export const getRange = (n: number) => Array.from(Array(n).keys());

@@ -1,15 +1,26 @@
 import { Carousel } from '@/components/ui/Carousel';
 import { HeroProducts } from '@/components/product/HeroProducts';
 import { LocalizedSectionHeader } from '@/components/ui/LocalizedSectionHeader';
-import { getAllProductsUseCase } from '@/use-cases/product';
+import { getProductSearchUseCase } from '@/use-cases/product';
+import { Suspense } from 'react';
+import { ProductCardSkeleton } from '@/components/product/ProductCard/ProductCardSkeleton';
+import { HeroProductsSkeleton } from '@/components/product/HeroProductsSkeleton';
+
+export const dynamic = 'force-static';
 
 export default async function Home() {
-  const products = await getAllProductsUseCase();
+  const products = await getProductSearchUseCase({
+    searchParams: { limit: 12 },
+  });
   return (
     <>
-      <HeroProducts />
+      <Suspense fallback={<HeroProductsSkeleton />}>
+        <HeroProducts />
+      </Suspense>
       <LocalizedSectionHeader translationKey="sections.featuredProducts.title" />
-      <Carousel products={products} />
+      <Suspense fallback={<ProductCardSkeleton />}>
+        <Carousel products={products} />
+      </Suspense>
     </>
   );
 }

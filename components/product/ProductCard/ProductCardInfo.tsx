@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { Product } from '@/lib/types';
 import { Price } from '@/components/ui/Price';
 
-export default function ProductCardInfo({
+export const ProductCardInfo = ({
   name,
   price,
   currencyCode = 'EUR',
@@ -12,21 +12,19 @@ export default function ProductCardInfo({
   price: Product['price'];
   currencyCode?: string;
   position: 'bottom' | 'center';
-}) {
-  return (
-    <div
-      className={clsx('absolute bottom-0 w-full p-2', {
-        'left-0 lg:w-[75%] lg:pb-[25%]': position === 'center',
-      })}
-    >
-      <div className="flex items-center rounded-lg border border-neutral bg-neutral/80 p-2 text-sm font-semibold text-white backdrop-blur-md">
-        <h3 className="mr-4 flex-grow pl-2">{name}</h3>
-        <Price
-          className="flex-none rounded-lg bg-accent p-2 text-secondary"
-          price={price}
-          currencyCode={currencyCode}
-        />
-      </div>
+}) => (
+  <div
+    className={clsx('absolute bottom-0 w-full p-2', {
+      'left-0 lg:w-[75%] lg:pb-[25%]': position === 'center',
+    })}
+  >
+    <div className="flex items-center rounded-lg border border-neutral bg-neutral/80 p-2 text-sm font-semibold text-white backdrop-blur-md">
+      <h3 className="mr-4 flex-grow pl-2">{name}</h3>
+      <Price
+        className="flex-none rounded-lg bg-accent p-2 text-secondary"
+        price={price}
+        currencyCode={currencyCode}
+      />
     </div>
-  );
-}
+  </div>
+);

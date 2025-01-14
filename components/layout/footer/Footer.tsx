@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-export default function Footer() {
+export const Footer = () => {
   const t = useTranslations('footer');
 
   return (
@@ -112,4 +112,4 @@ export default function Footer() {
       </aside>
     </footer>
   );
-}
+};

@@ -1,7 +1,7 @@
 import { Product } from '@/lib/types';
 import { ProductCardWrapper } from '@/components/product/ProductCard/ProductCardWrapper';
 
-export function Carousel({ products }: { products: Product[] }) {
+export const Carousel = ({ products }: { products: Product[] }) => {
   if (!products?.length) return null;
 
   return (
@@ -18,4 +18,4 @@ export function Carousel({ products }: { products: Product[] }) {
       </ul>
     </div>
   );
-}
+};

@@ -1,19 +1,17 @@
 import Image from 'next/image';
 
-export function Logo({
+export const Logo = ({
   height = 30,
   width = 30,
 }: {
   height?: number;
   width?: number;
-}) {
-  return (
-    <Image
-      src="/assets/logo_v2.png"
-      height={height}
-      width={width}
-      alt="logo"
-      priority
-    />
-  );
-}
+}) => (
+  <Image
+    src="/assets/logo_v2.png"
+    height={height}
+    width={width}
+    alt="logo"
+    priority
+  />
+);

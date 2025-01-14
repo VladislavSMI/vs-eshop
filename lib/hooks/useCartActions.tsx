@@ -6,7 +6,7 @@ import { CartSelection, ValidatedCartSelection } from '../types';
 import { validateCartSelection } from '../utils/validateCartSlection';
 import { handleApiResponse } from '../utils/handleApiResponse';
 
-export function useCartActions() {
+export const useCartActions = () => {
   const [isPending, startTransition] = useTransition();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -61,4 +61,4 @@ export function useCartActions() {
     updateCartSelection,
     addToCart,
   };
-}
+};

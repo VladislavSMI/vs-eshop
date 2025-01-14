@@ -22,40 +22,39 @@ interface ProductCardWrapperProps {
 // - When useLink is false, the outer LinkWrapper is disabled, and the inner LinkWrapper is active.
 // This is achieved by passing !useLink to the inner LinkWrapper's useLink prop.
 
-export function ProductCardWrapper({
+export const ProductCardWrapper = ({
   product: { productId, productName, price, imageUrl },
   useTilt = true,
   useLink = true,
   imageComponent,
   position = 'bottom',
   showPrice = true,
-}: ProductCardWrapperProps) {
-  return (
-    <TiltWrapper useTilt={useTilt} className="h-full w-full rounded-lg">
-      <LinkWrapper
-        href={`/product/${productId}`}
-        useLink={useLink}
-        className="relative block aspect-square h-full w-full rounded-lg"
+}: ProductCardWrapperProps) => (
+  <TiltWrapper useTilt={useTilt} className="h-full w-full rounded-lg">
+    <LinkWrapper
+      href={`/product/${productId}`}
+      useLink={useLink}
+      className="relative block aspect-square h-full w-full rounded-lg"
+    >
+      <ProductCard
+        name={productName}
+        productId={productId}
+        price={price}
+        currencyCode="EUR"
+        position={position}
+        showPrice={showPrice}
+        useLink={!useLink}
       >
-        <ProductCard
-          name={productName}
-          productId={productId}
-          price={price}
-          currencyCode="EUR"
-          position={position}
-          showPrice={showPrice}
-          useLink={!useLink}
-        >
-          {imageComponent || (
-            <Image
-              className="rounded-lg border-none object-contain p-5 transition-transform duration-500 hover:scale-[1.1] dark:invert"
-              src={imageUrl}
-              alt={productName}
-              fill
-            />
-          )}
-        </ProductCard>
-      </LinkWrapper>
-    </TiltWrapper>
-  );
-}
+        {imageComponent || (
+          <Image
+            className="rounded-lg border-none object-contain p-5 transition-transform duration-500 hover:scale-[1.1] dark:invert"
+            src={imageUrl}
+            alt={productName}
+            fill
+            sizes="(min-width: 1024px) 300px, 200px"
+          />
+        )}
+      </ProductCard>
+    </LinkWrapper>
+  </TiltWrapper>
+);

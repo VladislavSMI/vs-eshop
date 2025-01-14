@@ -3,9 +3,9 @@
 import React, { ReactNode } from 'react';
 import { LinkWrapper } from '@/components/ui/Wrapper/LinkWrapper';
 import { Product } from '@/lib/types';
-import ProductCardInfo from './ProductCardInfo';
+import { ProductCardInfo } from './ProductCardInfo';
 
-export function ProductCard({
+export const ProductCard = ({
   name,
   productId,
   price,
@@ -23,20 +23,18 @@ export function ProductCard({
   children: ReactNode;
   showPrice?: boolean;
   useLink: boolean;
-}) {
-  return (
-    <div className="group relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg border border-transparent bg-base-100 p-5 shadow-[2px_4px_10px_rgba(255,255,255,0.3)] transition-all duration-500 hover:animate-completeBorder">
-      {children}
-      {showPrice && (
-        <LinkWrapper href={`/product/${productId}`} useLink={useLink}>
-          <ProductCardInfo
-            name={name}
-            price={price}
-            currencyCode={currencyCode}
-            position={position}
-          />
-        </LinkWrapper>
-      )}
-    </div>
-  );
-}
+}) => (
+  <div className="group relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg border border-transparent bg-base-100 p-5 shadow-[2px_4px_10px_rgba(255,255,255,0.3)] transition-all duration-500 hover:animate-completeBorder">
+    {children}
+    {showPrice && (
+      <LinkWrapper href={`/product/${productId}`} useLink={useLink}>
+        <ProductCardInfo
+          name={name}
+          price={price}
+          currencyCode={currencyCode}
+          position={position}
+        />
+      </LinkWrapper>
+    )}
+  </div>
+);

@@ -2,11 +2,11 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 import { TranslationKey } from '@/lib/types';
 
-export function LocalizedSectionHeader({
+export const LocalizedSectionHeader = ({
   translationKey,
 }: {
   translationKey: TranslationKey;
-}) {
+}) => {
   const t = useTranslations();
 
   return (
@@ -14,4 +14,4 @@ export function LocalizedSectionHeader({
       <h1 className="m-5 capitalize">{t(translationKey)}</h1>
     </div>
   );
-}
+};

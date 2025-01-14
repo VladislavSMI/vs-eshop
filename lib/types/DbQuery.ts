@@ -1,4 +1,4 @@
 export interface QueryParams {
   query: string;
-  values?: (string | number)[];
+  values?: (string | number | string[])[];
 }

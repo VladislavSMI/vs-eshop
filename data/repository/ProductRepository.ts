@@ -7,8 +7,12 @@ import {
   mockCategories,
   mockProducts,
 } from '@/__test__/mocks/ProductRepositoryMocks';
-import { buildProductQuery } from '../queries/productQueryBuilder';
+import {
+  buildProductQuery,
+  buildProductSearchQuery,
+} from '../queries/productQueryBuilder';
 import { CategoryMappers, ProductMappers } from '../mappers';
+import { ITEMS_PER_PAGE } from '@/lib/const';
 
 // The `isMockEnabled` check enables testing without direct database access, which is
 // essential here due to calling this function directly from a server-side component.
@@ -24,7 +28,7 @@ export async function getAllProducts(): Promise<Product[]> {
 
   const query = `
     ${buildProductQuery()} 
-    GROUP BY p.product_id, pc.category_name 
+    GROUP BY p.product_id, pc.category_name, pc.category_id 
     ORDER BY p.product_name;`;
 
   try {
@@ -39,6 +43,96 @@ export async function getAllProducts(): Promise<Product[]> {
   }
 }
 
+export async function getProductSearchResultCount({
+  searchTerm,
+  categoryId,
+  tagNames,
+}: {
+  searchTerm?: string;
+  categoryId?: number;
+  tagNames?: string[];
+}): Promise<number> {
+  let query = `
+    SELECT COUNT(*) AS total_count
+    FROM products p
+    LEFT JOIN product_categories pc ON p.category_id = pc.category_id
+    LEFT JOIN product_descriptions pd ON p.product_id = pd.product_id
+  `;
+
+  const { conditions, values } = buildProductSearchQuery({
+    searchTerm,
+    categoryId,
+    tagNames,
+  });
+
+  if (conditions.length > 0) {
+    query += ` WHERE ${conditions.join(' AND ')}`;
+  }
+
+  try {
+    const result = await executeQuery({
+      query,
+      values,
+    });
+    return Number(result.rows[0]?.total_count || 0);
+  } catch (error) {
+    log.error({ error }, 'Database Error');
+    throw new Error('Failed to get product result count.');
+  }
+}
+
+export async function getProductSearch({
+  searchTerm,
+  categoryId,
+  tagNames,
+  orderBy = 'p.product_name',
+  sort = 'ASC',
+  offset = 0,
+  limit = ITEMS_PER_PAGE,
+}: {
+  searchTerm?: string;
+  categoryId?: number;
+  tagNames?: string[];
+  orderBy?: string;
+  sort?: 'ASC' | 'DESC';
+  offset?: number;
+  limit?: number;
+}): Promise<Product[]> {
+  let query = `
+  ${buildProductQuery()}
+    LEFT JOIN product_descriptions pd ON p.product_id = pd.product_id
+  `;
+
+  const { conditions, values } = buildProductSearchQuery({
+    searchTerm,
+    categoryId,
+    tagNames,
+  });
+
+  if (conditions.length > 0) {
+    query += ` WHERE ${conditions.join(' AND ')}`;
+  }
+
+  query += ` 
+    GROUP BY p.product_id, pc.category_name, pc.category_id
+    ORDER BY ${orderBy} ${sort}
+    LIMIT $${values.length + 1} OFFSET $${values.length + 2};
+  `;
+  values.push(limit, offset);
+
+  try {
+    const result = await executeQuery<ProductRow>({
+      query,
+      values,
+    });
+
+    return result.rows.map(ProductMappers.base);
+  } catch (error) {
+    log.error({ error }, 'Database Error');
+    throw new Error('Failed to get product search results.');
+  }
+}
+
 export async function getProductById(
   productId: ProductDetails['productId'],
   locale: string = 'en',
@@ -46,7 +140,7 @@ export async function getProductById(
   const query = `
     ${buildProductQuery({ isProductDetails: true })}
     WHERE p.product_id = $1
-    GROUP BY p.product_id, pc.category_name;
+    GROUP BY p.product_id, pc.category_name, pc.category_id;
     `;
 
   try {

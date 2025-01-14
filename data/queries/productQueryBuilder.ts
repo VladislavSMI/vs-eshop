@@ -1,15 +1,16 @@
-export function buildProductQuery({
+export const buildProductQuery = ({
   isProductDetails = false,
   isAdminDetails = false,
 }: {
   isProductDetails?: boolean;
   isAdminDetails?: boolean;
-} = {}): string {
+} = {}): string => {
   const baseSelect = `
     p.product_id,
     p.product_name,
     p.category_id,
     pc.category_name,
+    pc.category_id,
     p.price,
     p.image_url,
     COALESCE(
@@ -110,4 +111,36 @@ export function buildProductQuery({
     ${selectClause}
     ${fromAndJoinsClause}
   `;
-}
+};
+
+export const buildProductSearchQuery = ({
+  searchTerm,
+  categoryId,
+  tagNames,
+}: {
+  searchTerm?: string;
+  categoryId?: number;
+  tagNames?: string[];
+}): { conditions: string[]; values: (string | number | string[])[] } => {
+  const conditions: string[] = [];
+  const values: (string | number | string[])[] = [];
+
+  if (searchTerm) {
+    conditions.push(
+      `(p.product_name ILIKE $${values.length + 1} OR pd.description ILIKE $${values.length + 1})`,
+    );
+    values.push(`%${searchTerm}%`);
+  }
+
+  if (categoryId) {
+    conditions.push(`pc.category_id = $${values.length + 1}`);
+    values.push(categoryId);
+  }
+
+  if (tagNames && tagNames.length > 0) {
+    conditions.push(`(t.tag_name ILIKE ANY($${values.length + 1}::text[]))`);
+    values.push(tagNames.map((tag) => `%${tag}%`));
+  }
+
+  return { conditions, values };
+};

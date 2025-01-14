@@ -1,5 +1,8 @@
 import { normalizeSQL } from '@/lib/utils/utils';
-import { buildProductQuery } from './productQueryBuilder';
+import {
+  buildProductQuery,
+  buildProductSearchQuery,
+} from './productQueryBuilder';
 
 describe('buildProductQuery', () => {
   it('should return the base query when no flags are provided', () => {
@@ -11,6 +14,7 @@ describe('buildProductQuery', () => {
       p.product_name,
       p.category_id,
       pc.category_name,
+      pc.category_id,
       p.price,
       p.image_url,
       COALESCE(
@@ -87,5 +91,94 @@ describe('buildProductQuery', () => {
 
     expect(query).toContain(normalizeSQL(expectedDetailsSelect));
     expect(query).toContain(normalizeSQL(expectedAdminSelect));
+  });
+});
+
+describe('buildProductSearchQuery', () => {
+  it('should build the search query with searchTerm and categoryId', () => {
+    const { conditions, values } = buildProductSearchQuery({
+      searchTerm: 'Test Product',
+      categoryId: 123,
+    });
+
+    const expectedConditions = [
+      `(p.product_name ILIKE $1 OR pd.description ILIKE $1)`,
+      `pc.category_id = $2`,
+    ];
+
+    expect(conditions).toEqual(expectedConditions);
+    expect(values).toEqual(['%Test Product%', 123]);
+  });
+
+  it('should build the query with only searchTerm when categoryId is not provided', () => {
+    const { conditions, values } = buildProductSearchQuery({
+      searchTerm: 'Test Product',
+    });
+
+    const expectedConditions = [
+      `(p.product_name ILIKE $1 OR pd.description ILIKE $1)`,
+    ];
+
+    expect(conditions).toEqual(expectedConditions);
+    expect(values).toEqual(['%Test Product%']);
+  });
+
+  it('should build the query with only categoryId when searchTerm is not provided', () => {
+    const { conditions, values } = buildProductSearchQuery({
+      categoryId: 123,
+    });
+
+    const expectedConditions = [`pc.category_id = $1`];
+
+    expect(conditions).toEqual(expectedConditions);
+    expect(values).toEqual([123]);
+  });
+
+  it('should build the query with tagNames when provided', () => {
+    const { conditions, values } = buildProductSearchQuery({
+      tagNames: ['new', 'sale'],
+    });
+
+    const expectedConditions = [`(t.tag_name ILIKE ANY($1::text[]))`];
+
+    expect(conditions).toEqual(expectedConditions);
+    expect(values).toEqual([['%new%', '%sale%']]);
+  });
+
+  it('should build the query with searchTerm and tagNames', () => {
+    const { conditions, values } = buildProductSearchQuery({
+      searchTerm: 'Test Product',
+      tagNames: ['new', 'sale'],
+    });
+
+    const expectedConditions = [
+      `(p.product_name ILIKE $1 OR pd.description ILIKE $1)`,
+      `(t.tag_name ILIKE ANY($2::text[]))`,
+    ];
+
+    expect(conditions).toEqual(expectedConditions);
+    expect(values).toEqual(['%Test Product%', ['%new%', '%sale%']]);
+  });
+
+  it('should build the query with categoryId and tagNames', () => {
+    const { conditions, values } = buildProductSearchQuery({
+      categoryId: 123,
+      tagNames: ['new', 'sale'],
+    });
+
+    const expectedConditions = [
+      `pc.category_id = $1`,
+      `(t.tag_name ILIKE ANY($2::text[]))`,
+    ];
+
+    expect(conditions).toEqual(expectedConditions);
+    expect(values).toEqual([123, ['%new%', '%sale%']]);
+  });
+
+  it('should build an empty query when no parameters are provided', () => {
+    const { conditions, values } = buildProductSearchQuery({});
+
+    expect(conditions).toEqual([]);
+    expect(values).toEqual([]);
   });
 });

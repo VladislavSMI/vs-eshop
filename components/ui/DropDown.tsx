@@ -5,34 +5,34 @@ import clsx from 'clsx';
 
 interface DropdownProps {
   icon: ReactNode;
-  children: ReactNode;
+  children: (toggleDropdown: () => void) => ReactNode;
   position?: 'left' | 'right' | 'center';
   dropdownClassName?: string;
   contentClassName?: string;
   ariaLabel?: string;
 }
 
-export function Dropdown({
+export const Dropdown = ({
   icon,
   children,
   position = 'left',
   dropdownClassName = '',
   contentClassName = '',
   ariaLabel = 'dropdown',
-}: DropdownProps) {
+}: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
-  const handleClickOutside = (event: MouseEvent) => {
+  function handleClickOutside(e: MouseEvent) {
     if (
       dropdownRef.current &&
-      !dropdownRef.current.contains(event.target as Node)
+      !dropdownRef.current.contains(e.target as Node)
     ) {
       setIsOpen(false);
     }
-  };
+  }
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -74,9 +74,11 @@ export function Dropdown({
             },
           )}
         >
-          <div className="rounded-box bg-base-100">{children}</div>
+          <div className="rounded-box bg-base-100">
+            {children(toggleDropdown)}
+          </div>
         </div>
       )}
     </div>
   );
-}
+};

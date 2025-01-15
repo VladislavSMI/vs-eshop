@@ -6,8 +6,6 @@ import { Suspense } from 'react';
 import { ProductCardSkeleton } from '@/components/product/ProductCard/ProductCardSkeleton';
 import { HeroProductsSkeleton } from '@/components/product/HeroProductsSkeleton';
 
-export const dynamic = 'force-static';
-
 export default async function Home() {
   const products = await getProductSearchUseCase({
     searchParams: { limit: 12 },

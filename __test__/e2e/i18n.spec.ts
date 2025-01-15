@@ -54,12 +54,10 @@ it("handles not found pages for routes that don't match the middleware", async (
 
 it('sets caching headers for static pages', async ({ request }) => {
   for (const pathname of [
-    '/en',
     '/en/about-us',
     '/en/privacy-policy',
     '/en/shipping-return-policy',
     '/en/terms-conditions',
-    '/nl',
     '/nl/about-us',
     '/nl/privacy-policy',
     '/nl/shipping-return-policy',
@@ -68,6 +66,15 @@ it('sets caching headers for static pages', async ({ request }) => {
     const response = await request.get(pathname);
     expect(response.headers()['cache-control']).toBe(
       's-maxage=31536000, stale-while-revalidate',
+    );
+  }
+});
+
+it('sets headers for dynamic pages', async ({ request }) => {
+  for (const pathname of ['/en', '/nl']) {
+    const response = await request.get(pathname);
+    expect(response.headers()['cache-control']).toBe(
+      'private, no-cache, no-store, max-age=0, must-revalidate',
     );
   }
 });

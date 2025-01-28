@@ -1,6 +1,6 @@
+import { Order } from '@/lib/types';
 import { stripeServer } from '../stripeServer';
 import { createStripeCheckoutOrderParams } from './createStripeCheckoutOrderParams';
-import { Order } from '@/lib/types';
 
 export const createOrderCheckoutSession = async (order: Order) => {
   const stripeCheckoutOrderParams =

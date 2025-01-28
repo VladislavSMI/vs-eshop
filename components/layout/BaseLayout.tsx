@@ -28,8 +28,8 @@ export default async function BaseLayout({ children, locale }: Props) {
           'flex h-full flex-col',
         )}
       >
-        <Navbar />
         <NextIntlClientProvider messages={messages}>
+          <Navbar />
           <ReactQueryProvider>
             <main className="flex-grow">{children}</main>
           </ReactQueryProvider>

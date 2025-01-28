@@ -13,5 +13,5 @@ export const setCartIdInCookies = (cartId: string) => {
 };
 
 export const removeCartIdFromCookies = () => {
-  cookies().set('vs_shop_cart_id', '', { maxAge: -1 });
+  cookies().delete('vs_shop_cart_id');
 };

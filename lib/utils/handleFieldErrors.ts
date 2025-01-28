@@ -14,7 +14,7 @@ export function handleFieldErrors({
       field,
       errorKeys?.[0]
         ? translate(errorKeys[0])
-        : translate('responseError.validation.general.invalidType'),
+        : translate('responseError.validation.general.invalid'),
     ]),
   );
 }

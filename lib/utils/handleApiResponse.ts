@@ -2,14 +2,14 @@ import { Dispatch, SetStateAction } from 'react';
 import { handleFieldErrors } from '@/lib/utils/handleFieldErrors';
 import { ApiResponse, TranslationKey } from '@/lib//types';
 
-export function handleApiResponse({
+export function handleApiResponse<T>({
   response,
   translate,
   setSuccessMessage,
   setErrorMessage,
   setErrorFields,
 }: {
-  response: ApiResponse<null>;
+  response: ApiResponse<T>;
   translate: (key: TranslationKey) => string;
   setSuccessMessage: Dispatch<SetStateAction<string | null>>;
   setErrorMessage: Dispatch<SetStateAction<string | null>>;

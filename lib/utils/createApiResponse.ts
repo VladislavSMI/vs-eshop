@@ -1,6 +1,6 @@
 import { ZodError } from 'zod';
 import { ApiResponse, TranslationKey } from '@/lib/types';
-import { PublicError } from '@/use-cases/errors';
+import { PublicError, UnexpectedError } from '@/use-cases/errors';
 
 export const createValidationErrorResponse = (
   error: ZodError,
@@ -14,7 +14,7 @@ export const createValidationErrorResponse = (
         value ? (value as TranslationKey[]) : [],
       ]),
     ),
-    messageKey: 'responseError.validation.general.invalidType',
+    messageKey: 'responseError.validation.general.invalid',
   },
 });
 
@@ -47,3 +47,11 @@ export const createSuccessResponse = <T>({
 
 export const createValidationMessage = (key: TranslationKey): TranslationKey =>
   key;
+
+export function createErrorResponse(err: unknown) {
+  if (err instanceof PublicError) {
+    return createPublicErrorResponse(err);
+  }
+
+  return createPublicErrorResponse(new UnexpectedError());
+}

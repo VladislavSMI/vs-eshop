@@ -8,12 +8,12 @@ interface LinkWrapperProps {
   className?: string;
 }
 
-export function LinkWrapper({
+export const LinkWrapper = ({
   href,
   useLink = true,
   children,
   className,
-}: LinkWrapperProps) {
+}: LinkWrapperProps) => {
   if (useLink && href) {
     return (
       <Link href={href} className={className}>
@@ -23,4 +23,4 @@ export function LinkWrapper({
   }
 
   return children;
-}
+};

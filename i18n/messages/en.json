@@ -33,7 +33,8 @@
     },
     "product": {
       "title": "Product page for skateboards, wheels, trucks, and more",
-      "description": "Search for skateboards, wheels, trucks, and more"
+      "description": "Search for skateboards, wheels, trucks, and more",
+      "noProductFound": "Oops! We couldn't find anything matching that search. How about trying something else?"
     },
     "aboutUs": {
       "title": "About Us",
@@ -78,6 +79,24 @@
       "retry": "Reload the page"
     }
   },
+  "navigation": {
+    "home": "Home",
+    "cart": "Cart",
+    "profile": "Profile",
+    "allProducts": "All Products",
+    "searchPlaceholder": "Search for products..."
+  },
+  "searchLabels": {
+    "query": "Search text",
+    "categoryId": "Category"
+  },
+  "footer": {
+    "aboutUs": "About Us",
+    "privacyPolicy": "Privacy Policy",
+    "shippingReturnPolicy": "Shipping & Return Policy",
+    "termsConditions": "Terms & Conditions",
+    "allRightsReserved": "VS Skate Shop. All rights reserved."
+  },
   "responseError": {
     "validation": {
       "general": {
@@ -102,19 +121,5 @@
   },
   "responseSuccess": {
     "addToCart": "Product added to cart successfully."
-  },
-  "navigation": {
-    "home": "Home",
-    "cart": "Cart",
-    "profile": "Profile",
-    "allProducts": "All Products",
-    "searchPlaceholder": "Search for products..."
-  },
-  "footer": {
-    "aboutUs": "About Us",
-    "privacyPolicy": "Privacy Policy",
-    "shippingReturnPolicy": "Shipping & Return Policy",
-    "termsConditions": "Terms & Conditions",
-    "allRightsReserved": "VS Skate Shop. All rights reserved."
   }
 }

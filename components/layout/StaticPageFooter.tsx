@@ -9,7 +9,7 @@ interface StaticPageProps {
     | 'pages.termsConditions';
 }
 
-export default function StaticPageFooter({ translationKey }: StaticPageProps) {
+export const StaticPageFooter = ({ translationKey }: StaticPageProps) => {
   const t = useTranslations(translationKey);
 
   return (
@@ -18,4 +18,4 @@ export default function StaticPageFooter({ translationKey }: StaticPageProps) {
       <p className="m-10 text-justify md:text-lg">{t('text')}</p>
     </div>
   );
-}
+};

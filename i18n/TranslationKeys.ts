@@ -62,6 +62,7 @@ export type Pages = {
   product: {
     title: string;
     description: string;
+    noProductFound: string;
   };
   aboutUs: {
     title: string;
@@ -125,6 +126,11 @@ export type Footer = {
   allRightsReserved: string;
 };
 
+export type SearchLabels = {
+  categoryId: string;
+  query: string;
+};
+
 export type TranslationKeys = {
   components: Components;
   pages: Pages;
@@ -132,6 +138,7 @@ export type TranslationKeys = {
   generalErrors: GeneralErrors;
   navigation: Navigation;
   footer: Footer;
+  searchLabels: SearchLabels;
 } & ResponseKeys;
 
 // Recursive type to retrieve nested keys as dot-separated strings

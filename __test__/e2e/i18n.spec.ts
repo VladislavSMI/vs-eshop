@@ -70,6 +70,15 @@ it('sets caching headers for static pages', async ({ request }) => {
   }
 });
 
+it('sets headers for dynamic pages', async ({ request }) => {
+  for (const pathname of ['/en', '/nl']) {
+    const response = await request.get(pathname);
+    expect(response.headers()['cache-control']).toBe(
+      'private, no-cache, no-store, max-age=0, must-revalidate',
+    );
+  }
+});
+
 it('can be used to configure metadata', async ({ page }) => {
   await page.goto('/en');
   await expect(page).toHaveTitle('VS Skate Shop');

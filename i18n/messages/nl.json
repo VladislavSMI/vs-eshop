@@ -33,7 +33,8 @@
     },
     "product": {
       "title": "Productpagina voor skateboards, wielen, trucks en meer",
-      "description": "Zoek naar skateboards, wielen, trucks en meer"
+      "description": "Zoek naar skateboards, wielen, trucks en meer",
+      "noProductFound": "Oops! We konden niets vinden dat overeenkomt met deze zoekopdracht. Misschien iets anders proberen?"
     },
     "aboutUs": {
       "title": "Over ons",
@@ -84,6 +85,10 @@
     "profile": "Profiel",
     "allProducts": "Alle producten",
     "searchPlaceholder": "Zoek naar producten..."
+  },
+  "searchLabels": {
+    "query": "Zoektekst",
+    "categoryId": "Categorie"
   },
   "footer": {
     "aboutUs": "Over ons",

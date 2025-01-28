@@ -1,8 +1,6 @@
 import React from 'react';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
 import { ProductCardWrapper } from '@/components/product/ProductCard/ProductCardWrapper';
-import ProductCardDetails from '@/components/product/ProductCard/ProductCardDetails';
+import { ProductCardDetails } from '@/components/product/ProductCard/ProductCardDetails';
 import { Carousel } from '@/components/ui/Carousel';
 import { LocalizedSectionHeader } from '@/components/ui/LocalizedSectionHeader';
 import { Locale } from '@/lib/types';
@@ -20,7 +18,6 @@ export default async function ProductDetailPage({
 
   const product = await getProductByIdUseCase(id, locale);
   const products = await getAllProductsUseCase();
-  const messages = await getMessages();
 
   return (
     <div className="mx-auto mt-5 max-w-screen-2xl px-5 pb-5">
@@ -34,9 +31,7 @@ export default async function ProductDetailPage({
           />
         </div>
         <div className="rounded-lg bg-secondary p-5 md:basis-1/2">
-          <NextIntlClientProvider messages={messages}>
-            <ProductCardDetails product={product} />
-          </NextIntlClientProvider>
+          <ProductCardDetails product={product} />
         </div>
       </div>
       <LocalizedSectionHeader translationKey="sections.newArrivals.title" />

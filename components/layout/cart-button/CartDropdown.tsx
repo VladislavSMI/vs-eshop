@@ -3,7 +3,7 @@ import { Cart } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
-export function CartDropdown({ cart }: { cart: Cart | null }) {
+export const CartDropdown = ({ cart }: { cart: Cart | null }) => {
   const isCartEmpty = !cart || cart.items.length === 0;
   const t = useTranslations('components.cart');
 
@@ -73,4 +73,4 @@ export function CartDropdown({ cart }: { cart: Cart | null }) {
       </div>
     </div>
   );
-}
+};

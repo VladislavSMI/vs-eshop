@@ -6,7 +6,7 @@ interface MessageProps {
   className?: string;
 }
 
-export function Message({ message, type, className }: MessageProps) {
+export const Message = ({ message, type, className }: MessageProps) => {
   if (!message) return null;
 
   return (
@@ -25,4 +25,4 @@ export function Message({ message, type, className }: MessageProps) {
       {message}
     </p>
   );
-}
+};

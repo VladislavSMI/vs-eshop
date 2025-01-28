@@ -9,7 +9,7 @@ import { useCartActions } from '@/lib/hooks/useCartActions';
 import { Message } from '@/components/ui/Message';
 import { hasAvailableSizes } from '@/lib/utils/productUtils';
 
-export default function ProductCardDetails({
+export const ProductCardDetails = ({
   product: {
     productId,
     productName,
@@ -20,7 +20,7 @@ export default function ProductCardDetails({
   },
 }: {
   product: ProductDetails;
-}) {
+}) => {
   const {
     isPending,
     cartSelection,
@@ -95,4 +95,4 @@ export default function ProductCardDetails({
       )}
     </div>
   );
-}
+};

@@ -1,12 +1,15 @@
 import { ReactNode } from 'react';
 import { clsx } from 'clsx';
+import { getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
 
+import { ReactQueryProvider } from '@/lib/hooks/useReactQueryProvider';
 import { poppins } from '@/styles/fonts';
 import { Locale } from '@/lib/types';
 import '@/styles/globals.css';
 
-import Footer from './footer/Footer';
-import Navbar from './navbar/Navbar';
+import { Footer } from './footer/Footer';
+import { Navbar } from './navbar/Navbar';
 
 type Props = {
   children: ReactNode;
@@ -14,6 +17,8 @@ type Props = {
 };
 
 export default async function BaseLayout({ children, locale }: Props) {
+  const messages = await getMessages();
+
   return (
     <html lang={locale} data-theme="vsShopDark" className="h-full">
       <body
@@ -24,7 +29,11 @@ export default async function BaseLayout({ children, locale }: Props) {
         )}
       >
         <Navbar />
-        <main className="flex-grow">{children}</main>
+        <NextIntlClientProvider messages={messages}>
+          <ReactQueryProvider>
+            <main className="flex-grow">{children}</main>
+          </ReactQueryProvider>
+        </NextIntlClientProvider>
         <Footer />
       </body>
     </html>

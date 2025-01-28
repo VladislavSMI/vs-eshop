@@ -10,7 +10,7 @@ import { routing } from '@/i18n/routing';
 import { changeLanguage } from '@/lib/utils/changeLanguage';
 import { Locale } from '@/lib/types';
 
-export default function LanguageSwitcher() {
+export const LanguageSwitcher = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -27,22 +27,27 @@ export default function LanguageSwitcher() {
       contentClassName="w-24 rounded-lg"
       ariaLabel="Change language dropdown"
     >
-      <ul className="menu p-2">
-        {routing.locales.map((lng) => (
-          <button
-            type="button"
-            key={lng}
-            onClick={() => handleLanguageChange(lng)}
-            className={clsx(
-              'btn btn-ghost m-2',
-              lng === locale && 'btn-outline font-semibold',
-            )}
-            aria-label={`Change language ${lng}`}
-          >
-            {lng.toUpperCase()}
-          </button>
-        ))}
-      </ul>
+      {(closeDropdown) => (
+        <ul className="menu p-2">
+          {routing.locales.map((lng) => (
+            <button
+              type="button"
+              key={lng}
+              onClick={() => {
+                handleLanguageChange(lng);
+                closeDropdown();
+              }}
+              className={clsx(
+                'btn btn-ghost m-2',
+                lng === locale && 'btn-outline font-semibold',
+              )}
+              aria-label={`Change language ${lng}`}
+            >
+              {lng.toUpperCase()}
+            </button>
+          ))}
+        </ul>
+      )}
     </Dropdown>
   );
-}
+};

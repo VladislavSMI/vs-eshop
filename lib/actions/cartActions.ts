@@ -4,13 +4,12 @@ import { revalidateTag } from 'next/cache';
 import { addItemToCartUseCase, createCartUseCase } from '@/use-cases/cart';
 import { getCartIdFromCookies, setCartIdInCookies } from '@/lib/utils/cookies';
 import { log } from '@/lib/logging/log';
-import { PublicError, UnexpectedError } from '@/use-cases/errors';
 import { AddItemSchema } from '../validation/schemas/cartSchema';
 import { ApiResponse } from '../types';
 import {
-  createPublicErrorResponse,
   createSuccessResponse,
   createValidationErrorResponse,
+  createErrorResponse,
 } from '../utils/createApiResponse';
 
 export async function addItem({
@@ -60,10 +59,6 @@ export async function addItem({
       'Error occurred during add item to cart',
     );
 
-    if (err instanceof PublicError) {
-      return createPublicErrorResponse(err);
-    }
-
-    return createPublicErrorResponse(new UnexpectedError());
+    return createErrorResponse(err);
   }
 }

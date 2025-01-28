@@ -98,6 +98,10 @@ export async function getProductSearch({
   offset?: number;
   limit?: number;
 }): Promise<Product[]> {
+  if (isMockEnabled()) {
+    return mockProducts;
+  }
+
   let query = `
   ${buildProductQuery()}
     LEFT JOIN product_descriptions pd ON p.product_id = pd.product_id

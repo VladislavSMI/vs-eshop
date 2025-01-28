@@ -11,6 +11,7 @@
     "cart": {
       "addToCart": "Toevoegen aan winkelwagen",
       "goToCart": "Ga naar winkelwagen",
+      "backToCart": "Terug naar winkelwagen",
       "myCart": "Mijn Winkelwagen",
       "remove": "Verwijderen",
       "price": "Prijs",
@@ -23,7 +24,9 @@
       "adding": "Toevoegen...",
       "emptyCartMessage": "Uw winkelwagen is leeg. Voeg artikelen toe om door te gaan.",
       "checkoutNow": "Nu Afrekenen",
-      "outOfStock": "Uitverkocht"
+      "outOfStock": "Uitverkocht",
+      "redirecting": "Doorverwijzen naar afrekenen...",
+      "proceedToPayment": "Doorgaan naar Betaling"
     }
   },
   "pages": {
@@ -54,7 +57,20 @@
     },
     "checkout": {
       "title": "Afrekenen",
-      "description": "Controleer uw winkelwagen en ga verder naar betaling."
+      "description": "Controleer uw winkelwagen en ga verder naar betaling.",
+      "success": {
+        "title": "Betaling Succesvol!",
+        "description": "Bedankt voor je aankoop! Je bestelling wordt verwerkt en je ontvangt binnenkort een bevestigingsmail.",
+        "continueShopping": "Verder winkelen"
+      },
+      "cancel": {
+        "title": "Betaling Mislukt",
+        "description": "Er is iets misgegaan tijdens het betalingsproces. Probeer het opnieuw of neem contact op met de klantenservice als het probleem aanhoudt.",
+        "tryAgain": "Probeer Opnieuw",
+        "returnHome": "Terug naar Home"
+      },
+      "unexpectedError": "Er is een onverwachte fout opgetreden bij het verwerken van uw bestelling. Als uw betaling succesvol was, neem dan contact op met de klantenservice om uw bestelling te bevestigen. Hieronder vindt u uw bestelgegevens.",
+      "contactSupport": "Neem contact op met de klantenservice"
     }
   },
   "sections": {
@@ -100,7 +116,8 @@
   "responseError": {
     "validation": {
       "general": {
-        "invalidType": "Ongeldig invoertype."
+        "required": "Dit veld is verplicht.",
+        "invalid": "Ongeldig invoertype."
       },
       "productId": {
         "required": "De productnaam is verplicht.",
@@ -117,9 +134,13 @@
     },
     "unexpected": "Er is een onverwachte fout opgetreden. Probeer het later opnieuw.",
     "notFound": "De opgevraagde bron is niet gevonden.",
-    "outOfStock": "Het product is uitverkocht."
+    "outOfStock": "Het product is uitverkocht.",
+    "orderFailed": "Bestelling mislukt. Probeer het later opnieuw.",
+    "checkoutFailed": "Afrekenen mislukt. Probeer het later opnieuw."
   },
   "responseSuccess": {
-    "addToCart": "Product succesvol toegevoegd aan het winkelwagentje."
+    "addToCart": "Product succesvol toegevoegd aan het winkelwagentje.",
+    "orderSuccess": "Bestelling succesvol geplaatst.",
+    "checkoutSuccess": "Betaling succesvol verwerkt."
   }
 }

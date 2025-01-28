@@ -11,6 +11,7 @@
     "cart": {
       "addToCart": "Add to cart",
       "goToCart": "Go to cart",
+      "backToCart": "Back to cart",
       "myCart": "My Cart",
       "remove": "Remove",
       "price": "Price",
@@ -23,7 +24,9 @@
       "adding": "Adding...",
       "emptyCartMessage": "Your cart is empty. Add some items to continue.",
       "checkoutNow": "Checkout Now",
-      "outOfStock": "Out of stock"
+      "outOfStock": "Out of stock",
+      "redirecting": "Redirecting to checkout...",
+      "proceedToPayment": "Proceed to Payment"
     }
   },
   "pages": {
@@ -54,7 +57,20 @@
     },
     "checkout": {
       "title": "Checkout",
-      "description": "Review your cart and proceed to payment."
+      "description": "Review your cart and proceed to payment.",
+      "success": {
+        "title": "Payment Successful!",
+        "description": "Thank you for your purchase! Your order is being processed and you will receive an email confirmation shortly.",
+        "continueShopping": "Continue Shopping"
+      },
+      "cancel": {
+        "title": "Payment Failed",
+        "description": "Something went wrong during the payment process. Please try again or contact support if the issue persists.",
+        "tryAgain": "Try Again",
+        "returnHome": "Return Home"
+      },
+      "unexpectedError": "An unexpected error occurred while processing your order. If your payment was successful, please contact support to confirm your order. Please note below your order details.",
+      "contactSupport": "Contact Support"
     }
   },
   "sections": {
@@ -100,7 +116,8 @@
   "responseError": {
     "validation": {
       "general": {
-        "invalidType": "Invalid input type."
+        "required": "The field is required.",
+        "invalid": "Invalid input type."
       },
       "productId": {
         "required": "The product name is required.",
@@ -117,9 +134,13 @@
     },
     "unexpected": "An unexpected error occurred. Please try again later.",
     "notFound": "The requested resource was not found.",
-    "outOfStock": "The product is out of stock."
+    "outOfStock": "The product is out of stock.",
+    "orderFailed": "Order failed. Please try again later.",
+    "checkoutFailed": "Checkout failed. Please try again later."
   },
   "responseSuccess": {
-    "addToCart": "Product added to cart successfully."
+    "addToCart": "Product added to cart successfully.",
+    "orderSuccess": "Order placed successfully.",
+    "checkoutSuccess": "Checkout successful."
   }
 }

@@ -1,4 +1,4 @@
-import { Locale } from '@/lib/types';
+import { Locale, OrderState } from '@/lib/types';
 
 export type CategoryRow = {
   category_id: number;
@@ -7,7 +7,7 @@ export type CategoryRow = {
 
 export type SizeRow = {
   size_id: number;
-  size: string;
+  size: number;
   category_id: CategoryRow['category_id'];
 };
 
@@ -16,7 +16,7 @@ export type ProductRow = {
   product_name: string;
   category_id: CategoryRow['category_id'];
   category_name: CategoryRow['category_name'];
-  price: string;
+  price: number;
   image_url: string;
   tags: string[];
 };
@@ -29,7 +29,7 @@ export type ProductDescriptionRow = {
 export type ProductVariationRow = {
   variation_id: string;
   size_id: number;
-  size: string;
+  size: number;
   stock_quantity: number;
 };
 
@@ -42,7 +42,7 @@ export type ProductReviewRow = {
 };
 
 export type ProductDiscountRow = {
-  discount_percentage: string;
+  discount_percentage: number;
   valid_from: string;
   valid_until?: string;
 };
@@ -68,5 +68,42 @@ export type CartRow = {
   quantity: number;
   product_name: string;
   price: number;
-  size: string;
+  size: number;
+};
+
+export type OrderRow = {
+  order_id: string;
+  cart_id: string;
+  shipping_address_id: string;
+  state: OrderState;
+  created_at: string;
+  updated_at: string;
+  isPaid: boolean;
+
+  order_item_id: string;
+  product_id: string;
+  size_id: number;
+  quantity: number;
+  product_name: string;
+  price: string;
+  size: number;
+};
+
+export type AddressRow = {
+  address_id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  address: string;
+  city: string;
+  state_province: string;
+  postal_code: string;
+  country_id: number;
+  country_name: string;
+};
+
+export type CountryRow = {
+  id: number;
+  code: string;
+  name: string;
 };

@@ -12,7 +12,7 @@ const mapBaseProduct = (row: ProductRow): Product => ({
   productName: row.product_name,
   categoryId: row.category_id,
   categoryName: row.category_name,
-  price: row.price ? parseFloat(row.price) : 0,
+  price: row.price || 0,
   imageUrl: row.image_url || '',
   tags: row.tags?.filter(isValidTag) || [],
 });
@@ -28,7 +28,7 @@ const mapProductDetails = (row: ProductRowDetails): ProductDetails => ({
     row.variations?.map((v) => ({
       variationId: v.variation_id || '',
       sizeId: v.size_id || 0,
-      size: v.size || '',
+      size: v.size || 0,
       stockQuantity: (v.stock_quantity || 0) > 0, // Converts to boolean for ProductDetails for non-admin
     })) || [],
   reviews:
@@ -41,7 +41,7 @@ const mapProductDetails = (row: ProductRowDetails): ProductDetails => ({
     })) || [],
   discounts:
     row.discounts?.map((d) => ({
-      discountPercentage: parseFloat(d.discount_percentage || '0'),
+      discountPercentage: d.discount_percentage || 0,
       validFrom: d.valid_from,
       validUntil: d.valid_until || null,
     })) || [],
@@ -54,7 +54,7 @@ const mapProductAdmin = (row: ProductRowAdmin): ProductAdmin => ({
     row.variations?.map((v) => ({
       variationId: v.variation_id || '',
       sizeId: v.size_id || 0,
-      size: v.size || '',
+      size: v.size || 0,
       stockQuantity: v.stock_quantity || 0, // Keeps as a number for ProductAdmin
     })) || [],
   createdAt: formatDateToLocal(row.created_at),

@@ -1,22 +1,11 @@
 import React from 'react';
-import { getCartIdFromCookies } from '@/lib/utils/cookies';
-import { getCartByIdUseCase } from '@/use-cases/cart';
+import { fetchCartUseCase } from '@/use-cases/cart';
 import { getTranslations } from 'next-intl/server';
-
-const fetchCart = async () => {
-  const cartId = getCartIdFromCookies();
-
-  if (!cartId) {
-    return null;
-  }
-
-  return getCartByIdUseCase(cartId);
-};
+import Link from 'next/link';
 
 export default async function Checkout() {
-  const cart = await fetchCart();
+  const cart = await fetchCartUseCase();
   const t = await getTranslations();
-  const isCartEmpty = !cart || cart.items.length === 0;
 
   return (
     <div className="min-h-screen bg-neutral text-neutral-content">
@@ -34,7 +23,7 @@ export default async function Checkout() {
           <h2 className="text-2xl font-bold text-primary">
             {t('components.cart.myCart')}
           </h2>
-          {!isCartEmpty ? (
+          {cart?.items?.length ? (
             <>
               <ul className="mt-4 space-y-4">
                 {cart?.items.map((item) => (
@@ -69,6 +58,11 @@ export default async function Checkout() {
                   <span>€{cart?.totalPrice.toFixed(2)}</span>
                 </p>
               </div>
+              <div className="mt-6 text-center">
+                <Link href="/checkout" className="btn btn-primary w-full">
+                  {t('components.cart.checkoutNow')}
+                </Link>
+              </div>
             </>
           ) : (
             <p className="mt-4 text-center text-lg">
@@ -76,14 +70,6 @@ export default async function Checkout() {
             </p>
           )}
         </div>
-
-        {!isCartEmpty && (
-          <div className="mt-6 text-center">
-            <button type="button" className="btn btn-primary w-full max-w-sm">
-              {t('components.cart.checkoutNow')}
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

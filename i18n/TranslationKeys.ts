@@ -2,7 +2,8 @@ export type ResponseKeys = {
   responseError: {
     validation: {
       general: {
-        invalidType: string;
+        required: string;
+        invalid: string;
       };
       productId: {
         required: string;
@@ -20,9 +21,13 @@ export type ResponseKeys = {
     unexpected: string;
     notFound: string;
     outOfStock: string;
+    orderFailed: string;
+    checkoutFailed: string;
   };
   responseSuccess: {
     addToCart: string;
+    orderSuccess: string;
+    checkoutSuccess: string;
   };
 };
 
@@ -38,6 +43,7 @@ export type Components = {
   cart: {
     addToCart: string;
     goToCart: string;
+    backToCart: string;
     myCart: string;
     remove: string;
     price: string;
@@ -51,6 +57,9 @@ export type Components = {
     emptyCartMessage: string;
     checkoutNow: string;
     outOfStock: string;
+    redirecting: string;
+    proceedToPayment: string;
+    shippingAddress: string;
   };
 };
 
@@ -83,6 +92,19 @@ export type Pages = {
   checkout: {
     title: string;
     description: string;
+    success: {
+      title: string;
+      description: string;
+      continueShopping: string;
+    };
+    cancel: {
+      title: string;
+      description: string;
+      tryAgain: string;
+      returnHome: string;
+    };
+    unexpectedError: string;
+    contactSupport: string;
   };
 };
 
@@ -153,3 +175,8 @@ type NestedKeyOf<T, Depth extends number = 5> = Depth extends 0
     }[keyof T & string];
 
 export type TranslationKey = NestedKeyOf<TranslationKeys>;
+
+export type TranslateFunction = (
+  key: TranslationKey,
+  params?: Record<string, string | number>,
+) => string;

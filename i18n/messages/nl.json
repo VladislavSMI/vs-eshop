@@ -26,7 +26,8 @@
       "checkoutNow": "Nu Afrekenen",
       "outOfStock": "Uitverkocht",
       "redirecting": "Doorverwijzen naar afrekenen...",
-      "proceedToPayment": "Doorgaan naar Betaling"
+      "proceedToPayment": "Doorgaan naar Betaling",
+      "shippingAddress": "Verzendadres"
     }
   },
   "pages": {

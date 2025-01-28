@@ -26,7 +26,8 @@
       "checkoutNow": "Checkout Now",
       "outOfStock": "Out of stock",
       "redirecting": "Redirecting to checkout...",
-      "proceedToPayment": "Proceed to Payment"
+      "proceedToPayment": "Proceed to Payment",
+      "shippingAddress": "Shipping Address"
     }
   },
   "pages": {

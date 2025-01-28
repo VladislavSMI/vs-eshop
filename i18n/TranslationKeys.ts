@@ -59,6 +59,7 @@ export type Components = {
     outOfStock: string;
     redirecting: string;
     proceedToPayment: string;
+    shippingAddress: string;
   };
 };
 

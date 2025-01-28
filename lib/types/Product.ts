@@ -2,7 +2,7 @@ import { Locale, Tag } from './Shared';
 
 export type Size = {
   sizeId: number;
-  size: string;
+  size: number;
 };
 
 export type Category = {

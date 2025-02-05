@@ -23,19 +23,26 @@ export const ProductCardDetails = ({
 }) => {
   const {
     isPending,
-    cartSelection,
     successMessage,
     errorMessage,
     errorFields,
-    updateCartSelection,
-    addToCart,
+    updateCartItem,
+    setSelectedSizeId,
+    selectedSizeId,
   } = useCartActions();
 
-  const handleSizeSelection = (sizeId: number) => {
-    updateCartSelection({ productId, sizeId });
-  };
-
   const t = useTranslations('components.cart');
+
+  const handleUpdateCartItem = () => {
+    updateCartItem({
+      cartItemSelection: {
+        productId,
+        sizeId: selectedSizeId,
+        quantity: 1,
+      },
+      isQtyIncremented: true,
+    });
+  };
 
   return (
     <div className="card h-full w-full bg-secondary p-4 text-neutral-content">
@@ -53,14 +60,15 @@ export const ProductCardDetails = ({
             <button
               type="button"
               key={sizeId}
-              onClick={() => handleSizeSelection(sizeId)}
+              onClick={() =>
+                setSelectedSizeId(selectedSizeId === sizeId ? null : sizeId)
+              }
               disabled={!stockQuantity}
               className={clsx(
                 'btn btn-sm rounded-lg font-semibold transition-all',
                 {
-                  'btn-primary': cartSelection.sizeId === sizeId,
-                  'btn-outline':
-                    stockQuantity && cartSelection.sizeId !== sizeId,
+                  'btn-primary': selectedSizeId === sizeId,
+                  'btn-outline': stockQuantity && selectedSizeId !== sizeId,
                   'btn-disabled': !stockQuantity,
                 },
               )}
@@ -72,6 +80,9 @@ export const ProductCardDetails = ({
         {errorFields?.sizeId && (
           <p className="text-error">{errorFields.sizeId}</p>
         )}
+        {errorFields?.quantity && (
+          <p className="text-error">{errorFields.quantity}</p>
+        )}
       </div>
 
       <Message message={successMessage} type="success" />
@@ -80,7 +91,7 @@ export const ProductCardDetails = ({
       {hasAvailableSizes(variations) ? (
         <button
           type="button"
-          onClick={addToCart}
+          onClick={handleUpdateCartItem}
           disabled={isPending}
           className={clsx('btn btn-outline mt-4 w-full', {
             'cursor-not-allowed': isPending,

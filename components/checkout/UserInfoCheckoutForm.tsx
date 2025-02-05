@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl';
 import { CodedField } from '@/lib/types';
 import { useCheckoutForm } from '@/lib/hooks/useCheckoutFormActions';
 import { toDropdownSelection } from '@/lib/utils/toDropdownSelection';
-import { InputField } from '../ui/Fields/InputFields';
-import { SelectField } from '../ui/Fields/SelectFields';
+import { InputField } from '../ui/Fields/InputField';
+import { SelectField } from '../ui/Fields/SelectField';
 import { Message } from '../ui/Message';
 
 export const UserInfoCheckoutForm = ({
@@ -93,6 +93,7 @@ export const UserInfoCheckoutForm = ({
             options={countries.map(toDropdownSelection)}
             placeholder="Select a country*"
             error={errorFields?.countryId}
+            defaultValue=""
           />
 
           <Message message={successMessage} type="success" />

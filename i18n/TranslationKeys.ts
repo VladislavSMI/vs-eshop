@@ -25,7 +25,8 @@ export type ResponseKeys = {
     checkoutFailed: string;
   };
   responseSuccess: {
-    addToCart: string;
+    updateCart: string;
+    deleteCartItem: string;
     orderSuccess: string;
     checkoutSuccess: string;
   };

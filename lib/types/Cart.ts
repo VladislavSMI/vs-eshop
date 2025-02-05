@@ -15,14 +15,8 @@ export interface Cart {
   totalPrice: number;
 }
 
-export interface CartSelection {
+export interface CartItemSelection {
   productId: string | null;
   sizeId: number | null;
-  quantity: number;
-}
-
-export interface ValidatedCartSelection {
-  productId: string;
-  sizeId: number;
-  quantity: number;
+  quantity: number | null;
 }

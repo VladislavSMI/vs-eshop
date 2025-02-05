@@ -1,12 +1,20 @@
 import { useState, useTransition } from 'react';
 import { useTranslations } from 'next-intl';
-import { addItem } from '@/lib/actions/cartActions';
+import {
+  updateCartItem as updateCartItemAction,
+  deleteCartItem as deleteCartItemAction,
+} from '@/lib/actions/cartActions';
 import { resetMessages } from '@/lib/utils/resetMessages';
-import { CartSelection, ValidatedCartSelection } from '../types';
-import { validateCartSelection } from '../utils/validateCartSlection';
-import { handleApiResponse } from '../utils/handleApiResponse';
+import { validateCartSelection } from '@/lib/utils/validateCartSelection';
+import { handleApiResponse } from '@/lib/utils/handleApiResponse';
+import { CartItem, CartItemSelection } from '../types';
 
 export const useCartActions = () => {
+  const t = useTranslations();
+
+  const [selectedSizeId, setSelectedSizeId] = useState<
+    CartItem['sizeId'] | null
+  >(null);
   const [isPending, startTransition] = useTransition();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -14,34 +22,50 @@ export const useCartActions = () => {
     null,
   );
 
-  const [cartSelection, setCartSelection] = useState<CartSelection>({
-    productId: null,
-    sizeId: null,
-    quantity: 1,
-  });
-
-  const t = useTranslations();
-
-  const updateCartSelection = (updates: Partial<CartSelection>) => {
-    setCartSelection((prev) => ({ ...prev, ...updates }));
+  const clearMessages = () => {
+    resetMessages(setSuccessMessage, setErrorMessage, setErrorFields);
   };
 
-  const addToCart = (): void => {
-    resetMessages(setSuccessMessage, setErrorMessage, setErrorFields);
+  const updateCartItem = ({
+    cartItemSelection,
+    isQtyIncremented,
+  }: {
+    cartItemSelection: CartItemSelection;
+    isQtyIncremented: boolean;
+  }): void => {
+    clearMessages();
 
     if (
       !validateCartSelection({
-        cartSelection,
+        cartItemSelection,
         translate: t,
-        setErrorMessage,
+        setErrorFields,
       })
     ) {
       return;
     }
 
     startTransition(async () => {
-      const response = await addItem(cartSelection as ValidatedCartSelection);
+      const response = await updateCartItemAction({
+        cartItemSelection,
+        isQtyIncremented,
+      });
+      handleApiResponse({
+        response,
+        translate: t,
+        setSuccessMessage,
+        setErrorMessage,
+        setErrorFields,
+      });
+    });
 
+    setTimeout(clearMessages, 10000);
+  };
+
+  const deleteCartItem = (cartItemId: CartItem['cartItemId']): void => {
+    clearMessages();
+    startTransition(async () => {
+      const response = await deleteCartItemAction(cartItemId);
       handleApiResponse({
         response,
         translate: t,
@@ -54,11 +78,12 @@ export const useCartActions = () => {
 
   return {
     isPending,
-    cartSelection,
     successMessage,
     errorMessage,
     errorFields,
-    updateCartSelection,
-    addToCart,
+    setSelectedSizeId,
+    selectedSizeId,
+    updateCartItem,
+    deleteCartItem,
   };
 };

@@ -1,19 +1,8 @@
-import { getCartIdFromCookies } from '@/lib/utils/cookies';
-import { getCartByIdUseCase } from '@/use-cases/cart';
+import { fetchCartUseCase } from '@/use-cases/cart';
 import { CartDropdown } from './CartDropdown';
 
-const fetchCart = async () => {
-  const cartId = getCartIdFromCookies();
-
-  if (!cartId) {
-    return null;
-  }
-
-  return getCartByIdUseCase(cartId);
-};
-
 export const CartButton = async () => {
-  const cart = await fetchCart();
+  const cart = await fetchCartUseCase();
 
   return <CartDropdown cart={cart} />;
 };

@@ -62,4 +62,13 @@ export const orderQueries = {
     SET state = $1
       WHERE order_id = $2;
   `,
+
+  restoreStock: `
+    UPDATE product_variations pv
+    SET stock_quantity = stock_quantity + oi.quantity
+    FROM order_items oi
+    WHERE oi.order_id = $1
+      AND oi.product_id = pv.product_id
+      AND oi.size_id = pv.size_id;
+  `,
 };

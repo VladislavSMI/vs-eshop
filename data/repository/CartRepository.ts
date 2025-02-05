@@ -1,5 +1,5 @@
 import { executeQuery } from '@/lib/db';
-import { Cart } from '@/lib/types';
+import { Cart, CartItem } from '@/lib/types';
 import { CartRow, ProductVariationRow } from '../QueryResults';
 import { CartMappers } from '../mappers/cartMappers';
 
@@ -73,27 +73,75 @@ export async function validateStock({
   return stock_quantity >= cart_quantity + quantity;
 }
 
-export async function addItemToCart({
+export async function upsertItemToCart({
   cartId,
   productId,
   sizeId,
   quantity,
+  isQtyIncremented,
 }: {
   cartId: string;
   productId: string;
   sizeId: number;
   quantity: number;
+  isQtyIncremented: boolean;
+}): Promise<boolean> {
+  if (quantity <= 0) {
+    return await deleteCartItem({ cartId, productId, sizeId });
+  }
+
+  const query = `
+  INSERT INTO cart_items (cart_id, product_id, size_id, quantity)
+  VALUES ($1, $2, $3, $4)
+  ON CONFLICT (cart_id, product_id, size_id)
+  DO UPDATE 
+    SET quantity = CASE
+      WHEN $5 THEN cart_items.quantity + EXCLUDED.quantity
+      ELSE EXCLUDED.quantity
+    END;
+`;
+
+  const data = await executeQuery({
+    query,
+    values: [cartId, productId, sizeId, quantity, isQtyIncremented],
+  });
+
+  return (data.rowCount ?? 0) > 0;
+}
+
+export async function deleteCartItem({
+  cartId,
+  productId,
+  sizeId,
+}: {
+  cartId: string;
+  productId: string;
+  sizeId: number;
 }): Promise<boolean> {
   const query = `
-    INSERT INTO cart_items (cart_id, product_id, size_id, quantity)
-    VALUES ($1, $2, $3, $4)
-    ON CONFLICT (cart_id, product_id, size_id)
-    DO UPDATE SET quantity = cart_items.quantity + EXCLUDED.quantity;
+    DELETE FROM cart_items
+    WHERE cart_id = $1 AND product_id = $2 AND size_id = $3;
   `;
 
   const data = await executeQuery({
     query,
-    values: [cartId, productId, sizeId, quantity],
+    values: [cartId, productId, sizeId],
+  });
+
+  return (data.rowCount ?? 0) > 0;
+}
+
+export async function deleteCartItemById(
+  cartItemId: CartItem['cartItemId'],
+): Promise<boolean> {
+  const query = `
+    DELETE FROM cart_items
+    WHERE cart_item_id = $1;
+  `;
+
+  const data = await executeQuery({
+    query,
+    values: [cartItemId],
   });
 
   return (data.rowCount ?? 0) > 0;

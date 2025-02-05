@@ -4,6 +4,7 @@ import { processOrderPayment } from '@/lib/stripe/utils/processOrderPayment';
 import { UnexpectedPaymentError } from '@/components/checkout/UnexpectedPaymentError';
 import { log } from '@/lib/logging/log';
 import { PaymentStatus, TranslationKey } from '@/lib/types';
+import { cancelOrderUseCase } from '@/use-cases/order';
 
 export default async function CheckoutPageWrapper({
   searchParams,
@@ -30,6 +31,10 @@ export default async function CheckoutPageWrapper({
   }
 
   const { orderId, paymentStatus } = await processOrderPayment(sessionId);
+
+  if (paymentStatus === 'failed' && orderId) {
+    await cancelOrderUseCase(orderId);
+  }
 
   if (paymentStatus !== expectedPaymentStatus) {
     log

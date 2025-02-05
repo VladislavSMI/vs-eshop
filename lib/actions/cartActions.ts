@@ -1,63 +1,92 @@
 'use server';
 
-import { revalidateTag } from 'next/cache';
-import { addItemToCartUseCase, createCartUseCase } from '@/use-cases/cart';
-import { getCartIdFromCookies, setCartIdInCookies } from '@/lib/utils/cookies';
+import { revalidatePath } from 'next/cache';
+import {
+  updateCartItemUseCase,
+  createCartUseCase,
+  deleteCartItemUseCase,
+} from '@/use-cases/cart';
+import { getCartIdFromCookies } from '@/lib/utils/cookies';
 import { log } from '@/lib/logging/log';
-import { AddItemSchema } from '../validation/schemas/cartSchema';
-import { ApiResponse } from '../types';
+import {
+  DeleteItemSchema,
+  UpdateItemSchema,
+} from '../validation/schemas/cartSchema';
+import { ApiResponse, CartItem, CartItemSelection } from '../types';
 import {
   createSuccessResponse,
   createValidationErrorResponse,
   createErrorResponse,
 } from '../utils/createApiResponse';
 
-export async function addItem({
-  productId,
-  sizeId,
-  quantity,
+export async function updateCartItem({
+  cartItemSelection: { productId, sizeId, quantity },
+  isQtyIncremented,
 }: {
-  productId: string;
-  sizeId: number;
-  quantity: number;
+  cartItemSelection: CartItemSelection;
+  isQtyIncremented: boolean;
 }): Promise<ApiResponse<null>> {
-  const { success, error, data } = AddItemSchema.safeParse({
+  const { success, error, data } = UpdateItemSchema.safeParse({
     productId,
     sizeId,
     quantity,
+    isQtyIncremented,
   });
 
   if (!success) {
-    log.error({ errors: error.errors }, 'Validation error');
     return createValidationErrorResponse(error);
   }
 
   const cartIdFromCookies = getCartIdFromCookies();
-  const cartId = cartIdFromCookies || (await createCartUseCase()).id;
-
-  if (!cartIdFromCookies) {
-    setCartIdInCookies(cartId);
-  }
+  const cartId = cartIdFromCookies ?? (await createCartUseCase()).id;
 
   try {
-    await addItemToCartUseCase({
+    await updateCartItemUseCase({
       cartId,
       productId: data.productId,
       sizeId: data.sizeId,
       quantity: data.quantity,
+      isQtyIncremented: data.isQtyIncremented,
     });
 
-    revalidateTag('cart');
+    revalidatePath('/cart');
 
     return createSuccessResponse({
-      code: 'CART_ITEM_ADDED',
-      messageKey: 'responseSuccess.addToCart',
+      code: 'CART_ITEM_UPDATED',
+      messageKey: 'responseSuccess.updateCart',
     });
   } catch (err) {
     log.error(
       { cartItem: { cartId, productId, sizeId, quantity }, err },
-      'Error occurred during add item to cart',
+      'Error occurred during update item in cart',
     );
+
+    return createErrorResponse(err);
+  }
+}
+
+export async function deleteCartItem(
+  cartItemId: CartItem['cartItemId'],
+): Promise<ApiResponse<null>> {
+  const { success, error, data } = DeleteItemSchema.safeParse({
+    cartItemId,
+  });
+
+  if (!success) {
+    return createValidationErrorResponse(error);
+  }
+
+  try {
+    await deleteCartItemUseCase(data.cartItemId);
+
+    revalidatePath('/cart');
+
+    return createSuccessResponse({
+      code: 'CART_ITEM_DELETED',
+      messageKey: 'responseSuccess.deleteCartItem',
+    });
+  } catch (err) {
+    log.error({ cartItemId, err }, 'Error occurred during delete item in cart');
 
     return createErrorResponse(err);
   }

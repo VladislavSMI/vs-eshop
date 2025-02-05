@@ -2,7 +2,7 @@
 
 import { log } from '@/lib/logging/log';
 import { findOrCreateShippingAddressUseCase } from '@/use-cases/address';
-import { createOrderUseCase } from '@/use-cases/order';
+import { cancelOrderUseCase, createOrderUseCase } from '@/use-cases/order';
 import { Address, ApiResponse, Order } from '../types';
 import { createOrderCheckoutSession } from '../stripe/utils/createOrderCheckoutSession';
 import { ShippingAddressSchema } from '../validation/schemas/shippingAddressSchema';
@@ -11,6 +11,7 @@ import {
   createValidationErrorResponse,
   createErrorResponse,
 } from '../utils/createApiResponse';
+import { printException } from '../utils/utils';
 
 export async function createOrder(
   cartId: string,
@@ -28,19 +29,11 @@ export async function createOrder(
     ShippingAddressSchema.safeParse(shippingAddress);
 
   if (!success) {
-    log.error(
-      { errors: error.errors },
-      'Validation error during order creation',
-    );
     return createValidationErrorResponse(error);
   }
 
   try {
     const { id } = await findOrCreateShippingAddressUseCase(data as Address);
-
-    if (!id) {
-      throw new Error('Shipping address ID is undefined');
-    }
 
     const order = await createOrderUseCase({
       cartId,
@@ -53,11 +46,6 @@ export async function createOrder(
       data: { order },
     });
   } catch (err) {
-    log.error(
-      { cartId, shippingAddress, err },
-      'Error occurred during order creation',
-    );
-
     return createErrorResponse(err);
   }
 }
@@ -72,10 +60,6 @@ export async function createOrderAndCheckoutSession(
   const order = data?.order;
 
   if (status !== 'success' || !order) {
-    log.error(
-      { orderResponse },
-      'Failed to create order, skipping Stripe session creation',
-    );
     return orderResponse as ApiResponse<null>;
   }
 
@@ -94,7 +78,15 @@ export async function createOrderAndCheckoutSession(
       data: { stripeSessionId },
     });
   } catch (err) {
-    log.error({ cartId, err }, 'Error during Stripe session creation');
+    log.error({ error: printException(err) }, 'Error creating Stripe session');
+
+    // Step 3: Cancel order if Stripe session creation fails
+    await cancelOrderUseCase(order.id).catch((cancelErr) => {
+      log.error(
+        { orderId: order.id, cancelErr },
+        'Failed to cancel order after Stripe session creation failure',
+      );
+    });
 
     return createErrorResponse(err);
   }

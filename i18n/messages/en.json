@@ -140,7 +140,8 @@
     "checkoutFailed": "Checkout failed. Please try again later."
   },
   "responseSuccess": {
-    "addToCart": "Product added to cart successfully.",
+    "updateCart": "Product updated successfully.",
+    "deleteCartItem": "Product removed successfully.",
     "orderSuccess": "Order placed successfully.",
     "checkoutSuccess": "Checkout successful."
   }

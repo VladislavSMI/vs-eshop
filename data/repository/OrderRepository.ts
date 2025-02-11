@@ -12,7 +12,7 @@ export async function createOrderWithItems({
 }: {
   cartId: string;
   shippingAddressId: string;
-}): Promise<Order | null> {
+}): Promise<Order> {
   const client = await pool.connect();
 
   const { updateStock, createOrder, insertOrderItems, getOrderById } =
@@ -55,7 +55,6 @@ export async function createOrderWithItems({
     return OrderMappers.mapOrder(createdOrder.rows);
   } catch (error) {
     await client.query('ROLLBACK');
-    log.error({ error }, 'Transaction failed during order creation');
     throw error;
   } finally {
     client.release();
@@ -88,4 +87,37 @@ export async function updateOrderState({
   });
 
   return (result.rowCount ?? 0) > 0;
+}
+
+export async function cancelOrderWithItems(orderId: string): Promise<boolean> {
+  const client = await pool.connect();
+
+  try {
+    await client.query('BEGIN');
+
+    // Step 1: Update order status to 'cancelled'
+    const updateResult = await client.query(orderQueries.updateOrderState, [
+      'cancelled',
+      orderId,
+    ]);
+    if (updateResult.rowCount === 0) {
+      throw new Error('Failed to update order status to cancelled.');
+    }
+
+    // Step 2: Restore stock for cancelled order items
+    const restoreStockResult = await client.query(orderQueries.restoreStock, [
+      orderId,
+    ]);
+    if (restoreStockResult.rowCount === 0) {
+      throw new Error('Failed to restore stock for cancelled order items.');
+    }
+
+    await client.query('COMMIT');
+    return true;
+  } catch (error) {
+    await client.query('ROLLBACK');
+    throw error;
+  } finally {
+    client.release();
+  }
 }

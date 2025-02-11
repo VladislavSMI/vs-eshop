@@ -54,4 +54,9 @@ export const normalizeSQL = (sql: string) => sql.replace(/\s+/g, ' ').trim();
  */
 export const getRange = (n: number) => Array.from(Array(n).keys());
 
-export const printException = (e: Error | Record<string, unknown>) => e.stack;
+export const printException = (e: unknown) => {
+  if (e instanceof Error) {
+    return e.stack;
+  }
+  return 'Unknown error';
+};

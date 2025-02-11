@@ -57,9 +57,6 @@ export const qtyValidator = (minQty: number, maxQty: number) =>
     .number({
       message: createValidationMessage(`${error}.general.invalid`),
     })
-    .positive({
-      message: createValidationMessage(`${error}.quantity.invalid`),
-    })
     .min(minQty, {
       message: createValidationMessage(`${error}.quantity.invalid`),
     })

@@ -140,7 +140,8 @@
     "checkoutFailed": "Afrekenen mislukt. Probeer het later opnieuw."
   },
   "responseSuccess": {
-    "addToCart": "Product succesvol toegevoegd aan het winkelwagentje.",
+    "updateCart": "Product succesvol bijgewerkt.",
+    "deleteCartItem": "Product succesvol verwijderd.",
     "orderSuccess": "Bestelling succesvol geplaatst.",
     "checkoutSuccess": "Betaling succesvol verwerkt."
   }

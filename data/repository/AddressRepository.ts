@@ -77,9 +77,5 @@ export async function upsertShippingAddress(
 
   const { rows } = await executeQuery<AddressRow>({ query, values });
 
-  if (rows.length === 0) {
-    throw new Error('Upsert failed to return any row.');
-  }
-
   return AddressMappers.mapAddress(rows[0]);
 }

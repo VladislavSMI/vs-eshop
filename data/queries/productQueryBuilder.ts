@@ -12,7 +12,8 @@ export const buildProductQuery = ({
     pc.category_name,
     pc.category_id,
     p.price,
-    p.image_url,
+    p.main_image_id,
+    pi.mime_type,
     COALESCE(
       json_agg(DISTINCT t.tag_name) FILTER (WHERE t.tag_name IS NOT NULL),
       '[]'
@@ -23,6 +24,7 @@ export const buildProductQuery = ({
     LEFT JOIN product_categories pc ON p.category_id = pc.category_id
     LEFT JOIN product_tags pt ON p.product_id = pt.product_id
     LEFT JOIN tags t ON pt.tag_id = t.tag_id
+    LEFT JOIN product_images pi ON p.main_image_id = pi.id
   `;
 
   const productDetailsSelect = isProductDetails

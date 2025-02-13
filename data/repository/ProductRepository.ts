@@ -28,7 +28,7 @@ export async function getAllProducts(): Promise<Product[]> {
 
   const query = `
     ${buildProductQuery()} 
-    GROUP BY p.product_id, pc.category_name, pc.category_id 
+    GROUP BY p.product_id, pc.category_name, pc.category_id, pi.mime_type 
     ORDER BY p.product_name;`;
 
   try {
@@ -118,7 +118,7 @@ export async function getProductSearch({
   }
 
   query += ` 
-    GROUP BY p.product_id, pc.category_name, pc.category_id
+    GROUP BY p.product_id, pc.category_name, pc.category_id, pi.mime_type
     ORDER BY ${orderBy} ${sort}
     LIMIT $${values.length + 1} OFFSET $${values.length + 2};
   `;
@@ -144,7 +144,7 @@ export async function getProductById(
   const query = `
     ${buildProductQuery({ isProductDetails: true })}
     WHERE p.product_id = $1
-    GROUP BY p.product_id, pc.category_name, pc.category_id;
+    GROUP BY p.product_id, pc.category_name, pc.category_id, pi.mime_type;
     `;
 
   try {

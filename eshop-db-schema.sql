@@ -74,17 +74,40 @@ CREATE TABLE products (
     product_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     category_id INT NOT NULL,
     product_name VARCHAR(100) NOT NULL,
-    price NUMERIC(10, 2) NOT NULL CHECK (price >= 0), 
-    image_url VARCHAR(500) NOT NULL,
+    price NUMERIC(10, 2) NOT NULL CHECK (price >= 0),
+    main_image_id UUID NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP DEFAULT NULL,
     CONSTRAINT fk_category
-        FOREIGN KEY (category_id) 
+    FOREIGN KEY (category_id) 
         REFERENCES product_categories(category_id) 
         ON DELETE RESTRICT 
         ON UPDATE CASCADE
 );
+
+-- -------------------------------------------------------------------
+-- Table: product_images
+-- -------------------------------------------------------------------
+-- Product images are stored in a separate table to allow multiple images per product.
+-- -------------------------------------------------------------------
+CREATE TABLE product_images (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    product_id UUID NOT NULL,
+    mime_type VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_product FOREIGN KEY (product_id) 
+        REFERENCES products(product_id) 
+        ON DELETE CASCADE 
+        ON UPDATE CASCADE
+);
+
+
+ALTER TABLE products
+    ADD CONSTRAINT fk_main_image FOREIGN KEY (main_image_id) 
+    REFERENCES product_images(id) 
+    ON DELETE SET NULL;
 
 -- -------------------------------------------------------------------
 -- Table: product_variations
@@ -446,6 +469,8 @@ CREATE TABLE payment_logs (
 -- -------------------------------------------------------------------
 CREATE INDEX idx_products_category_id ON products (category_id);
 CREATE INDEX idx_sizes_category_id ON sizes (category_id);
+CREATE INDEX idx_product_images_product_id ON product_images (product_id);
+CREATE INDEX idx_products_main_image_id ON products (main_image_id);
 CREATE INDEX idx_product_variations_product_id ON product_variations (product_id);
 CREATE INDEX idx_product_variations_size_id ON product_variations (size_id);
 CREATE INDEX idx_product_descriptions_product_id ON product_descriptions (product_id);
@@ -485,7 +510,7 @@ $$ LANGUAGE plpgsql;
 DO $$
 DECLARE
     tables TEXT[] := ARRAY[
-        'product_categories', 'sizes', 'products', 'product_variations', 
+        'product_categories', 'sizes', 'product_images', 'products', 'product_variations', 
         'product_descriptions', 'tags', 'product_tags', 'reviews', 
         'product_related_products', 'discounts', 'carts', 'cart_items', 
         'orders', 'order_items', 'payments', 'payment_logs'

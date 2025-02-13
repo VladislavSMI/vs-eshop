@@ -7,8 +7,7 @@ import { OrbitControls, useGLTF, Environment } from '@react-three/drei';
 import { setCursor } from '@/lib/utils/utils';
 
 const Model = () => {
-  // TODO: take it from aws s3 bucket
-  const { scene } = useGLTF('/models/skate-deck.glb');
+  const { scene } = useGLTF('/models/skate-deck-yellow.glb');
   const sceneRef = useRef<THREE.Mesh>(null);
 
   useFrame(() => {

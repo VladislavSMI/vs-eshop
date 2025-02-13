@@ -13,7 +13,7 @@ export const mockProducts: Product[] = [
     categoryId: 1,
     categoryName: 'Skateboarding',
     price: 50,
-    imageUrl: 'image.url',
+    mainImageUrl: null,
     tags: [],
   },
   {
@@ -22,7 +22,7 @@ export const mockProducts: Product[] = [
     categoryId: 2,
     categoryName: 'Truck',
     price: 20,
-    imageUrl: 'image.url',
+    mainImageUrl: null,
     tags: ['New', 'On Sale'],
   },
   {
@@ -31,7 +31,7 @@ export const mockProducts: Product[] = [
     categoryId: 3,
     categoryName: 'Wheels',
     price: 10,
-    imageUrl: 'image.url',
+    mainImageUrl: null,
     tags: ['On Sale'],
   },
 ];

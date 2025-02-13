@@ -49,7 +49,7 @@ export type Product = {
   categoryId: Category['categoryId'];
   categoryName: Category['categoryName'];
   price: number;
-  imageUrl: string;
+  mainImageUrl: string | null;
   tags: Tag[];
 };
 

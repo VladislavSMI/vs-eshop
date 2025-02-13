@@ -1,3 +1,6 @@
+import { CLOUD_CONFIG, CloudConfig } from '../cloud_storage/config';
+import { MISSING_IMAGE } from '../const';
+
 export const formatDateToLocal = (
   dateStr: string,
   locale: string = 'en-US',
@@ -59,4 +62,57 @@ export const printException = (e: unknown) => {
     return e.stack;
   }
   return 'Unknown error';
+};
+
+export const collapseDuplicateSlashes = (path: string): string =>
+  path.replace(/^\/+/, '/').replace(/([^:]\/)\/+/g, '$1');
+
+export const trimEndingSlash = (path: string): string =>
+  path.replace(/\/$/, '');
+
+export const trimStartingSlash = (path: string): string =>
+  path.replace(/^\//, '');
+
+export const joinPathSegments = (
+  segments: string[],
+  {
+    addLeading = false,
+    addTrailing = false,
+  }: { addLeading?: boolean; addTrailing?: boolean } = {},
+): string => {
+  let path = collapseDuplicateSlashes(
+    `/${segments.filter(Boolean).join('/')}/`,
+  );
+
+  if (!addLeading) path = trimStartingSlash(path);
+  if (!addTrailing) path = trimEndingSlash(path);
+
+  return path;
+};
+
+export const getPublicUrl = (
+  url: string | null,
+  config: Pick<CloudConfig, 'baseUrl' | 'folder'> = CLOUD_CONFIG,
+): string => {
+  if (!url || !config.baseUrl || !config.folder) {
+    return MISSING_IMAGE;
+  }
+  return joinPathSegments([config.baseUrl, config.folder, url]);
+};
+
+export const generateRelativeImageUrl = ({
+  productId,
+  imageId,
+  mimeType,
+}: {
+  productId: string;
+  imageId: string;
+  mimeType: string;
+}) => {
+  if (!productId || !imageId || !mimeType) return null;
+
+  const parts = mimeType.split('/');
+  if (parts.length !== 2) return null;
+
+  return `${productId}/${imageId}.${parts[1]}`;
 };

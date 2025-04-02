@@ -18,6 +18,7 @@ BEGIN;
 
 -- DROP TABLE IF EXISTS product_categories CASCADE;
 -- DROP TABLE IF EXISTS products CASCADE;
+-- DROP TABLE IF EXISTS product_images CASCADE;
 -- DROP TABLE IF EXISTS product_variations CASCADE;
 -- DROP TABLE IF EXISTS product_descriptions CASCADE;
 -- DROP TABLE IF EXISTS sizes CASCADE;

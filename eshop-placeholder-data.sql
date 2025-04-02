@@ -1,69 +1,129 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- Insert categories
 INSERT INTO product_categories (category_name) VALUES 
     ('Decks'), 
     ('Trucks'), 
     ('Wheels');
 
--- Insert sizes for each category
 INSERT INTO sizes (size, category_id) VALUES 
     (7.875, 1), (8.000, 1), (8.125, 1), (8.250, 1), (8.375, 1), (8.500, 1), 
     (5.250, 2), (5.500, 2), (5.850, 2),
     (51.000, 3), (52.000, 3), (54.000, 3);
 
--- Insert common tags
 INSERT INTO tags (tag_name) VALUES 
     ('On Sale'), 
     ('New'), 
     ('Last in Inventory');
 
--- Insert products
-INSERT INTO products (product_id, category_id, product_name, price, image_url) VALUES
-    (uuid_generate_v4(), 1, 'Element Section Complete Skateboard', 120.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/600x600/products/911/4724/Wavy-Davy-C5_Hero__55266.1729638867.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Santa Cruz Classic Dot Skateboard', 130.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/676/3800/CarverHoboDeck2021_REVS2-1__95601.1682428803.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Enjoi Whitey Panda Skateboard', 115.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/506/3014/CarverAipaDeck__55789.1686061692.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Almost Mullen Uber Light Skateboard', 140.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/505/3013/CarverTyler777Deck__76503.1686061667.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Powell Peralta Ripper Skateboard', 135.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/362/2901/Carver2020GlassOffDeck__88947.1686060559.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Globe G1 Argo Skateboard', 110.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/361/2900/Carver2020BlueHazeDeck__32701.1676680379.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Zero Single Skull Skateboard', 125.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/360/2899/Carver2020EmeraldPeakDeck__05392.1685461074.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Girl Carroll 93 Til Skateboard', 128.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/354/4088/CarverUSABoosterDeck__23968.1693956486.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Plan B Team OG Skateboard', 145.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/921/4727/Psychedelic-Sunset-Deck__79585.1729690900.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Blind OG Logo Skateboard', 118.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/912/4725/Wavy-Davy_Deck__39602.1729638935.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Baker Brand Logo Skateboard', 125.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/924/4726/Space-Case-Deck__04314.1729690824.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Chocolate Alvarez Hologram Skateboard', 132.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/600x600/products/911/4724/Wavy-Davy-C5_Hero__55266.1729638867.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Anti-Hero Classic Eagle Skateboard', 127.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/600x600/products/911/4724/Wavy-Davy-C5_Hero__55266.1729638867.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Toy Machine Vice Dead Monster Skateboard', 122.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/600x600/products/911/4724/Wavy-Davy-C5_Hero__55266.1729638867.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Creature Logo Complete Skateboard', 130.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/600x600/products/911/4724/Wavy-Davy-C5_Hero__55266.1729638867.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Real Classic Oval Complete Skateboard', 138.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/600x600/products/911/4724/Wavy-Davy-C5_Hero__55266.1729638867.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Foundation Star & Moon Skateboard', 115.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/674/3744/2023_decks_17__45584.1685460864.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Primitive Rodriguez Samurai Skateboard', 150.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/673/3743/2023_decks_5__34141.1685460849.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Darkstar First Push Skateboard', 112.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/675/3745/2023_decks_16__43613.1685460873.jpg?c=1'),
-    (uuid_generate_v4(), 1, 'Jart Classic Complete Skateboard', 119.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/380x380/products/918/4728/Sunburst-Deck__43995.1729690972.jpg?c=1'),
+-- Insert 40 products (20 Decks, 10 Trucks, 10 Wheels)
+INSERT INTO products (product_id, category_id, product_name, price)
+VALUES
+    -- 20 Decks
+    ('ebbddc91-56a3-4f7a-b3bb-0777aa983f48', 1, 'Element Section Complete Skateboard', 120.00),
+    ('203d199a-6566-4b61-b5fc-18b6a618b959', 1, 'Santa Cruz Classic Dot Skateboard', 130.00),
+    ('09c8f070-463c-4f63-97a8-c6e7880c73dd', 1, 'Enjoi Whitey Panda Skateboard', 115.00),
+    ('d0845ec0-c181-48d3-b83c-02f267691278', 1, 'Almost Mullen Uber Light Skateboard', 140.00),
+    ('52e38caf-da7b-4366-bc7f-7ed761773b78', 1, 'Powell Peralta Ripper Skateboard', 135.00),
+    ('86e28fbf-3afd-495e-a840-1b29bbbeaedf', 1, 'Globe G1 Argo Skateboard', 110.00),
+    ('c829e330-2b6b-47b4-8d88-1ed71bb70a99', 1, 'Zero Single Skull Skateboard', 125.00),
+    ('93a37655-e58c-4b85-89d8-fa8cc1c20f78', 1, 'Girl Carroll 93 Til Skateboard', 128.00),
+    ('5a205531-0797-4b26-a4c5-bfb47578da35', 1, 'Plan B Team OG Skateboard', 145.00),
+    ('a05c17cd-3f09-4a4f-badd-fe81df359a29', 1, 'Blind OG Logo Skateboard', 118.00),
+    ('56228589-3705-46ef-ba50-b894b66cfeef', 1, 'Baker Brand Logo Skateboard', 125.00),
+    ('1e3e7b7e-1411-4a6c-83ba-db3df005cea9', 1, 'Chocolate Alvarez Hologram Skateboard', 132.00),
+    ('8781905c-7429-4cf2-88b3-449c991b98fe', 1, 'Anti-Hero Classic Eagle Skateboard', 127.00),
+    ('543ae216-10c6-4b06-a9f5-980ee74f89fc', 1, 'Toy Machine Vice Dead Monster Skateboard', 122.00),
+    ('6414389a-3359-4214-bdff-9754b8ae493c', 1, 'Creature Logo Complete Skateboard', 130.00),
+    ('c0b91cf9-4c4a-45d1-b61a-f39d5d68052e', 1, 'Real Classic Oval Complete Skateboard', 138.00),
+    ('52481d6b-1a17-46e6-ac86-948d0464869d', 1, 'Foundation Star & Moon Skateboard', 115.00),
+    ('1a1a33cd-7d26-4c94-94e8-2645c500fa2e', 1, 'Primitive Rodriguez Samurai Skateboard', 150.00),
+    ('1d7ffa47-5b99-4893-88c4-90a5f153a560', 1, 'Darkstar First Push Skateboard', 112.00),
+    ('562b5b4c-cca3-49d1-86d4-c5c31efb6ff4', 1, 'Jart Classic Complete Skateboard', 119.00),
 
-    (uuid_generate_v4(), 2, 'Independent Stage 11 Standard Trucks', 60.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
-    (uuid_generate_v4(), 2, 'Thunder Polished Team Trucks', 58.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
-    (uuid_generate_v4(), 2, 'Venture Polished Low Trucks', 55.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
-    (uuid_generate_v4(), 2, 'Tensor Mag Light Trucks', 65.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
-    (uuid_generate_v4(), 2, 'Krux K5 Galaxy Trucks', 62.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
-    (uuid_generate_v4(), 2, 'Ace AF1 Trucks', 64.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
-    (uuid_generate_v4(), 2, 'Royal Trucks Raw', 57.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
-    (uuid_generate_v4(), 2, 'Gullwing Mission Trucks', 59.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
-    (uuid_generate_v4(), 2, 'Paris V3 Trucks', 66.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
-    (uuid_generate_v4(), 2, 'Caliber II Fifty Trucks', 63.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/804/4231/CARVER_C7-TRUCK-SET-INDIGO-BLUE__72510.1698901586.png?c=1'),
+    -- 10 Trucks
+    ('197d5f94-d048-4ae1-ada3-c150b1efe559', 2, 'Independent Stage 11 Standard Trucks', 60.00),
+    ('cff0a68b-3258-41b6-9d41-6a7d56895f89', 2, 'Thunder Polished Team Trucks', 58.00),
+    ('9e0f8cd3-e5c2-4b5a-a5c0-f1c4604c2176', 2, 'Venture Polished Low Trucks', 55.00),
+    ('eac588cf-68d9-43e7-b96f-68e72fe98d5a', 2, 'Tensor Mag Light Trucks', 65.00),
+    ('82703ec1-6bb9-46d8-9f38-2279321e6a7e', 2, 'Krux K5 Galaxy Trucks', 62.00),
+    ('8ebefd7f-96c5-4ff6-94ef-af2dd5a4cccd', 2, 'Ace AF1 Trucks', 64.00),
+    ('146d2632-4299-4b2b-94f0-3f3e9bc24ca5', 2, 'Royal Trucks Raw', 57.00),
+    ('c8619676-8aa4-417a-b1bf-273c109fdd59', 2, 'Gullwing Mission Trucks', 59.00),
+    ('0d35d983-39b8-4997-9105-6a95fda0e3e1', 2, 'Paris V3 Trucks', 66.00),
+    ('0c5fa1da-c3d4-4dde-956d-96458471563f', 2, 'Caliber II Fifty Trucks', 63.00),
 
-    (uuid_generate_v4(), 3, 'Spitfire Formula Four Wheels', 40.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
-    (uuid_generate_v4(), 3, 'Bones STF V1 Wheels', 45.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
-    (uuid_generate_v4(), 3, 'Ricta Clouds Cruiser Wheels', 42.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
-    (uuid_generate_v4(), 3, 'OJ Super Juice Wheels', 38.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
-    (uuid_generate_v4(), 3, 'Sector 9 Nineballs Wheels', 43.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
-    (uuid_generate_v4(), 3, 'Powell Peralta G-Slides Wheels', 44.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
-    (uuid_generate_v4(), 3, 'Slime Balls OG Wheels', 39.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
-    (uuid_generate_v4(), 3, 'Orangatang Kegel Wheels', 50.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
-    (uuid_generate_v4(), 3, 'Cloud Ride Cruiser Wheels', 41.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1'),
-    (uuid_generate_v4(), 3, 'Arbor Easyrider Bogart Wheels', 46.00, 'https://cdn11.bigcommerce.com/s-icfw6t6sn3/images/stencil/1280x1280/products/819/4314/CARVER_ROUNDHOUSE_65MM_83A_SLICK_GREEN_GLO__48523.1703803312.png?c=1');
+    -- 10 Wheels
+    ('8dec4e6f-dab7-4b02-b587-efc7bb539e83', 3, 'Spitfire Formula Four Wheels', 40.00),
+    ('7dcdd53e-4293-4a39-868c-c9908aab8aa4', 3, 'Bones STF V1 Wheels', 45.00),
+    ('db953f4a-5802-47aa-a2fd-bc946dca1d68', 3, 'Ricta Clouds Cruiser Wheels', 42.00),
+    ('6ecd1355-0c83-42f1-8bd1-5bf4b4938145', 3, 'OJ Super Juice Wheels', 38.00),
+    ('b23ce9c1-4ece-4e7c-9e01-870fc1c1a9ad', 3, 'Sector 9 Nineballs Wheels', 43.00),
+    ('e29c9d2b-2043-48f7-aeb6-158fbfadf332', 3, 'Powell Peralta G-Slides Wheels', 44.00),
+    ('2b57219a-3973-4ebe-94dd-61f0e904a814', 3, 'Slime Balls OG Wheels', 39.00),
+    ('48840a79-8f2b-494a-893f-415a60daf4a5', 3, 'Orangatang Kegel Wheels', 50.00),
+    ('02d7a152-92cc-461d-a724-927a8b9f4dbe', 3, 'Cloud Ride Cruiser Wheels', 41.00),
+    ('d603b1b4-0ff4-40e4-970f-0618f7902e94', 3, 'Arbor Easyrider Bogart Wheels', 46.00);
 
--- Inserting product variations (size and stock quantity)
+-- Insert product images
+INSERT INTO product_images (id, product_id, mime_type)
+VALUES
+    ('05aee806-2831-40f5-b925-bba4989b7258', 'c8619676-8aa4-417a-b1bf-273c109fdd59', 'image/webp'),
+    ('0fd1b8c6-a65e-47d9-acd9-1b06d846a669', '0d35d983-39b8-4997-9105-6a95fda0e3e1', 'image/webp'),
+    ('19fdafb2-0991-4f3a-bf50-e2af21aa11b0', '203d199a-6566-4b61-b5fc-18b6a618b959', 'image/webp'),
+    ('1a410530-59f0-411e-89c4-28a4e2d09363', '1a1a33cd-7d26-4c94-94e8-2645c500fa2e', 'image/webp'),
+    ('1ff36746-697e-4dcb-aae4-4f201a588224', '82703ec1-6bb9-46d8-9f38-2279321e6a7e', 'image/webp'),
+    ('2055b851-525e-4a52-8679-1ea748568a34', '6ecd1355-0c83-42f1-8bd1-5bf4b4938145', 'image/webp'),
+    ('22f0d2f6-636b-4a8d-a74d-ef32925e5aa0', '09c8f070-463c-4f63-97a8-c6e7880c73dd', 'image/webp'),
+    ('2f6f00a5-72f2-4f9d-a20d-b85dadb87085', 'eac588cf-68d9-43e7-b96f-68e72fe98d5a', 'image/webp'),
+    ('31ea93da-9a43-4168-8238-596c8588e2e6', '48840a79-8f2b-494a-893f-415a60daf4a5', 'image/webp'),
+    ('3dc9210c-86b6-4edd-be3d-df3776ad91b9', '0c5fa1da-c3d4-4dde-956d-96458471563f', 'image/webp'),
+    ('4072bf6f-686e-423f-a185-0643c7d83f07', '146d2632-4299-4b2b-94f0-3f3e9bc24ca5', 'image/webp'),
+    ('4e49ed0b-4c64-47c4-9e64-b848a2b27c89', '1e3e7b7e-1411-4a6c-83ba-db3df005cea9', 'image/webp'),
+    ('534748d1-f753-4f74-8eb8-2a92101466f3', '52e38caf-da7b-4366-bc7f-7ed761773b78', 'image/webp'),
+    ('605a5f0b-b5b4-4030-9501-ca258ed55c7f', '56228589-3705-46ef-ba50-b894b66cfeef', 'image/webp'),
+    ('67279009-7269-44ce-87dc-115da974e510', '7dcdd53e-4293-4a39-868c-c9908aab8aa4', 'image/webp'),
+    ('6ac7d5ac-e196-4ad8-b805-9bf37ec3aef8', '197d5f94-d048-4ae1-ada3-c150b1efe559', 'image/webp'),
+    ('6f378333-9860-4e45-ab35-2b31c9f399ea', '86e28fbf-3afd-495e-a840-1b29bbbeaedf', 'image/webp'),
+    ('6fa5c4c9-1d46-420d-b49b-ff3a9b5a01c1', 'ebbddc91-56a3-4f7a-b3bb-0777aa983f48', 'image/webp'),
+    ('7239a479-a47e-4b20-ab9d-8816f2bacded', '6414389a-3359-4214-bdff-9754b8ae493c', 'image/webp'),
+    ('7b23b154-98f6-4fb5-9c00-3c813d7f5d89', 'cff0a68b-3258-41b6-9d41-6a7d56895f89', 'image/webp'),
+    ('902b2aeb-52f4-42ab-b4bd-2b9e48f9890a', '8ebefd7f-96c5-4ff6-94ef-af2dd5a4cccd', 'image/webp'),
+    ('93f486d4-8e2c-4e70-9e8b-06bc53b5e944', '8781905c-7429-4cf2-88b3-449c991b98fe', 'image/webp'),
+    ('94ed34bc-1603-4c03-973f-ae4a1c5f42d2', '93a37655-e58c-4b85-89d8-fa8cc1c20f78', 'image/webp'),
+    ('967a8a02-61ae-4652-8d3a-1364757515a4', '8dec4e6f-dab7-4b02-b587-efc7bb539e83', 'image/webp'),
+    ('971032d2-d9cd-4ee7-89f3-055f53f28a64', '52481d6b-1a17-46e6-ac86-948d0464869d', 'image/webp'),
+    ('a251b7fe-a6cb-4474-ae3c-5c5af7fc2c98', 'c0b91cf9-4c4a-45d1-b61a-f39d5d68052e', 'image/webp'),
+    ('a9b531e3-ceaa-40b8-b663-972c9e02be4e', 'b23ce9c1-4ece-4e7c-9e01-870fc1c1a9ad', 'image/webp'),
+    ('b22889aa-05a3-48d2-bbcf-bbdca2dd3f92', '562b5b4c-cca3-49d1-86d4-c5c31efb6ff4', 'image/webp'),
+    ('b384d6fd-f4e0-41f3-b625-f0415319e6f8', 'd0845ec0-c181-48d3-b83c-02f267691278', 'image/webp'),
+    ('ba4aa656-7e83-4448-8631-de916dc02598', 'db953f4a-5802-47aa-a2fd-bc946dca1d68', 'image/webp'),
+    ('ba6f3de8-c91d-44aa-ac30-54641eefff3d', 'e29c9d2b-2043-48f7-aeb6-158fbfadf332', 'image/webp'),
+    ('bbfd33ef-ccd0-4e66-a41d-fa18593265ed', '02d7a152-92cc-461d-a724-927a8b9f4dbe', 'image/webp'),
+    ('c0d29484-6bf4-42f2-9cad-c7b197c53e64', 'd603b1b4-0ff4-40e4-970f-0618f7902e94', 'image/webp'),
+    ('d455c221-18cc-478a-b115-bb0720e47f12', '543ae216-10c6-4b06-a9f5-980ee74f89fc', 'image/webp'),
+    ('f061ac92-6aad-4c81-8c73-a09840b0eb99', 'a05c17cd-3f09-4a4f-badd-fe81df359a29', 'image/webp'),
+    ('f2484367-3744-407a-b6d1-4f99d0525c9c', '9e0f8cd3-e5c2-4b5a-a5c0-f1c4604c2176', 'image/webp'),
+    ('f32c7bf7-e239-454b-8aa8-294bd497459b', '2b57219a-3973-4ebe-94dd-61f0e904a814', 'image/webp'),
+    ('f758b962-fb0f-4a06-aba0-57ccd39b8a38', '5a205531-0797-4b26-a4c5-bfb47578da35', 'image/webp'),
+    ('f93ef6be-1a6d-43d1-a7d3-09064d72d41c', 'c829e330-2b6b-47b4-8d88-1ed71bb70a99', 'image/webp'),
+    ('fb390d87-020c-4c2b-b42b-d99e83ffbc32', '1d7ffa47-5b99-4893-88c4-90a5f153a560', 'image/webp');
+
+
+-- Update products with main image ID
+UPDATE products p
+SET main_image_id = (
+    SELECT pi.id 
+    FROM product_images pi 
+    WHERE pi.product_id = p.product_id
+)
+WHERE EXISTS (
+    SELECT 1 
+    FROM product_images pi 
+    WHERE pi.product_id = p.product_id
+);
+
+
+
 INSERT INTO product_variations (product_id, size_id, stock_quantity) VALUES
     -- Decks (Category 1)
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), (SELECT size_id FROM sizes WHERE size = 8.000 AND category_id = 1), 10),
@@ -101,7 +161,6 @@ INSERT INTO product_variations (product_id, size_id, stock_quantity) VALUES
     ((SELECT product_id FROM products WHERE product_name = 'Cloud Ride Cruiser Wheels'), (SELECT size_id FROM sizes WHERE size = 54.000 AND category_id = 3), 30),
     ((SELECT product_id FROM products WHERE product_name = 'Arbor Easyrider Bogart Wheels'), (SELECT size_id FROM sizes WHERE size = 51.000 AND category_id = 3), 18);
 
--- Inserting product descriptions (in English and Dutch)
 INSERT INTO product_descriptions (product_id, language_code, description) VALUES
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), 'en', 'The Element Section Complete Skateboard is a versatile board designed for riders of all skill levels. Its durable build and sleek design make it a great choice for daily skating.'),
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), 'nl', 'De Element Section Complete Skateboard is een veelzijdig board ontworpen voor rijders van elk niveau. Duurzaam en stijlvol, perfect voor dagelijks gebruik en lange ritten.'),
@@ -163,7 +222,6 @@ INSERT INTO product_descriptions (product_id, language_code, description) VALUES
     ((SELECT product_id FROM products WHERE product_name = 'Jart Classic Complete Skateboard'), 'en', 'Jart Classic Complete Skateboard is reliable and sleek, making it an excellent choice for riders seeking a combination of style and practicality in a skateboard.'),
     ((SELECT product_id FROM products WHERE product_name = 'Jart Classic Complete Skateboard'), 'nl', 'De Jart Classic Complete Skateboard is betrouwbaar en stijlvol. Ideaal voor skaters die stijl en functionaliteit willen combineren.');
 
--- Insert product tags
 INSERT INTO product_tags (product_id, tag_id) VALUES
     -- Decks
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), 1),
@@ -212,7 +270,6 @@ INSERT INTO product_tags (product_id, tag_id) VALUES
     ((SELECT product_id FROM products WHERE product_name = 'Arbor Easyrider Bogart Wheels'), 2);
 
 
--- Insert related products
 INSERT INTO product_related_products (product_id, related_product_id) VALUES
     -- Element Section Complete Skateboard
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Santa Cruz Classic Dot Skateboard')),
@@ -254,7 +311,6 @@ INSERT INTO product_related_products (product_id, related_product_id) VALUES
     ((SELECT product_id FROM products WHERE product_name = 'Ricta Clouds Cruiser Wheels'), (SELECT product_id FROM products WHERE product_name = 'Slime Balls OG Wheels'));
 
 
--- Insert discounts for products
 INSERT INTO discounts (product_id, discount_percentage, valid_from, valid_until) VALUES
     -- Decks
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), 10.00, '2024-10-01', '2024-10-31'),
@@ -285,7 +341,6 @@ INSERT INTO discounts (product_id, discount_percentage, valid_from, valid_until)
     ((SELECT product_id FROM products WHERE product_name = 'Cloud Ride Cruiser Wheels'), 10.00, '2024-12-10', '2024-12-20'),
     ((SELECT product_id FROM products WHERE product_name = 'Arbor Easyrider Bogart Wheels'), 15.00, '2024-11-20', '2024-11-30');
 
--- Insert reviews
 INSERT INTO reviews (product_id, customer_name, rating, review_text, helpful_votes) VALUES
     -- Decks
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), 'Alice', 5, 'Great quality skateboard, very smooth ride!', 10),

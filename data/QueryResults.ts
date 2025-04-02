@@ -17,7 +17,8 @@ export type ProductRow = {
   category_id: CategoryRow['category_id'];
   category_name: CategoryRow['category_name'];
   price: number;
-  image_url: string;
+  main_image_id: string;
+  mime_type: string;
   tags: string[];
 };
 

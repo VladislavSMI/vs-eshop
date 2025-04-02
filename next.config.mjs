@@ -7,8 +7,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cdn11.bigcommerce.com',
-        port: '',
+        hostname: 'vs-eshop.s3.eu-central-1.amazonaws.com',
         pathname: '/**',
       },
     ],

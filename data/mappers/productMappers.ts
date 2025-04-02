@@ -4,7 +4,7 @@ import {
   ProductRowAdmin,
   ProductRowDetails,
 } from '../QueryResults';
-import { formatDateToLocal } from '@/lib/utils/utils';
+import { formatDateToLocal, generateRelativeImageUrl } from '@/lib/utils/utils';
 import { isValidTag } from '@/lib/utils/productUtils';
 
 const mapBaseProduct = (row: ProductRow): Product => ({
@@ -13,7 +13,12 @@ const mapBaseProduct = (row: ProductRow): Product => ({
   categoryId: row.category_id,
   categoryName: row.category_name,
   price: row.price || 0,
-  imageUrl: row.image_url || '',
+  mainImageUrl:
+    generateRelativeImageUrl({
+      productId: row.product_id,
+      imageId: row.main_image_id,
+      mimeType: row.mime_type,
+    }) || null,
   tags: row.tags?.filter(isValidTag) || [],
 });
 

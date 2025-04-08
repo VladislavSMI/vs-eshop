@@ -42,4 +42,3 @@ secrets:
     environment: POSTGRES_PORT
   stripe_secret_key:
     environment: STRIPE_SECRET_KEY
-

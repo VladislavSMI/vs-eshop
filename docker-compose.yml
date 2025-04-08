@@ -1,0 +1,45 @@
+services:
+  nextjs-app:
+    build:
+      context: .
+      network: host
+      args:
+        NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+        NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL}
+        NEXT_PUBLIC_AWS_BUCKET_FOLDER: ${NEXT_PUBLIC_AWS_BUCKET_FOLDER}
+        NEXT_PUBLIC_AWS_BASE_URL: ${NEXT_PUBLIC_AWS_BASE_URL}
+        NEXT_PUBLIC_AWS_STATIC_FILE_BUCKET: ${NEXT_PUBLIC_AWS_STATIC_FILE_BUCKET}
+      secrets:
+        - postgres_user
+        - postgres_host
+        - postgres_pass
+        - postgres_database
+        - postgres_port
+        - stripe_secret_key
+    image: vs-eshop-nextjs-app:latest
+    container_name: vs-eshop-nextjs-app-container
+    environment:
+      # Sensitive data
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PASS: ${POSTGRES_PASS}
+      POSTGRES_DATABASE: ${POSTGRES_DATABASE}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+    ports:
+      - '3000:3000'
+
+secrets:
+  postgres_user:
+    environment: POSTGRES_USER
+  postgres_host:
+    environment: POSTGRES_HOST
+  postgres_pass:
+    environment: POSTGRES_PASS
+  postgres_database:
+    environment: POSTGRES_DATABASE
+  postgres_port:
+    environment: POSTGRES_PORT
+  stripe_secret_key:
+    environment: STRIPE_SECRET_KEY
+

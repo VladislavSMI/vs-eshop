@@ -1,0 +1,103 @@
+# GitHub Actions CI/CD pipeline for the vs-eshop app
+# This workflow runs all automated tests (Playwright, Jest, TypeScript, ESLint, Prettier)
+# and then deploys to production using AWS SSM if tests pass.
+#
+# Note:
+# The Docker image for this project is currently built and pushed manually via a local script (docker_build_push.sh).
+# The build is not executed directly on the EC2 instance or during GitHub actions for the following reasons:
+#
+# 1. The EC2 instance runs on the AWS Free Tier and has limited CPU and memory capacity.
+#    Running resource-intensive builds (like Next.js production builds) can cause the instance to hang or become unresponsive.
+#
+# 2. The EC2 instance also hosts other applications (e.g., a .NET API),
+#    and isolating this Next.js app in a Docker container helps avoid environment conflicts (Node vs .NET runtime).
+#
+# 3. The build process requires access to an AWS RDS database that resides in a private subnet.
+#    The database is intentionally **not exposed to the public internet** for security reasons.
+#    Therefore, cloud-hosted runners (like GitHub-hosted ones) cannot access it during build.
+#
+# ➡️ Next step:
+# To fully automate the CI/CD pipeline, move the image build and push into the pipeline itself
+# by setting up a **self-hosted GitHub Actions runner inside the VPC**. This will:
+# - Allow secure access to the private RDS
+# - Eliminate the need for manual image builds
+# - Keep your deployment architecture consistent and automated
+
+name: CI Tests and Validation, CD to Production
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    env:
+      # Set environment variables for Playwright as required during the build process.
+      # (These are dummy secret values for testing purposes)
+      STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Set up Node.js and install dependencies
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm ci
+
+      # Install Playwright browsers
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      # Run Playwright tests
+      - name: Run Playwright tests
+        run: npm run test:e2e
+
+      # Run Jest tests
+      - name: Run Jest tests
+        run: npm run test:jest
+
+      # Run TypeScript type checks
+      - name: TypeScript Validation
+        run: npm run test:types
+
+      # Run ESLint for linting checks
+      - name: Lint code with ESLint
+        run: npm run lint
+
+      # Run Prettier for code formatting checks
+      - name: Check formatting with Prettier
+        run: npm run prettier:check
+
+      # Upload Playwright report as an artifact if tests fail
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+  deploy:
+    if: github.event_name == 'push'
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      # Configure AWS Credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+
+      # Execute deployment script using SSM
+      - name: Execute deployment script using SSM
+        run: |
+          aws ssm send-command \
+            --document-name "AWS-RunShellScript" \
+            --targets "Key=tag:Environment,Values=Production" \
+            --parameters 'commands=["bash /home/ec2-user/vs-eshop-app/vs-eshop/docker_pull_deploy.sh"]'

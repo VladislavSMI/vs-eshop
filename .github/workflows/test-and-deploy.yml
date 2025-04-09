@@ -82,6 +82,7 @@ jobs:
           retention-days: 30
 
   deploy:
+    if: github.event_name == 'push'
     needs: test
     runs-on: ubuntu-latest
     steps:

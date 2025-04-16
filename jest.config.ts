@@ -18,7 +18,12 @@ const config: Config = {
   coverageProvider: 'v8',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  testPathIgnorePatterns: ['<rootDir>/__test__/e2e', '<rootDir>/node_modules/'],
+  testPathIgnorePatterns: [
+    '<rootDir>/__test__/e2e',
+    '<rootDir>/node_modules/',
+    '<rootDir>/.next/',
+  ],
+  modulePathIgnorePatterns: ['<rootDir>/.next/'],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

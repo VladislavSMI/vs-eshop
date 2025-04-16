@@ -12,8 +12,7 @@
 # 2. The EC2 instance also hosts other applications (e.g., a .NET API),
 #    and isolating this Next.js app in a Docker container helps avoid environment conflicts (Node vs .NET runtime).
 #
-# 3. The build process requires access to an AWS RDS database that resides in a private subnet.
-#    The database is intentionally **not exposed to the public internet** for security reasons.
+# 3. The build process requires access to an AWS RDS database that is intentionally **not exposed to the public internet** for security reasons.
 #    Therefore, cloud-hosted runners (like GitHub-hosted ones) cannot access it during build.
 #
 # ➡️ Next step:

@@ -1,4 +1,4 @@
-import { Pool, QueryResult, QueryResultRow } from 'pg';
+import { Pool, PoolConfig, QueryResult, QueryResultRow } from 'pg';
 import { log } from './logging/log';
 import { QueryParams } from './types';
 
@@ -7,8 +7,8 @@ declare const globalThis: typeof global & {
   _pool?: Pool;
 };
 
-const createPool = () =>
-  new Pool({
+const createPool = () => {
+  const poolConfig: PoolConfig = {
     host: process.env.POSTGRES_HOST,
     port: Number(process.env.POSTGRES_PORT) || 5432,
     database: process.env.POSTGRES_DATABASE,
@@ -17,10 +17,20 @@ const createPool = () =>
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  });
+  };
+
+  // For AWS RDS, we need to use an SSL connection to encrypt data in transit.
+  // However, if we don't provide a CA certificate bundle, the client's default behavior
+  // will reject the connection due to certificate verification failures.
+  // Setting 'rejectUnauthorized: false' bypasses certificate verification, allowing
+  // the connection to proceed with encryption. This is acceptable in controlled environments,
+  // but for production, it's recommended to supply the proper CA certificate and set this to true.
+  if (process.env.DB_SSL_ENABLED === 'true') {
+    poolConfig.ssl = { rejectUnauthorized: false };
+  }
+
+  return new Pool(poolConfig);
+};
 
 const pool = globalThis._pool ?? createPool();
 if (process.env.NODE_ENV !== 'production') globalThis._pool = pool;

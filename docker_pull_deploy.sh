@@ -33,7 +33,7 @@ docker run -d \
   --name "$CONTAINER_NAME" \
   --restart always \
   -p 3000:3000 \
-  --env-file .env \
+  --env-file /home/ec2-user/vs-eshop-app/vs-eshop/.env \
   "$IMAGE_NAME"
 
 echo "✅ Deployment completed successfully."

@@ -52,10 +52,13 @@ export const buildProductQuery = ({
       COALESCE(
         jsonb_agg(
           DISTINCT jsonb_build_object(
+            'review_id', r.review_id,
+            'product_id', p.product_id,
+            'product_name', p.product_name,
             'customer_name', r.customer_name,
             'rating', r.rating,
             'review_text', r.review_text,
-            'review_date', r.review_date,
+            'created_at', r.created_at,
             'helpful_votes', r.helpful_votes
           )
         ) FILTER (WHERE r.customer_name IS NOT NULL AND r.rating IS NOT NULL),

@@ -82,6 +82,10 @@
     "newArrivals": {
       "title": "New Arrivals",
       "description": "Discover our newest products"
+    },
+    "productReviews": {
+      "title": "Customer Reviews",
+      "description": "See what our customers are saying"
     }
   },
   "generalErrors": {
@@ -130,7 +134,7 @@
       },
       "quantity": {
         "required": "Quantity is required.",
-        "invalid": "Quantity must be between 1 and 100."
+        "invalid": "Quantity must be between 0 and 100."
       }
     },
     "unexpected": "An unexpected error occurred. Please try again later.",

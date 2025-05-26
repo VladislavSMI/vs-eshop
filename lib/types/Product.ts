@@ -29,18 +29,10 @@ export type ProductVariationAdmin = BaseProductVariation & {
   stockQuantity: number;
 };
 
-export type ProductReview = {
-  customerName: string;
-  rating: number;
-  reviewText: string;
-  reviewDate: string;
-  helpfulVotes: number;
-};
-
 export type ProductDiscount = {
   discountPercentage: number;
   validFrom: string;
-  validUntil: string | null;
+  validUntil: string;
 };
 
 export type Product = {
@@ -51,6 +43,18 @@ export type Product = {
   price: number;
   mainImageUrl: string | null;
   tags: Tag[];
+};
+
+export type ProductReview = {
+  reviewId: string;
+  productId: Product['productId'];
+  productName: Product['productName'];
+  customerName: string;
+  rating: number;
+  reviewText: string;
+  helpfulVotes: number;
+  createdAt: string;
+  mainImageUrl?: Product['mainImageUrl'];
 };
 
 export type ProductDetails = Product & {

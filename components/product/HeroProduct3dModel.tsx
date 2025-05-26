@@ -34,7 +34,7 @@ const Model = () => {
 };
 
 export const HeroProduct3dModel = () => (
-  <div className="h-full w-full">
+  <div className="h-full w-full bg-secondary">
     <Canvas camera={{ position: [0, 3, 15], fov: 50 }}>
       <OrbitControls enableRotate enableZoom enablePan={false} />
       <Model />
@@ -43,4 +43,4 @@ export const HeroProduct3dModel = () => (
   </div>
 );
 
-useGLTF.preload('/models/skate-deck.glb');
+useGLTF.preload('/models/skate-deck-yellow.glb');

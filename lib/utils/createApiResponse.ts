@@ -1,6 +1,7 @@
 import { ZodError } from 'zod';
 import { ApiResponse, TranslationKey } from '@/lib/types';
-import { PublicError, UnexpectedError } from '@/use-cases/errors';
+import { PublicError } from '@/lib/errors/PublicError';
+import { UnexpectedError } from '@/lib/errors/UnexpectedError';
 
 export const createValidationErrorResponse = (
   error: ZodError,

@@ -82,6 +82,10 @@
     "newArrivals": {
       "title": "Nieuw Binnen",
       "description": "Ontdek onze nieuwste producten"
+    },
+    "productReviews": {
+      "title": "Productbeoordelingen",
+      "description": "Bekijk wat anderen zeggen over onze producten"
     }
   },
   "generalErrors": {
@@ -130,7 +134,7 @@
       },
       "quantity": {
         "required": "De hoeveelheid is verplicht.",
-        "invalid": "De hoeveelheid moet tussen 1 en 100 liggen."
+        "invalid": "De hoeveelheid moet tussen 0 en 100 liggen."
       }
     },
     "unexpected": "Er is een onverwachte fout opgetreden. Probeer het later opnieuw.",

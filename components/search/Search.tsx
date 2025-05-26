@@ -13,13 +13,15 @@ type SearchProps = {
 export const Search = ({ placeholder, pathname }: SearchProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const query = searchParams.get('query') || '';
-
-  const [searchTerm, setSearchTerm] = useState<string>(query);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
-    setSearchTerm(query);
-  }, [query]);
+    const currentQuery = searchParams.get('query') || '';
+    if (currentQuery !== searchTerm) {
+      setSearchTerm(currentQuery);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);

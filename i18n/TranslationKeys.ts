@@ -118,6 +118,10 @@ export type Sections = {
     title: string;
     description: string;
   };
+  productReviews: {
+    title: string;
+    description: string;
+  };
 };
 
 export type GeneralErrors = {

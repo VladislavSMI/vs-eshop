@@ -4,7 +4,7 @@ import { upsertShippingAddress } from '@/data/repository/AddressRepository';
 import { Address } from '@/lib/types';
 import { log } from '@/lib/logging/log';
 import { printException } from '@/lib/utils/utils';
-import { PublicError } from './errors';
+import { PublicError } from '@/lib/errors/PublicError';
 
 export async function findOrCreateShippingAddressUseCase(
   shippingAddress: Address,

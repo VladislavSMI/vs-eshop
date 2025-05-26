@@ -24,7 +24,7 @@ export const ProductCard = ({
   showPrice?: boolean;
   useLink: boolean;
 }) => (
-  <div className="group relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg border border-transparent bg-base-100 p-5 shadow-[2px_4px_10px_rgba(255,255,255,0.3)] transition-all duration-500 hover:animate-completeBorder">
+  <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg bg-secondary p-5 shadow-[2px_4px_10px_rgba(255,255,255,0.3)] transition-all duration-500 md:hover:animate-completeBorder">
     {children}
     {showPrice && (
       <LinkWrapper href={`/product/${productId}`} useLink={useLink}>

@@ -1,5 +1,5 @@
 import { executeQuery } from '@/lib/db';
-import { CountryRow } from '../QueryResults';
+import { CountryRow } from '@/data/QueryResults';
 import { Country } from '@/lib/types';
 
 export async function getAllCountries(): Promise<Country[]> {

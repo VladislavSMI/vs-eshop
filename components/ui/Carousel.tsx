@@ -1,21 +1,56 @@
-import { Product } from '@/lib/types';
-import { ProductCardWrapper } from '@/components/product/ProductCard/ProductCardWrapper';
+'use client';
 
-export const Carousel = ({ products }: { products: Product[] }) => {
-  if (!products?.length) return null;
+import { useEffect, useRef } from 'react';
+
+export const Carousel = ({ children }: { children: React.ReactNode }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const directionRef = useRef(1);
+  const isPausedRef = useRef(false);
+  const speed = 0.7;
+  const animationFrameRef = useRef<number>();
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    function tick() {
+      if (!el || isPausedRef.current) {
+        animationFrameRef.current = requestAnimationFrame(tick);
+        return;
+      }
+
+      el.scrollLeft += directionRef.current * speed;
+
+      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 1;
+      const atStart = el.scrollLeft <= 0;
+
+      if (atEnd) directionRef.current = -1;
+      if (atStart) directionRef.current = 1;
+
+      animationFrameRef.current = requestAnimationFrame(tick);
+    }
+
+    animationFrameRef.current = requestAnimationFrame(tick);
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <div className="w-full overflow-x-auto pb-6 pt-1">
-      <ul className="flex animate-carousel gap-4">
-        {products.map((product) => (
-          <li
-            key={product.productId}
-            className="relative aspect-square h-[45vh] max-h-[350px] w-2/3 max-w-[300px] flex-none md:w-1/3"
-          >
-            <ProductCardWrapper product={product} useTilt={false} useLink />
-          </li>
-        ))}
-      </ul>
+    <div
+      ref={containerRef}
+      onMouseEnter={() => {
+        isPausedRef.current = true;
+      }}
+      onMouseLeave={() => {
+        isPausedRef.current = false;
+      }}
+      className="w-full overflow-x-auto scroll-smooth pb-6 pt-1"
+    >
+      <ul className="flex gap-4">{children}</ul>
     </div>
   );
 };

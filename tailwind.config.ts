@@ -29,7 +29,7 @@ const config: Config = {
           neutral: '#121212', // Neutral background for subdued or secondary elements
           'neutral-content': '#E0E0E0', // Content on neutral backgrounds
           'base-100': '#000000', // Pure black background
-          'base-content': '#FFD800', // School buss yellow (content on pure black background)
+          'base-content': '#FFD800', // School bus yellow (content on pure black background)
           info: '#A6A6A6', // Medium Gray (general information highlights)
           success: '#4CAF50', // Green (success feedback)
           warning: '#FFC107', // Yellow-orange (warning feedback)

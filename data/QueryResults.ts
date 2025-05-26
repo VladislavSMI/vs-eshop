@@ -35,17 +35,20 @@ export type ProductVariationRow = {
 };
 
 export type ProductReviewRow = {
+  review_id: string;
+  product_id: string;
+  product_name: string;
   customer_name: string;
   rating: number;
   review_text: string;
-  review_date: string;
+  created_at: string;
   helpful_votes: number;
 };
 
 export type ProductDiscountRow = {
   discount_percentage: number;
   valid_from: string;
-  valid_until?: string;
+  valid_until: string;
 };
 
 export type ProductRowDetails = ProductRow & {
@@ -107,4 +110,17 @@ export type CountryRow = {
   id: number;
   code: string;
   name: string;
+};
+
+export type ReviewRow = {
+  review_id: string;
+  product_id: string;
+  product_name: string;
+  customer_name: string;
+  rating: number;
+  review_text: string;
+  helpful_votes: number;
+  created_at: string;
+  main_image_id: string;
+  mime_type: string;
 };

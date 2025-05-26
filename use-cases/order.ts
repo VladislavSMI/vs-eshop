@@ -6,8 +6,8 @@ import {
 } from '@/data/repository/OrderRepository';
 import { Address, Cart, Order } from '@/lib/types';
 import { log } from '@/lib/logging/log';
-import { PublicError } from './errors';
 import { printException } from '@/lib/utils/utils';
+import { PublicError } from '@/lib/errors/PublicError';
 
 export async function createOrderUseCase({
   cartId,

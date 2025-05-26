@@ -3,7 +3,7 @@ import {
   ProductRow,
   ProductRowAdmin,
   ProductRowDetails,
-} from '../QueryResults';
+} from '@/data/QueryResults';
 import { formatDateToLocal, generateRelativeImageUrl } from '@/lib/utils/utils';
 import { isValidTag } from '@/lib/utils/productUtils';
 
@@ -19,7 +19,7 @@ const mapBaseProduct = (row: ProductRow): Product => ({
       imageId: row.main_image_id,
       mimeType: row.mime_type,
     }) || null,
-  tags: row.tags?.filter(isValidTag) || [],
+  tags: row.tags?.filter(isValidTag),
 });
 
 const mapProductDetails = (row: ProductRowDetails): ProductDetails => ({
@@ -31,24 +31,26 @@ const mapProductDetails = (row: ProductRowDetails): ProductDetails => ({
     })) || [],
   variations:
     row.variations?.map((v) => ({
-      variationId: v.variation_id || '',
+      variationId: v.variation_id,
       sizeId: v.size_id || 0,
       size: v.size || 0,
       stockQuantity: (v.stock_quantity || 0) > 0, // Converts to boolean for ProductDetails for non-admin
     })) || [],
-  reviews:
-    row.reviews?.map((r) => ({
-      customerName: r.customer_name,
-      rating: r.rating || 0,
-      reviewText: r.review_text || '',
-      reviewDate: r.review_date,
-      helpfulVotes: r.helpful_votes || 0,
-    })) || [],
+  reviews: row.reviews?.map((r) => ({
+    reviewId: r.review_id,
+    productId: r.product_id,
+    productName: r.product_name,
+    customerName: r.customer_name,
+    rating: r.rating,
+    reviewText: r.review_text || '',
+    createdAt: r.created_at,
+    helpfulVotes: r.helpful_votes || 0,
+  })),
   discounts:
     row.discounts?.map((d) => ({
       discountPercentage: d.discount_percentage || 0,
       validFrom: d.valid_from,
-      validUntil: d.valid_until || null,
+      validUntil: d.valid_until,
     })) || [],
   relatedProducts: row.related_products || [],
 });

@@ -1,8 +1,8 @@
 import { executeQuery } from '@/lib/db';
 import { log } from '@/lib/logging/log';
 import { Category, Product, ProductDetails } from '@/lib/types';
-import { ProductRow, CategoryRow, ProductRowDetails } from '../QueryResults';
 import { isMockEnabled } from '@/lib/utils/utils';
+import { ITEMS_PER_PAGE } from '@/lib/const';
 import {
   mockCategories,
   mockProducts,
@@ -11,8 +11,8 @@ import {
   buildProductQuery,
   buildProductSearchQuery,
 } from '../queries/productQueryBuilder';
+import { ProductRow, CategoryRow, ProductRowDetails } from '../QueryResults';
 import { CategoryMappers, ProductMappers } from '../mappers';
-import { ITEMS_PER_PAGE } from '@/lib/const';
 
 // The `isMockEnabled` check enables testing without direct database access, which is
 // essential here due to calling this function directly from a server-side component.

@@ -20,24 +20,24 @@ INSERT INTO products (product_id, category_id, product_name, price)
 VALUES
     -- 20 Decks
     ('ebbddc91-56a3-4f7a-b3bb-0777aa983f48', 1, 'Element Section Complete Skateboard', 120.00),
-    ('203d199a-6566-4b61-b5fc-18b6a618b959', 1, 'Santa Cruz Classic Dot Skateboard', 130.00),
-    ('09c8f070-463c-4f63-97a8-c6e7880c73dd', 1, 'Enjoi Whitey Panda Skateboard', 115.00),
+    ('203d199a-6566-4b61-b5fc-18b6a618b959', 1, 'Chippen Classic Dot Skateboard', 130.00),
+    ('09c8f070-463c-4f63-97a8-c6e7880c73dd', 1, 'Deathwish Skateboard', 115.00),
     ('d0845ec0-c181-48d3-b83c-02f267691278', 1, 'Almost Mullen Uber Light Skateboard', 140.00),
-    ('52e38caf-da7b-4366-bc7f-7ed761773b78', 1, 'Powell Peralta Ripper Skateboard', 135.00),
+    ('52e38caf-da7b-4366-bc7f-7ed761773b78', 1, 'Santa Cruz Ripper Skateboard', 135.00),
     ('86e28fbf-3afd-495e-a840-1b29bbbeaedf', 1, 'Globe G1 Argo Skateboard', 110.00),
-    ('c829e330-2b6b-47b4-8d88-1ed71bb70a99', 1, 'Zero Single Skull Skateboard', 125.00),
-    ('93a37655-e58c-4b85-89d8-fa8cc1c20f78', 1, 'Girl Carroll 93 Til Skateboard', 128.00),
+    ('c829e330-2b6b-47b4-8d88-1ed71bb70a99', 1, 'Toms Zero Single Skull Skateboard', 125.00),
+    ('93a37655-e58c-4b85-89d8-fa8cc1c20f78', 1, 'Hopps Girl Carroll 93 Til Skateboard', 128.00),
     ('5a205531-0797-4b26-a4c5-bfb47578da35', 1, 'Plan B Team OG Skateboard', 145.00),
     ('a05c17cd-3f09-4a4f-badd-fe81df359a29', 1, 'Blind OG Logo Skateboard', 118.00),
-    ('56228589-3705-46ef-ba50-b894b66cfeef', 1, 'Baker Brand Logo Skateboard', 125.00),
+    ('56228589-3705-46ef-ba50-b894b66cfeef', 1, 'Element Brand Logo Skateboard', 125.00),
     ('1e3e7b7e-1411-4a6c-83ba-db3df005cea9', 1, 'Chocolate Alvarez Hologram Skateboard', 132.00),
-    ('8781905c-7429-4cf2-88b3-449c991b98fe', 1, 'Anti-Hero Classic Eagle Skateboard', 127.00),
-    ('543ae216-10c6-4b06-a9f5-980ee74f89fc', 1, 'Toy Machine Vice Dead Monster Skateboard', 122.00),
+    ('8781905c-7429-4cf2-88b3-449c991b98fe', 1, 'Anti-Hero Classic Black Skateboard', 127.00),
+    ('543ae216-10c6-4b06-a9f5-980ee74f89fc', 1, 'Hopps Green Field Skateboard', 122.00),
     ('6414389a-3359-4214-bdff-9754b8ae493c', 1, 'Creature Logo Complete Skateboard', 130.00),
     ('c0b91cf9-4c4a-45d1-b61a-f39d5d68052e', 1, 'Real Classic Oval Complete Skateboard', 138.00),
     ('52481d6b-1a17-46e6-ac86-948d0464869d', 1, 'Foundation Star & Moon Skateboard', 115.00),
     ('1a1a33cd-7d26-4c94-94e8-2645c500fa2e', 1, 'Primitive Rodriguez Samurai Skateboard', 150.00),
-    ('1d7ffa47-5b99-4893-88c4-90a5f153a560', 1, 'Darkstar First Push Skateboard', 112.00),
+    ('1d7ffa47-5b99-4893-88c4-90a5f153a560', 1, 'Element First Push Skateboard', 112.00),
     ('562b5b4c-cca3-49d1-86d4-c5c31efb6ff4', 1, 'Jart Classic Complete Skateboard', 119.00),
 
     -- 10 Trucks
@@ -56,13 +56,13 @@ VALUES
     ('8dec4e6f-dab7-4b02-b587-efc7bb539e83', 3, 'Spitfire Formula Four Wheels', 40.00),
     ('7dcdd53e-4293-4a39-868c-c9908aab8aa4', 3, 'Bones STF V1 Wheels', 45.00),
     ('db953f4a-5802-47aa-a2fd-bc946dca1d68', 3, 'Ricta Clouds Cruiser Wheels', 42.00),
-    ('6ecd1355-0c83-42f1-8bd1-5bf4b4938145', 3, 'OJ Super Juice Wheels', 38.00),
-    ('b23ce9c1-4ece-4e7c-9e01-870fc1c1a9ad', 3, 'Sector 9 Nineballs Wheels', 43.00),
+    ('6ecd1355-0c83-42f1-8bd1-5bf4b4938145', 3, 'Element 52MM', 38.00),
+    ('b23ce9c1-4ece-4e7c-9e01-870fc1c1a9ad', 3, 'Bones Nineballs Wheels', 43.00),
     ('e29c9d2b-2043-48f7-aeb6-158fbfadf332', 3, 'Powell Peralta G-Slides Wheels', 44.00),
-    ('2b57219a-3973-4ebe-94dd-61f0e904a814', 3, 'Slime Balls OG Wheels', 39.00),
-    ('48840a79-8f2b-494a-893f-415a60daf4a5', 3, 'Orangatang Kegel Wheels', 50.00),
-    ('02d7a152-92cc-461d-a724-927a8b9f4dbe', 3, 'Cloud Ride Cruiser Wheels', 41.00),
-    ('d603b1b4-0ff4-40e4-970f-0618f7902e94', 3, 'Arbor Easyrider Bogart Wheels', 46.00);
+    ('2b57219a-3973-4ebe-94dd-61f0e904a814', 3, 'Spitfire OG Wheels', 39.00),
+    ('48840a79-8f2b-494a-893f-415a60daf4a5', 3, 'Spitfire Kegel Wheels', 50.00),
+    ('02d7a152-92cc-461d-a724-927a8b9f4dbe', 3, 'Element Ride Cruiser Wheels', 41.00),
+    ('d603b1b4-0ff4-40e4-970f-0618f7902e94', 3, 'Bones Easyrider Bogart Wheels', 46.00);
 
 -- Insert product images
 INSERT INTO product_images (id, product_id, mime_type)
@@ -127,13 +127,13 @@ WHERE EXISTS (
 INSERT INTO product_variations (product_id, size_id, stock_quantity) VALUES
     -- Decks (Category 1)
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), (SELECT size_id FROM sizes WHERE size = 8.000 AND category_id = 1), 10),
-    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Classic Dot Skateboard'), (SELECT size_id FROM sizes WHERE size = 8.250 AND category_id = 1), 8),
-    ((SELECT product_id FROM products WHERE product_name = 'Enjoi Whitey Panda Skateboard'), (SELECT size_id FROM sizes WHERE size = 7.875 AND category_id = 1), 5),
+    ((SELECT product_id FROM products WHERE product_name = 'Chippen Classic Dot Skateboard'), (SELECT size_id FROM sizes WHERE size = 8.250 AND category_id = 1), 8),
+    ((SELECT product_id FROM products WHERE product_name = 'Deathwish Skateboard'), (SELECT size_id FROM sizes WHERE size = 7.875 AND category_id = 1), 5),
     ((SELECT product_id FROM products WHERE product_name = 'Almost Mullen Uber Light Skateboard'), (SELECT size_id FROM sizes WHERE size = 8.500 AND category_id = 1), 12),
-    ((SELECT product_id FROM products WHERE product_name = 'Powell Peralta Ripper Skateboard'), (SELECT size_id FROM sizes WHERE size = 8.000 AND category_id = 1), 7),
+    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Ripper Skateboard'), (SELECT size_id FROM sizes WHERE size = 8.000 AND category_id = 1), 7),
     ((SELECT product_id FROM products WHERE product_name = 'Globe G1 Argo Skateboard'), (SELECT size_id FROM sizes WHERE size = 8.375 AND category_id = 1), 6),
-    ((SELECT product_id FROM products WHERE product_name = 'Zero Single Skull Skateboard'), (SELECT size_id FROM sizes WHERE size = 8.125 AND category_id = 1), 9),
-    ((SELECT product_id FROM products WHERE product_name = 'Girl Carroll 93 Til Skateboard'), (SELECT size_id FROM sizes WHERE size = 8.000 AND category_id = 1), 15),
+    ((SELECT product_id FROM products WHERE product_name = 'Toms Zero Single Skull Skateboard'), (SELECT size_id FROM sizes WHERE size = 8.125 AND category_id = 1), 9),
+    ((SELECT product_id FROM products WHERE product_name = 'Hopps Girl Carroll 93 Til Skateboard'), (SELECT size_id FROM sizes WHERE size = 8.000 AND category_id = 1), 15),
     ((SELECT product_id FROM products WHERE product_name = 'Plan B Team OG Skateboard'), (SELECT size_id FROM sizes WHERE size = 8.250 AND category_id = 1), 5),
     ((SELECT product_id FROM products WHERE product_name = 'Blind OG Logo Skateboard'), (SELECT size_id FROM sizes WHERE size = 7.875 AND category_id = 1), 10),
 
@@ -153,38 +153,38 @@ INSERT INTO product_variations (product_id, size_id, stock_quantity) VALUES
     ((SELECT product_id FROM products WHERE product_name = 'Spitfire Formula Four Wheels'), (SELECT size_id FROM sizes WHERE size = 52.000 AND category_id = 3), 25),
     ((SELECT product_id FROM products WHERE product_name = 'Bones STF V1 Wheels'), (SELECT size_id FROM sizes WHERE size = 54.000 AND category_id = 3), 30),
     ((SELECT product_id FROM products WHERE product_name = 'Ricta Clouds Cruiser Wheels'), (SELECT size_id FROM sizes WHERE size = 51.000 AND category_id = 3), 15),
-    ((SELECT product_id FROM products WHERE product_name = 'OJ Super Juice Wheels'), (SELECT size_id FROM sizes WHERE size = 54.000 AND category_id = 3), 20),
-    ((SELECT product_id FROM products WHERE product_name = 'Sector 9 Nineballs Wheels'), (SELECT size_id FROM sizes WHERE size = 52.000 AND category_id = 3), 22),
+    ((SELECT product_id FROM products WHERE product_name = 'Element 52MM'), (SELECT size_id FROM sizes WHERE size = 54.000 AND category_id = 3), 20),
+    ((SELECT product_id FROM products WHERE product_name = 'Bones Nineballs Wheels'), (SELECT size_id FROM sizes WHERE size = 52.000 AND category_id = 3), 22),
     ((SELECT product_id FROM products WHERE product_name = 'Powell Peralta G-Slides Wheels'), (SELECT size_id FROM sizes WHERE size = 54.000 AND category_id = 3), 18),
-    ((SELECT product_id FROM products WHERE product_name = 'Slime Balls OG Wheels'), (SELECT size_id FROM sizes WHERE size = 51.000 AND category_id = 3), 12),
-    ((SELECT product_id FROM products WHERE product_name = 'Orangatang Kegel Wheels'), (SELECT size_id FROM sizes WHERE size = 52.000 AND category_id = 3), 25),
-    ((SELECT product_id FROM products WHERE product_name = 'Cloud Ride Cruiser Wheels'), (SELECT size_id FROM sizes WHERE size = 54.000 AND category_id = 3), 30),
-    ((SELECT product_id FROM products WHERE product_name = 'Arbor Easyrider Bogart Wheels'), (SELECT size_id FROM sizes WHERE size = 51.000 AND category_id = 3), 18);
+    ((SELECT product_id FROM products WHERE product_name = 'Spitfire OG Wheels'), (SELECT size_id FROM sizes WHERE size = 51.000 AND category_id = 3), 12),
+    ((SELECT product_id FROM products WHERE product_name = 'Spitfire Kegel Wheels'), (SELECT size_id FROM sizes WHERE size = 52.000 AND category_id = 3), 25),
+    ((SELECT product_id FROM products WHERE product_name = 'Element Ride Cruiser Wheels'), (SELECT size_id FROM sizes WHERE size = 54.000 AND category_id = 3), 30),
+    ((SELECT product_id FROM products WHERE product_name = 'Bones Easyrider Bogart Wheels'), (SELECT size_id FROM sizes WHERE size = 51.000 AND category_id = 3), 18);
 
 INSERT INTO product_descriptions (product_id, language_code, description) VALUES
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), 'en', 'The Element Section Complete Skateboard is a versatile board designed for riders of all skill levels. Its durable build and sleek design make it a great choice for daily skating.'),
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), 'nl', 'De Element Section Complete Skateboard is een veelzijdig board ontworpen voor rijders van elk niveau. Duurzaam en stijlvol, perfect voor dagelijks gebruik en lange ritten.'),
 
-    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Classic Dot Skateboard'), 'en', 'Santa Cruz Classic Dot Skateboard combines timeless style with high durability. Perfect for skaters who value performance and iconic graphics, this board is ideal for street and park skating.'),
-    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Classic Dot Skateboard'), 'nl', 'Santa Cruz Classic Dot Skateboard combineert tijdloze stijl met hoge duurzaamheid. Ideaal voor skaters die waarde hechten aan prestaties en iconische graphics.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Chippen Classic Dot Skateboard'), 'en', 'Chippen Classic Dot Skateboard combines timeless style with high durability. Perfect for skaters who value performance and iconic graphics, this board is ideal for street and park skating.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Chippen Classic Dot Skateboard'), 'nl', 'Chippen Classic Dot Skateboard combineert tijdloze stijl met hoge duurzaamheid. Ideaal voor skaters die waarde hechten aan prestaties en iconische graphics.'),
 
-    ((SELECT product_id FROM products WHERE product_name = 'Enjoi Whitey Panda Skateboard'), 'en', 'The Enjoi Whitey Panda Skateboard stands out for its vibrant graphics and excellent build quality. This board is a perfect option for skaters looking to make a bold statement.'),
-    ((SELECT product_id FROM products WHERE product_name = 'Enjoi Whitey Panda Skateboard'), 'nl', 'De Enjoi Whitey Panda Skateboard valt op door zijn levendige graphics en uitstekende kwaliteit. Een geweldige keuze voor skaters die een gedurfde indruk willen maken.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Deathwish Skateboard'), 'en', 'The Deathwish Skateboard stands out for its vibrant graphics and excellent build quality. This board is a perfect option for skaters looking to make a bold statement.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Deathwish Skateboard'), 'nl', 'De Deathwish Skateboard valt op door zijn levendige graphics en uitstekende kwaliteit. Een geweldige keuze voor skaters die een gedurfde indruk willen maken.'),
 
     ((SELECT product_id FROM products WHERE product_name = 'Almost Mullen Uber Light Skateboard'), 'en', 'The Almost Mullen Uber Light Skateboard is ultra-lightweight and perfect for mastering tricks. Its advanced design makes it a favorite for both professionals and serious enthusiasts.'),
     ((SELECT product_id FROM products WHERE product_name = 'Almost Mullen Uber Light Skateboard'), 'nl', 'De Almost Mullen Uber Light Skateboard is ultralicht en perfect voor het oefenen van trucs. Geweldig voor zowel professionals als serieuze skaters.'),
 
-    ((SELECT product_id FROM products WHERE product_name = 'Powell Peralta Ripper Skateboard'), 'en', 'Powell Peralta Ripper Skateboard reintroduces the iconic design with modern performance. Known for its smooth ride, this board is a must-have for collectors and active skaters.'),
-    ((SELECT product_id FROM products WHERE product_name = 'Powell Peralta Ripper Skateboard'), 'nl', 'Powell Peralta Ripper Skateboard combineert een iconisch ontwerp met moderne prestaties. Perfect voor verzamelaars en actieve skaters.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Ripper Skateboard'), 'en', 'Santa Cruz Ripper Skateboard reintroduces the iconic design with modern performance. Known for its smooth ride, this board is a must-have for collectors and active skaters.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Ripper Skateboard'), 'nl', 'Santa Cruz Ripper Skateboard combineert een iconisch ontwerp met moderne prestaties. Perfect voor verzamelaars en actieve skaters.'),
 
     ((SELECT product_id FROM products WHERE product_name = 'Globe G1 Argo Skateboard'), 'en', 'The Globe G1 Argo Skateboard offers a sturdy and reliable build, making it suitable for everyday skating. Its vibrant design adds a stylish touch to your skating routine.'),
     ((SELECT product_id FROM products WHERE product_name = 'Globe G1 Argo Skateboard'), 'nl', 'De Globe G1 Argo Skateboard is stevig en betrouwbaar, ideaal voor dagelijks gebruik. Het levendige ontwerp maakt het een stijlvolle keuze.'),
 
-    ((SELECT product_id FROM products WHERE product_name = 'Zero Single Skull Skateboard'), 'en', 'The Zero Single Skull Skateboard features a bold graphic and premium construction. Designed for intense rides, this board is great for street, park, and ramp skating adventures.'),
-    ((SELECT product_id FROM products WHERE product_name = 'Zero Single Skull Skateboard'), 'nl', 'De Zero Single Skull Skateboard biedt een gedurfd ontwerp en hoogwaardige constructie. Ideaal voor intensieve ritten op straat, in het park of op ramps.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Toms Zero Single Skull Skateboard'), 'en', 'The Toms Zero Single Skull Skateboard features a bold graphic and premium construction. Designed for intense rides, this board is great for street, park, and ramp skating adventures.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Toms Zero Single Skull Skateboard'), 'nl', 'De Toms Zero Single Skull Skateboard biedt een gedurfd ontwerp en hoogwaardige constructie. Ideaal voor intensieve ritten op straat, in het park of op ramps.'),
 
-    ((SELECT product_id FROM products WHERE product_name = 'Girl Carroll 93 Til Skateboard'), 'en', 'Girl Carroll 93 Til Skateboard combines classic graphics with a durable design. It provides a smooth ride, making it a top choice for beginners and experienced skaters alike.'),
-    ((SELECT product_id FROM products WHERE product_name = 'Girl Carroll 93 Til Skateboard'), 'nl', 'De Girl Carroll 93 Til Skateboard biedt klassieke graphics en een duurzaam ontwerp. Perfect voor een soepele rit, ideaal voor beginners en gevorderden.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Hopps Girl Carroll 93 Til Skateboard'), 'en', 'Hopps Girl Carroll 93 Til Skateboard combines classic graphics with a durable design. It provides a smooth ride, making it a top choice for beginners and experienced skaters alike.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Hopps Girl Carroll 93 Til Skateboard'), 'nl', 'De Hopps Girl Carroll 93 Til Skateboard biedt klassieke graphics en een duurzaam ontwerp. Perfect voor een soepele rit, ideaal voor beginners en gevorderden.'),
 
     ((SELECT product_id FROM products WHERE product_name = 'Plan B Team OG Skateboard'), 'en', 'The Plan B Team OG Skateboard is known for its exceptional build quality and sleek design. It is a favorite among street and park skaters who value reliability.'),
     ((SELECT product_id FROM products WHERE product_name = 'Plan B Team OG Skateboard'), 'nl', 'De Plan B Team OG Skateboard staat bekend om zijn uitzonderlijke kwaliteit en strakke ontwerp. Een favoriet onder straat- en park skaters.'),
@@ -192,17 +192,17 @@ INSERT INTO product_descriptions (product_id, language_code, description) VALUES
     ((SELECT product_id FROM products WHERE product_name = 'Blind OG Logo Skateboard'), 'en', 'Blind OG Logo Skateboard combines legendary graphics with a sturdy construction. It is a perfect skateboard for skaters who value tradition and modern performance.'),
     ((SELECT product_id FROM products WHERE product_name = 'Blind OG Logo Skateboard'), 'nl', 'De Blind OG Logo Skateboard combineert iconische graphics met een stevige constructie. Ideaal voor skaters die traditie en moderne prestaties waarderen.'),
 
-    ((SELECT product_id FROM products WHERE product_name = 'Baker Brand Logo Skateboard'), 'en', 'The Baker Brand Logo Skateboard features iconic branding and a reliable build. Designed for performance, it is a favorite among skaters who value quality and design.'),
-    ((SELECT product_id FROM products WHERE product_name = 'Baker Brand Logo Skateboard'), 'nl', 'De Baker Brand Logo Skateboard biedt iconisch merk en betrouwbare constructie. Ideaal voor skaters die kwaliteit en design waarderen.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Element Brand Logo Skateboard'), 'en', 'The Element Brand Logo Skateboard features iconic branding and a reliable build. Designed for performance, it is a favorite among skaters who value quality and design.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Element Brand Logo Skateboard'), 'nl', 'De Element Brand Logo Skateboard biedt iconisch merk en betrouwbare constructie. Ideaal voor skaters die kwaliteit en design waarderen.'),
 
     ((SELECT product_id FROM products WHERE product_name = 'Chocolate Alvarez Hologram Skateboard'), 'en', 'Chocolate Alvarez Hologram Skateboard offers unique graphics and excellent durability. A great option for skaters who value individuality and high performance.'),
     ((SELECT product_id FROM products WHERE product_name = 'Chocolate Alvarez Hologram Skateboard'), 'nl', 'De Chocolate Alvarez Hologram Skateboard biedt unieke graphics en uitstekende duurzaamheid. Perfect voor skaters die individualiteit waarderen.'),
 
-    ((SELECT product_id FROM products WHERE product_name = 'Anti-Hero Classic Eagle Skateboard'), 'en', 'Anti-Hero Classic Eagle Skateboard is built for rugged performance on all terrains. With a timeless design, it’s an essential board for every skater’s collection.'),
-    ((SELECT product_id FROM products WHERE product_name = 'Anti-Hero Classic Eagle Skateboard'), 'nl', 'De Anti-Hero Classic Eagle Skateboard is gebouwd voor alle terreinen. Een tijdloos ontwerp, perfect voor elke skater.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Anti-Hero Classic Black Skateboard'), 'en', 'Anti-Hero Classic Black Skateboard is built for rugged performance on all terrains. With a timeless design, it’s an essential board for every skater’s collection.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Anti-Hero Classic Black Skateboard'), 'nl', 'De Anti-Hero Classic Black Skateboard is gebouwd voor alle terreinen. Een tijdloos ontwerp, perfect voor elke skater.'),
 
-    ((SELECT product_id FROM products WHERE product_name = 'Toy Machine Vice Dead Monster Skateboard'), 'en', 'The Toy Machine Vice Dead Monster Skateboard stands out with its bold and colorful artwork. It’s a durable and high-performance option for skaters who love unique designs.'),
-    ((SELECT product_id FROM products WHERE product_name = 'Toy Machine Vice Dead Monster Skateboard'), 'nl', 'De Toy Machine Vice Dead Monster Skateboard valt op door zijn opvallende kleurrijke artwork. Duurzaam en ideaal voor skaters die unieke ontwerpen waarderen.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Hopps Green Field Skateboard'), 'en', 'The Hopps Green Field Skateboard stands out with its bold and colorful artwork. It’s a durable and high-performance option for skaters who love unique designs.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Hopps Green Field Skateboard'), 'nl', 'De Hopps Green Field Skateboard valt op door zijn opvallende kleurrijke artwork. Duurzaam en ideaal voor skaters die unieke ontwerpen waarderen.'),
 
     ((SELECT product_id FROM products WHERE product_name = 'Creature Logo Complete Skateboard'), 'en', 'Creature Logo Complete Skateboard is an all-around board for skaters of all skill levels. Its solid build and iconic graphics make it a reliable and stylish choice.'),
     ((SELECT product_id FROM products WHERE product_name = 'Creature Logo Complete Skateboard'), 'nl', 'De Creature Logo Complete Skateboard is een allround board voor alle niveaus. Betrouwbaar en stijlvol met iconische graphics.'),
@@ -216,8 +216,8 @@ INSERT INTO product_descriptions (product_id, language_code, description) VALUES
     ((SELECT product_id FROM products WHERE product_name = 'Primitive Rodriguez Samurai Skateboard'), 'en', 'Primitive Rodriguez Samurai Skateboard combines stunning artwork with high performance. This board is perfect for skaters who appreciate style and durability.'),
     ((SELECT product_id FROM products WHERE product_name = 'Primitive Rodriguez Samurai Skateboard'), 'nl', 'De Primitive Rodriguez Samurai Skateboard combineert verbluffend artwork met hoge prestaties. Ideaal voor skaters die stijl en duurzaamheid waarderen.'),
 
-    ((SELECT product_id FROM products WHERE product_name = 'Darkstar First Push Skateboard'), 'en', 'Darkstar First Push Skateboard is beginner-friendly with excellent durability. Its vibrant design and steady performance make it a great entry-level board.'),
-    ((SELECT product_id FROM products WHERE product_name = 'Darkstar First Push Skateboard'), 'nl', 'De Darkstar First Push Skateboard is beginnersvriendelijk en duurzaam. Een levendig ontwerp en stabiele prestaties maken het perfect voor beginners.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Element First Push Skateboard'), 'en', 'Element First Push Skateboard is beginner-friendly with excellent durability. Its vibrant design and steady performance make it a great entry-level board.'),
+    ((SELECT product_id FROM products WHERE product_name = 'Element First Push Skateboard'), 'nl', 'De Element First Push Skateboard is beginnersvriendelijk en duurzaam. Een levendig ontwerp en stabiele prestaties maken het perfect voor beginners.'),
 
     ((SELECT product_id FROM products WHERE product_name = 'Jart Classic Complete Skateboard'), 'en', 'Jart Classic Complete Skateboard is reliable and sleek, making it an excellent choice for riders seeking a combination of style and practicality in a skateboard.'),
     ((SELECT product_id FROM products WHERE product_name = 'Jart Classic Complete Skateboard'), 'nl', 'De Jart Classic Complete Skateboard is betrouwbaar en stijlvol. Ideaal voor skaters die stijl en functionaliteit willen combineren.');
@@ -226,18 +226,18 @@ INSERT INTO product_tags (product_id, tag_id) VALUES
     -- Decks
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), 1),
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), 2),
-    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Classic Dot Skateboard'), 2),
-    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Classic Dot Skateboard'), 3),
-    ((SELECT product_id FROM products WHERE product_name = 'Enjoi Whitey Panda Skateboard'), 1),
-    ((SELECT product_id FROM products WHERE product_name = 'Enjoi Whitey Panda Skateboard'), 3),
+    ((SELECT product_id FROM products WHERE product_name = 'Chippen Classic Dot Skateboard'), 2),
+    ((SELECT product_id FROM products WHERE product_name = 'Chippen Classic Dot Skateboard'), 3),
+    ((SELECT product_id FROM products WHERE product_name = 'Deathwish Skateboard'), 1),
+    ((SELECT product_id FROM products WHERE product_name = 'Deathwish Skateboard'), 3),
     ((SELECT product_id FROM products WHERE product_name = 'Almost Mullen Uber Light Skateboard'), 1),
     ((SELECT product_id FROM products WHERE product_name = 'Almost Mullen Uber Light Skateboard'), 2),
-    ((SELECT product_id FROM products WHERE product_name = 'Powell Peralta Ripper Skateboard'), 1),
-    ((SELECT product_id FROM products WHERE product_name = 'Powell Peralta Ripper Skateboard'), 3),
+    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Ripper Skateboard'), 1),
+    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Ripper Skateboard'), 3),
     ((SELECT product_id FROM products WHERE product_name = 'Globe G1 Argo Skateboard'), 2),
-    ((SELECT product_id FROM products WHERE product_name = 'Zero Single Skull Skateboard'), 3),
-    ((SELECT product_id FROM products WHERE product_name = 'Girl Carroll 93 Til Skateboard'), 1),
-    ((SELECT product_id FROM products WHERE product_name = 'Girl Carroll 93 Til Skateboard'), 3),
+    ((SELECT product_id FROM products WHERE product_name = 'Toms Zero Single Skull Skateboard'), 3),
+    ((SELECT product_id FROM products WHERE product_name = 'Hopps Girl Carroll 93 Til Skateboard'), 1),
+    ((SELECT product_id FROM products WHERE product_name = 'Hopps Girl Carroll 93 Til Skateboard'), 3),
     ((SELECT product_id FROM products WHERE product_name = 'Plan B Team OG Skateboard'), 2),
     ((SELECT product_id FROM products WHERE product_name = 'Blind OG Logo Skateboard'), 1),
 
@@ -260,34 +260,34 @@ INSERT INTO product_tags (product_id, tag_id) VALUES
     ((SELECT product_id FROM products WHERE product_name = 'Bones STF V1 Wheels'), 2),
     ((SELECT product_id FROM products WHERE product_name = 'Bones STF V1 Wheels'), 3),
     ((SELECT product_id FROM products WHERE product_name = 'Ricta Clouds Cruiser Wheels'), 1),
-    ((SELECT product_id FROM products WHERE product_name = 'OJ Super Juice Wheels'), 1),
-    ((SELECT product_id FROM products WHERE product_name = 'OJ Super Juice Wheels'), 2),
-    ((SELECT product_id FROM products WHERE product_name = 'Sector 9 Nineballs Wheels'), 3),
+    ((SELECT product_id FROM products WHERE product_name = 'Element 52MM'), 1),
+    ((SELECT product_id FROM products WHERE product_name = 'Element 52MM'), 2),
+    ((SELECT product_id FROM products WHERE product_name = 'Bones Nineballs Wheels'), 3),
     ((SELECT product_id FROM products WHERE product_name = 'Powell Peralta G-Slides Wheels'), 2),
-    ((SELECT product_id FROM products WHERE product_name = 'Slime Balls OG Wheels'), 1),
-    ((SELECT product_id FROM products WHERE product_name = 'Orangatang Kegel Wheels'), 3),
-    ((SELECT product_id FROM products WHERE product_name = 'Cloud Ride Cruiser Wheels'), 1),
-    ((SELECT product_id FROM products WHERE product_name = 'Arbor Easyrider Bogart Wheels'), 2);
+    ((SELECT product_id FROM products WHERE product_name = 'Spitfire OG Wheels'), 1),
+    ((SELECT product_id FROM products WHERE product_name = 'Spitfire Kegel Wheels'), 3),
+    ((SELECT product_id FROM products WHERE product_name = 'Element Ride Cruiser Wheels'), 1),
+    ((SELECT product_id FROM products WHERE product_name = 'Bones Easyrider Bogart Wheels'), 2);
 
 
 INSERT INTO product_related_products (product_id, related_product_id) VALUES
     -- Element Section Complete Skateboard
-    ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Santa Cruz Classic Dot Skateboard')),
-    ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Enjoi Whitey Panda Skateboard')),
+    ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Chippen Classic Dot Skateboard')),
+    ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Deathwish Skateboard')),
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Globe G1 Argo Skateboard')),
 
-    -- Santa Cruz Classic Dot Skateboard
-    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Classic Dot Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard')),
-    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Classic Dot Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Plan B Team OG Skateboard')),
-    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Classic Dot Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Blind OG Logo Skateboard')),
+    -- Chippen Classic Dot Skateboard
+    ((SELECT product_id FROM products WHERE product_name = 'Chippen Classic Dot Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard')),
+    ((SELECT product_id FROM products WHERE product_name = 'Chippen Classic Dot Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Plan B Team OG Skateboard')),
+    ((SELECT product_id FROM products WHERE product_name = 'Chippen Classic Dot Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Blind OG Logo Skateboard')),
 
-    -- Enjoi Whitey Panda Skateboard
-    ((SELECT product_id FROM products WHERE product_name = 'Enjoi Whitey Panda Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Almost Mullen Uber Light Skateboard')),
-    ((SELECT product_id FROM products WHERE product_name = 'Enjoi Whitey Panda Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Powell Peralta Ripper Skateboard')),
-    ((SELECT product_id FROM products WHERE product_name = 'Enjoi Whitey Panda Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Zero Single Skull Skateboard')),
+    -- Deathwish Skateboard
+    ((SELECT product_id FROM products WHERE product_name = 'Deathwish Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Almost Mullen Uber Light Skateboard')),
+    ((SELECT product_id FROM products WHERE product_name = 'Deathwish Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Santa Cruz Ripper Skateboard')),
+    ((SELECT product_id FROM products WHERE product_name = 'Deathwish Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Toms Zero Single Skull Skateboard')),
 
     -- Almost Mullen Uber Light Skateboard
-    ((SELECT product_id FROM products WHERE product_name = 'Almost Mullen Uber Light Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Santa Cruz Classic Dot Skateboard')),
+    ((SELECT product_id FROM products WHERE product_name = 'Almost Mullen Uber Light Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Chippen Classic Dot Skateboard')),
     ((SELECT product_id FROM products WHERE product_name = 'Almost Mullen Uber Light Skateboard'), (SELECT product_id FROM products WHERE product_name = 'Plan B Team OG Skateboard')),
 
     -- Independent Stage 11 Standard Trucks
@@ -303,23 +303,23 @@ INSERT INTO product_related_products (product_id, related_product_id) VALUES
     ((SELECT product_id FROM products WHERE product_name = 'Spitfire Formula Four Wheels'), (SELECT product_id FROM products WHERE product_name = 'Ricta Clouds Cruiser Wheels')),
 
     -- Bones STF V1 Wheels
-    ((SELECT product_id FROM products WHERE product_name = 'Bones STF V1 Wheels'), (SELECT product_id FROM products WHERE product_name = 'OJ Super Juice Wheels')),
-    ((SELECT product_id FROM products WHERE product_name = 'Bones STF V1 Wheels'), (SELECT product_id FROM products WHERE product_name = 'Sector 9 Nineballs Wheels')),
+    ((SELECT product_id FROM products WHERE product_name = 'Bones STF V1 Wheels'), (SELECT product_id FROM products WHERE product_name = 'Element 52MM')),
+    ((SELECT product_id FROM products WHERE product_name = 'Bones STF V1 Wheels'), (SELECT product_id FROM products WHERE product_name = 'Bones Nineballs Wheels')),
 
     -- Ricta Clouds Cruiser Wheels
     ((SELECT product_id FROM products WHERE product_name = 'Ricta Clouds Cruiser Wheels'), (SELECT product_id FROM products WHERE product_name = 'Powell Peralta G-Slides Wheels')),
-    ((SELECT product_id FROM products WHERE product_name = 'Ricta Clouds Cruiser Wheels'), (SELECT product_id FROM products WHERE product_name = 'Slime Balls OG Wheels'));
+    ((SELECT product_id FROM products WHERE product_name = 'Ricta Clouds Cruiser Wheels'), (SELECT product_id FROM products WHERE product_name = 'Spitfire OG Wheels'));
 
 
 INSERT INTO discounts (product_id, discount_percentage, valid_from, valid_until) VALUES
     -- Decks
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), 10.00, '2024-10-01', '2024-10-31'),
-    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Classic Dot Skateboard'), 15.00, '2024-11-01', '2024-11-30'),
-    ((SELECT product_id FROM products WHERE product_name = 'Enjoi Whitey Panda Skateboard'), 5.00, '2024-12-01', '2024-12-31'),
+    ((SELECT product_id FROM products WHERE product_name = 'Chippen Classic Dot Skateboard'), 15.00, '2024-11-01', '2024-11-30'),
+    ((SELECT product_id FROM products WHERE product_name = 'Deathwish Skateboard'), 5.00, '2024-12-01', '2024-12-31'),
     ((SELECT product_id FROM products WHERE product_name = 'Almost Mullen Uber Light Skateboard'), 20.00, '2024-10-15', '2024-10-25'),
-    ((SELECT product_id FROM products WHERE product_name = 'Powell Peralta Ripper Skateboard'), 25.00, '2024-11-10', '2024-11-20'),
+    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Ripper Skateboard'), 25.00, '2024-11-10', '2024-11-20'),
     ((SELECT product_id FROM products WHERE product_name = 'Globe G1 Argo Skateboard'), 8.00, '2024-11-05', '2024-11-15'),
-    ((SELECT product_id FROM products WHERE product_name = 'Zero Single Skull Skateboard'), 12.00, '2024-12-01', '2024-12-10'),
+    ((SELECT product_id FROM products WHERE product_name = 'Toms Zero Single Skull Skateboard'), 12.00, '2024-12-01', '2024-12-10'),
 
     -- Trucks
     ((SELECT product_id FROM products WHERE product_name = 'Independent Stage 11 Standard Trucks'), 10.00, '2024-11-01', '2024-11-20'),
@@ -333,24 +333,24 @@ INSERT INTO discounts (product_id, discount_percentage, valid_from, valid_until)
     ((SELECT product_id FROM products WHERE product_name = 'Spitfire Formula Four Wheels'), 12.00, '2024-10-01', '2024-10-31'),
     ((SELECT product_id FROM products WHERE product_name = 'Bones STF V1 Wheels'), 15.00, '2024-11-01', '2024-11-30'),
     ((SELECT product_id FROM products WHERE product_name = 'Ricta Clouds Cruiser Wheels'), 20.00, '2024-12-01', '2024-12-31'),
-    ((SELECT product_id FROM products WHERE product_name = 'OJ Super Juice Wheels'), 10.00, '2024-11-10', '2024-11-20'),
-    ((SELECT product_id FROM products WHERE product_name = 'Sector 9 Nineballs Wheels'), 5.00, '2024-11-05', '2024-11-15'),
+    ((SELECT product_id FROM products WHERE product_name = 'Element 52MM'), 10.00, '2024-11-10', '2024-11-20'),
+    ((SELECT product_id FROM products WHERE product_name = 'Bones Nineballs Wheels'), 5.00, '2024-11-05', '2024-11-15'),
     ((SELECT product_id FROM products WHERE product_name = 'Powell Peralta G-Slides Wheels'), 18.00, '2024-10-20', '2024-10-31'),
-    ((SELECT product_id FROM products WHERE product_name = 'Slime Balls OG Wheels'), 22.50, '2024-12-01', '2024-12-10'),
-    ((SELECT product_id FROM products WHERE product_name = 'Orangatang Kegel Wheels'), 25.00, '2024-11-15', '2024-12-01'),
-    ((SELECT product_id FROM products WHERE product_name = 'Cloud Ride Cruiser Wheels'), 10.00, '2024-12-10', '2024-12-20'),
-    ((SELECT product_id FROM products WHERE product_name = 'Arbor Easyrider Bogart Wheels'), 15.00, '2024-11-20', '2024-11-30');
+    ((SELECT product_id FROM products WHERE product_name = 'Spitfire OG Wheels'), 22.50, '2024-12-01', '2024-12-10'),
+    ((SELECT product_id FROM products WHERE product_name = 'Spitfire Kegel Wheels'), 25.00, '2024-11-15', '2024-12-01'),
+    ((SELECT product_id FROM products WHERE product_name = 'Element Ride Cruiser Wheels'), 10.00, '2024-12-10', '2024-12-20'),
+    ((SELECT product_id FROM products WHERE product_name = 'Bones Easyrider Bogart Wheels'), 15.00, '2024-11-20', '2024-11-30');
 
 INSERT INTO reviews (product_id, customer_name, rating, review_text, helpful_votes) VALUES
     -- Decks
     ((SELECT product_id FROM products WHERE product_name = 'Element Section Complete Skateboard'), 'Alice', 5, 'Great quality skateboard, very smooth ride!', 10),
-    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Classic Dot Skateboard'), 'Bob', 4, 'Nice skateboard, but a bit pricey.', 5),
-    ((SELECT product_id FROM products WHERE product_name = 'Enjoi Whitey Panda Skateboard'), 'Charlie', 5, 'Perfect for beginners, my son loves it!', 8),
+    ((SELECT product_id FROM products WHERE product_name = 'Chippen Classic Dot Skateboard'), 'Bob', 4, 'Nice skateboard, but a bit pricey.', 5),
+    ((SELECT product_id FROM products WHERE product_name = 'Deathwish Skateboard'), 'Charlie', 5, 'Perfect for beginners, my son loves it!', 8),
     ((SELECT product_id FROM products WHERE product_name = 'Almost Mullen Uber Light Skateboard'), 'Daisy', 3, 'Good board, but the grip tape wore out quickly.', 3),
-    ((SELECT product_id FROM products WHERE product_name = 'Powell Peralta Ripper Skateboard'), 'Evan', 4, 'Solid build, great for tricks.', 6),
+    ((SELECT product_id FROM products WHERE product_name = 'Santa Cruz Ripper Skateboard'), 'Evan', 4, 'Solid build, great for tricks.', 6),
     ((SELECT product_id FROM products WHERE product_name = 'Globe G1 Argo Skateboard'), 'Fiona', 5, 'Love the design and quality!', 12),
-    ((SELECT product_id FROM products WHERE product_name = 'Zero Single Skull Skateboard'), 'George', 4, 'Good value for the price.', 4),
-    ((SELECT product_id FROM products WHERE product_name = 'Girl Carroll 93 Til Skateboard'), 'Hannah', 5, 'Excellent skateboard, highly recommend.', 9),
+    ((SELECT product_id FROM products WHERE product_name = 'Toms Zero Single Skull Skateboard'), 'George', 4, 'Good value for the price.', 4),
+    ((SELECT product_id FROM products WHERE product_name = 'Hopps Girl Carroll 93 Til Skateboard'), 'Hannah', 5, 'Excellent skateboard, highly recommend.', 9),
     ((SELECT product_id FROM products WHERE product_name = 'Plan B Team OG Skateboard'), 'Ian', 3, 'Okay board, but could be better.', 2),
     ((SELECT product_id FROM products WHERE product_name = 'Blind OG Logo Skateboard'), 'Jane', 5, 'Amazing skateboard, very durable!', 11),
 
@@ -367,13 +367,13 @@ INSERT INTO reviews (product_id, customer_name, rating, review_text, helpful_vot
     ((SELECT product_id FROM products WHERE product_name = 'Spitfire Formula Four Wheels'), 'Rachel', 5, 'Super fast and durable wheels.', 15),
     ((SELECT product_id FROM products WHERE product_name = 'Bones STF V1 Wheels'), 'Steve', 5, 'Great grip and control, love them!', 10),
     ((SELECT product_id FROM products WHERE product_name = 'Ricta Clouds Cruiser Wheels'), 'Tom', 4, 'Good cruiser wheels, very smooth.', 7),
-    ((SELECT product_id FROM products WHERE product_name = 'OJ Super Juice Wheels'), 'Ursula', 5, 'Perfect for rough terrain, very reliable.', 14),
-    ((SELECT product_id FROM products WHERE product_name = 'Sector 9 Nineballs Wheels'), 'Victor', 4, 'Nice wheels, but wear down quickly.', 5),
+    ((SELECT product_id FROM products WHERE product_name = 'Element 52MM'), 'Ursula', 5, 'Perfect for rough terrain, very reliable.', 14),
+    ((SELECT product_id FROM products WHERE product_name = 'Bones Nineballs Wheels'), 'Victor', 4, 'Nice wheels, but wear down quickly.', 5),
     ((SELECT product_id FROM products WHERE product_name = 'Powell Peralta G-Slides Wheels'), 'Wendy', 5, 'Great all-around wheels for skating.', 8),
-    ((SELECT product_id FROM products WHERE product_name = 'Slime Balls OG Wheels'), 'Xander', 4, 'Fun design, good for cruising.', 6),
-    ((SELECT product_id FROM products WHERE product_name = 'Orangatang Kegel Wheels'), 'Yara', 5, 'Top-notch wheels, handle great at high speeds.', 12),
-    ((SELECT product_id FROM products WHERE product_name = 'Cloud Ride Cruiser Wheels'), 'Zach', 5, 'Smooth ride and great durability.', 9),
-    ((SELECT product_id FROM products WHERE product_name = 'Arbor Easyrider Bogart Wheels'), 'Amy', 4, 'Good wheels for the price.', 7);
+    ((SELECT product_id FROM products WHERE product_name = 'Spitfire OG Wheels'), 'Xander', 4, 'Fun design, good for cruising.', 6),
+    ((SELECT product_id FROM products WHERE product_name = 'Spitfire Kegel Wheels'), 'Yara', 5, 'Top-notch wheels, handle great at high speeds.', 12),
+    ((SELECT product_id FROM products WHERE product_name = 'Element Ride Cruiser Wheels'), 'Zach', 5, 'Smooth ride and great durability.', 9),
+    ((SELECT product_id FROM products WHERE product_name = 'Bones Easyrider Bogart Wheels'), 'Amy', 4, 'Good wheels for the price.', 7);
 
 INSERT INTO countries (code, name) VALUES
     ('AT', 'Austria'),

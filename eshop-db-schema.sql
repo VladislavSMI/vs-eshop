@@ -209,7 +209,6 @@ CREATE TABLE reviews (
     customer_name VARCHAR(100) NOT NULL, 
     rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
     review_text VARCHAR(1000),
-    review_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     helpful_votes INT DEFAULT 0 CHECK (helpful_votes >= 0),
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

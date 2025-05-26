@@ -8,7 +8,7 @@ export const Logo = ({
   width?: number;
 }) => (
   <Image
-    src="/assets/logo_v2.png"
+    src="/assets/logo_vs.png"
     height={height}
     width={width}
     alt="logo"

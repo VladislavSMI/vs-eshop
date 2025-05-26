@@ -6,9 +6,12 @@ export const Footer = () => {
   const t = useTranslations('footer');
 
   return (
-    <footer className="flex flex-col items-center bg-base-200 p-5 text-base-content">
-      <nav className="mb-5 grid grid-flow-col gap-10">
-        <Link href="/about-us" className="link-hover link text-sm md:text-lg">
+    <footer className="flex flex-col items-center p-5 text-base-content">
+      <nav className="mb-5 grid grid-flow-col gap-5 md:gap-10">
+        <Link
+          href="/about-us"
+          className="link-hover link ml-2 text-sm md:text-lg"
+        >
           {t('aboutUs')}
         </Link>
         <Link
@@ -25,7 +28,7 @@ export const Footer = () => {
         </Link>
         <Link
           href="/privacy-policy"
-          className="textlg link-hover text-sm md:text-lg"
+          className="link-hover mr-2 text-sm md:text-lg"
         >
           {t('privacyPolicy')}
         </Link>

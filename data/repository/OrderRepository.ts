@@ -1,7 +1,5 @@
-import { pool } from '@/lib/db';
+import { pool, executeQuery } from '@/lib/db';
 import { Order } from '@/lib/types';
-import { log } from '@/lib/logging/log';
-import { executeQuery } from '@/lib/db';
 import { orderQueries } from '../queries/orderQueries';
 import { OrderMappers } from '../mappers/orderMappers';
 import { OrderRow } from '../QueryResults';
@@ -15,8 +13,12 @@ export async function createOrderWithItems({
 }): Promise<Order> {
   const client = await pool.connect();
 
-  const { updateStock, createOrder, insertOrderItems, getOrderById } =
-    orderQueries;
+  const {
+    updateStock,
+    createOrder,
+    insertOrderItems,
+    getOrderById: getOrderByIdQuery,
+  } = orderQueries;
 
   try {
     await client.query('BEGIN');
@@ -45,7 +47,9 @@ export async function createOrderWithItems({
     }
 
     // Step 4: Fetch and return the created order
-    const createdOrder = await client.query<OrderRow>(getOrderById, [orderId]);
+    const createdOrder = await client.query<OrderRow>(getOrderByIdQuery, [
+      orderId,
+    ]);
     if (createdOrder.rows.length === 0) {
       throw new Error('Failed to fetch created order.');
     }

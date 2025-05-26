@@ -20,8 +20,12 @@ export function validateCartSelection({
     errors.productId = translate('responseError.validation.productId.required');
   }
 
-  if (cartItemSelection?.quantity !== null && cartItemSelection.quantity < 0) {
-    errors.productId = translate('responseError.validation.quantity.invalid');
+  const { quantity } = cartItemSelection;
+
+  if (quantity === null) {
+    errors.quantity = translate('responseError.validation.quantity.required');
+  } else if (quantity < 0 || quantity > 100) {
+    errors.quantity = translate('responseError.validation.quantity.invalid');
   }
 
   if (Object.keys(errors).length > 0) {

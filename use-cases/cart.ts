@@ -8,8 +8,8 @@ import {
   validateStock,
 } from '@/data/repository/CartRepository';
 import { Cart, CartItem } from '@/lib/types';
-import { PublicError } from './errors';
 import { getCartIdFromCookies, setCartIdInCookies } from '@/lib/utils/cookies';
+import { PublicError } from '@/lib/errors/PublicError';
 
 export async function createCartUseCase(): Promise<Cart> {
   const cart = await createCart();
@@ -41,6 +41,7 @@ export async function updateCartItemUseCase({
     sizeId,
     quantity,
     cartId,
+    isQtyIncremented,
   });
 
   if (!isStockValid) {
@@ -52,7 +53,7 @@ export async function updateCartItemUseCase({
     });
   }
 
-  return await upsertItemToCart({
+  return upsertItemToCart({
     cartId,
     productId,
     sizeId,
@@ -64,5 +65,5 @@ export async function updateCartItemUseCase({
 export async function deleteCartItemUseCase(
   cartItemId: CartItem['cartItemId'],
 ): Promise<boolean> {
-  return await deleteCartItemById(cartItemId);
+  return deleteCartItemById(cartItemId);
 }

@@ -41,11 +41,13 @@ export async function validateStock({
   sizeId,
   quantity,
   cartId,
+  isQtyIncremented,
 }: {
   productId: string;
   sizeId: number;
   quantity: number;
   cartId: string;
+  isQtyIncremented: boolean;
 }): Promise<boolean> {
   const query = `
     SELECT 
@@ -69,44 +71,12 @@ export async function validateStock({
     return false;
   }
 
-  const { stock_quantity, cart_quantity } = data.rows[0];
-  return stock_quantity >= cart_quantity + quantity;
-}
+  const { stock_quantity: stockQuantity, cart_quantity: cartQuantity } =
+    data.rows[0];
 
-export async function upsertItemToCart({
-  cartId,
-  productId,
-  sizeId,
-  quantity,
-  isQtyIncremented,
-}: {
-  cartId: string;
-  productId: string;
-  sizeId: number;
-  quantity: number;
-  isQtyIncremented: boolean;
-}): Promise<boolean> {
-  if (quantity <= 0) {
-    return await deleteCartItem({ cartId, productId, sizeId });
-  }
-
-  const query = `
-  INSERT INTO cart_items (cart_id, product_id, size_id, quantity)
-  VALUES ($1, $2, $3, $4)
-  ON CONFLICT (cart_id, product_id, size_id)
-  DO UPDATE 
-    SET quantity = CASE
-      WHEN $5 THEN cart_items.quantity + EXCLUDED.quantity
-      ELSE EXCLUDED.quantity
-    END;
-`;
-
-  const data = await executeQuery({
-    query,
-    values: [cartId, productId, sizeId, quantity, isQtyIncremented],
-  });
-
-  return (data.rowCount ?? 0) > 0;
+  return isQtyIncremented
+    ? cartQuantity + quantity <= stockQuantity
+    : quantity <= stockQuantity;
 }
 
 export async function deleteCartItem({
@@ -126,6 +96,42 @@ export async function deleteCartItem({
   const data = await executeQuery({
     query,
     values: [cartId, productId, sizeId],
+  });
+
+  return (data.rowCount ?? 0) > 0;
+}
+
+export async function upsertItemToCart({
+  cartId,
+  productId,
+  sizeId,
+  quantity,
+  isQtyIncremented,
+}: {
+  cartId: string;
+  productId: string;
+  sizeId: number;
+  quantity: number;
+  isQtyIncremented: boolean;
+}): Promise<boolean> {
+  if (quantity <= 0) {
+    return deleteCartItem({ cartId, productId, sizeId });
+  }
+
+  const query = `
+  INSERT INTO cart_items (cart_id, product_id, size_id, quantity)
+  VALUES ($1, $2, $3, $4)
+  ON CONFLICT (cart_id, product_id, size_id)
+  DO UPDATE 
+    SET quantity = CASE
+      WHEN $5 THEN cart_items.quantity + EXCLUDED.quantity
+      ELSE EXCLUDED.quantity
+    END;
+`;
+
+  const data = await executeQuery({
+    query,
+    values: [cartId, productId, sizeId, quantity, isQtyIncremented],
   });
 
   return (data.rowCount ?? 0) > 0;

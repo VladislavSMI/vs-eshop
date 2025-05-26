@@ -1,9 +1,15 @@
 import { executeQuery } from '@/lib/db';
 import { ProductReview } from '@/lib/types';
+import { isMockEnabled } from '@/lib/utils/utils';
+import { mockReviews } from '@/__test__/mocks/ReviewRepositoryMocks';
 import { ReviewMappers } from '../mappers/reviewMappers';
 import { ReviewRow } from '../QueryResults';
 
 export async function getAllReviews(limit?: number): Promise<ProductReview[]> {
+  if (isMockEnabled()) {
+    return mockReviews;
+  }
+
   const query = `
     SELECT
       r.review_id,

@@ -12,11 +12,11 @@ export async function getProductByIdUseCase(
   id: string,
   locale: Locale,
 ): Promise<ProductDetails> {
-  return await getProductById(id, locale);
+  return getProductById(id, locale);
 }
 
 export async function getAllProductsUseCase(): Promise<Product[]> {
-  return await getAllProducts();
+  return getAllProducts();
 }
 
 export async function getProductSearchUseCase({
@@ -33,7 +33,7 @@ export async function getProductSearchUseCase({
     limit = ITEMS_PER_PAGE,
   } = searchParams ?? {};
 
-  return await getProductSearch({
+  return getProductSearch({
     searchTerm,
     categoryId,
     tagNames,

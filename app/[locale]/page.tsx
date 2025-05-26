@@ -1,24 +1,27 @@
-import { Carousel } from '@/components/ui/Carousel';
-import { HeroProducts } from '@/components/product/HeroProducts';
-import { LocalizedSectionHeader } from '@/components/ui/LocalizedSectionHeader';
-import { getProductSearchUseCase } from '@/use-cases/product';
 import { Suspense } from 'react';
+import { LocalizedSectionHeader } from '@/components/ui/LocalizedSectionHeader';
 import { ProductCardSkeleton } from '@/components/product/ProductCard/ProductCardSkeleton';
-import { HeroProductsSkeleton } from '@/components/product/HeroProductsSkeleton';
+import { HeroProductSectionSkeleton } from '@/components/product/HeroProductSectionSkeleton';
+import HeroProductSection from '@/components/product/HeroProductSection';
+import ProductCarouselSection from '@/components/product/ProductCarouselSection';
+import ProductReviewsCarouselSection from '@/components/product/ProductReviewsSection';
 
-export default async function Home() {
-  const products = await getProductSearchUseCase({
-    searchParams: { limit: 12 },
-  });
+export default function Home() {
   return (
     <>
-      <Suspense fallback={<HeroProductsSkeleton />}>
-        <HeroProducts />
+      <Suspense fallback={<HeroProductSectionSkeleton />}>
+        <HeroProductSection />
       </Suspense>
+
       <LocalizedSectionHeader translationKey="sections.featuredProducts.title" />
+
       <Suspense fallback={<ProductCardSkeleton />}>
-        <Carousel products={products} />
+        <ProductCarouselSection />
       </Suspense>
+
+      <LocalizedSectionHeader translationKey="sections.productReviews.title" />
+
+      <ProductReviewsCarouselSection />
     </>
   );
 }

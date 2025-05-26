@@ -32,17 +32,9 @@ const createPool = () => {
   return new Pool(poolConfig);
 };
 
+// Use cached pool in development to prevent reinitialization on hot reload
 const pool = globalThis._pool ?? createPool();
 if (process.env.NODE_ENV !== 'production') globalThis._pool = pool;
-
-// For debugging purposes
-// pool.on('connect', () => {
-//   log.info(`New PostgreSQL connection at ${new Date().toISOString()}`);
-// });
-
-// pool.on('remove', () => {
-//   log.info(`PostgreSQL connection removed at ${new Date().toISOString()}`);
-// });
 
 pool.on('error', (error) => {
   log.error(
@@ -72,30 +64,6 @@ export async function executeQuery<T extends QueryResultRow>({
   }
 }
 
-export async function executeIndependentTransaction(
-  queries: Array<{ query: string; values?: string[] }>,
-) {
-  const client = await pool.connect();
-  try {
-    await client.query('BEGIN');
-    await Promise.all(
-      queries.map(({ query, values }) => client.query(query, values)),
-    );
-    await client.query('COMMIT');
-  } catch (error) {
-    await client.query('ROLLBACK');
-    log.error(
-      {
-        error,
-      },
-      'Transaction failed during independent queries',
-    );
-    throw error;
-  } finally {
-    client.release();
-  }
-}
-
 // Graceful shutdown with error handling
 async function shutdownPool(signal: string, error?: Error) {
   if (error) {
@@ -120,16 +88,26 @@ async function shutdownPool(signal: string, error?: Error) {
   }
 }
 
-process.on('SIGTERM', () => shutdownPool('SIGTERM'));
-process.on('SIGINT', () => shutdownPool('SIGINT'));
+// Attach process event listeners only once to avoid memory leaks
+if (process.listenerCount('SIGTERM') === 0) {
+  process.on('SIGTERM', () => shutdownPool('SIGTERM'));
+}
 
-process.on('uncaughtException', async (error) => {
-  await shutdownPool('uncaughtException', error);
-});
+if (process.listenerCount('SIGINT') === 0) {
+  process.on('SIGINT', () => shutdownPool('SIGINT'));
+}
 
-process.on('unhandledRejection', async (reason) => {
-  const error = reason instanceof Error ? reason : new Error(String(reason));
-  await shutdownPool('unhandledRejection', error);
-});
+if (process.listenerCount('uncaughtException') === 0) {
+  process.on('uncaughtException', async (error) => {
+    await shutdownPool('uncaughtException', error);
+  });
+}
+
+if (process.listenerCount('unhandledRejection') === 0) {
+  process.on('unhandledRejection', async (reason) => {
+    const error = reason instanceof Error ? reason : new Error(String(reason));
+    await shutdownPool('unhandledRejection', error);
+  });
+}
 
 export { pool };

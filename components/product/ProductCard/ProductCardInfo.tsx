@@ -19,7 +19,7 @@ export const ProductCardInfo = ({
     })}
   >
     <div className="flex items-center rounded-lg border border-neutral bg-neutral/80 p-2 text-sm font-semibold text-white backdrop-blur-md">
-      <h3 className="mr-4 flex-grow pl-2">{name}</h3>
+      <h3 className="mr-4 flex-grow truncate pl-2">{name}</h3>
       <Price
         className="flex-none rounded-lg bg-accent p-2 text-secondary"
         price={price}

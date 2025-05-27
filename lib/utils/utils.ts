@@ -116,3 +116,5 @@ export const generateRelativeImageUrl = ({
 
   return `${productId}/${imageId}.${parts[1]}`;
 };
+
+export const isServer = () => typeof window !== 'object';

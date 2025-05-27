@@ -36,11 +36,20 @@ export async function updateCartItemUseCase({
   quantity: number;
   isQtyIncremented: boolean;
 }): Promise<boolean> {
+  // The cart ID from cookies may be invalid (e.g. after DB reset or expiry).
+  const isExistingCart = await getCartById(cartId);
+
+  const validatedCartId = isExistingCart ? cartId : (await createCart()).id;
+
+  if (!isExistingCart) {
+    setCartIdInCookies(validatedCartId);
+  }
+
   const isStockValid = await validateStock({
     productId,
     sizeId,
     quantity,
-    cartId,
+    cartId: validatedCartId,
     isQtyIncremented,
   });
 
@@ -54,7 +63,7 @@ export async function updateCartItemUseCase({
   }
 
   return upsertItemToCart({
-    cartId,
+    cartId: validatedCartId,
     productId,
     sizeId,
     quantity,

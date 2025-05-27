@@ -8,7 +8,7 @@ import { ProductCardWrapper } from '@/components/product/ProductCard/ProductCard
 import { ProductCardDetails } from '@/components/product/ProductCard/ProductCardDetails';
 import { Carousel } from '@/components/ui/Carousel';
 import { LocalizedSectionHeader } from '@/components/ui/LocalizedSectionHeader';
-import { ProductReviewCard } from '@/components/product/ProductReviewCard';
+import { ProductReviewList } from '@/components/product/ProductReview/ProductReviewList';
 
 export default async function ProductDetailPage({
   params,
@@ -23,7 +23,7 @@ export default async function ProductDetailPage({
   });
 
   return (
-    <div className="mx-auto mt-5 max-w-screen-2xl px-5 pb-5">
+    <div className="mx-auto mt-5 max-w-screen-2xl px-7 pb-5">
       <div className="flex flex-col md:flex-row">
         <div className="aspect-square rounded-lg sm:aspect-square md:mr-7 md:aspect-auto md:basis-1/2">
           <ProductCardWrapper
@@ -53,16 +53,7 @@ export default async function ProductDetailPage({
       {productDetails.reviews.length > 0 && (
         <>
           <LocalizedSectionHeader translationKey="sections.productReviews.title" />
-          <div className="flex flex-wrap items-center justify-center gap-4 p-2">
-            {productDetails.reviews.map((review) => (
-              <li
-                key={review.reviewId}
-                className="relative aspect-square w-2/3 max-w-[300px] list-none"
-              >
-                <ProductReviewCard review={review} useLink={false} />
-              </li>
-            ))}
-          </div>
+          <ProductReviewList reviews={productDetails.reviews} useLink={false} />
         </>
       )}
     </div>

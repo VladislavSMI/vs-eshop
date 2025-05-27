@@ -78,5 +78,6 @@ export default defineConfig({
     command: 'MOCK_DB=true npm run build && MOCK_DB=true npm run start',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
+    timeout: 120 * 1000, // 2 minutes
   },
 });

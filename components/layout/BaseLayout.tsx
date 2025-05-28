@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import { clsx } from 'clsx';
 import { getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
@@ -10,6 +10,7 @@ import '@/styles/globals.css';
 
 import { Footer } from './footer/Footer';
 import { Navbar } from './navbar/Navbar';
+import { NavbarSkeleton } from './navbar/NavbarSkeleton';
 
 type Props = {
   children: ReactNode;
@@ -29,7 +30,9 @@ export default async function BaseLayout({ children, locale }: Props) {
         )}
       >
         <NextIntlClientProvider messages={messages}>
-          <Navbar />
+          <Suspense fallback={<NavbarSkeleton />}>
+            <Navbar />
+          </Suspense>
           <ReactQueryProvider>
             <main className="flex-grow">{children}</main>
           </ReactQueryProvider>

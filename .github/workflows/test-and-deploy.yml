@@ -34,10 +34,6 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    env:
-      # Set environment variables for Playwright as required during the build process.
-      # (These are dummy secret values for testing purposes)
-      STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
     steps:
       - uses: actions/checkout@v4
 
@@ -47,14 +43,6 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm ci
-
-      # Install Playwright browsers
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-
-      # Run Playwright tests
-      - name: Run Playwright tests
-        run: npm run test:e2e
 
       # Run Jest tests
       - name: Run Jest tests

@@ -4,24 +4,33 @@ import { StaticPageFooter } from '@/components/layout/StaticPageFooter';
 import { PageProps } from '@/lib/types';
 
 /**
- * Enforces static rendering for this page, overriding dynamic behavior propagation.
+ * Currently, this page is statically generated (SSG), as confirmed by the build output.
  *
- * Issue:
- * According to the Next.js documentation, using dynamic APIs like `cookies()` in layouts
- * or pages will make the entire route dynamic. However, in practice, even using `cookies()`
- * inside a Server Component (not directly in a layout or page) can still propagate dynamic behavior
- * to the entire route, causing pages intended for SSG to be treated as SSR at runtime.
+ * However, because the shared layout (BaseLayout) includes the Navbar, which renders
+ * the server `CartButton` (accessing cookies), this route is treated as dynamic at runtime.
  *
- * Fix:
- * Adding `export const dynamic = 'force-static';` ensures this page remains static (SSG),
- * even if other components or layouts include dynamic features like `cookies()`.
+ * As a result, Next.js disables CDN caching by setting:
  *
- * Note:
- * This is a current solution due to limitations in Next.js. Follow updates:
- * https://nextjs.org/docs/app/api-reference/functions/cookies
+ *   cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+ *
+ * This means the page is still SSG (generated at build time), but it's not cacheable,
+ * which defeats some of the performance benefits of static pages like About Us.
+ *
+ * ⚠️ If we add `export const dynamic = 'force-static'`, Next.js will restore correct
+ * CDN cache headers (`s-maxage=31536000, stale-while-revalidate`) — **but** any dynamic
+ * logic that relies on `cookies()` (like the cart icon in the Navbar) will break
+ * because the cart will no longer be able to read cookies at runtime.
+ *
+ * TODO: Refactor layout strategy to enable CDN caching on static pages:
+ *
+ * - Option A: Accept no caching and keep the dynamic cart visible (current behavior).
+ * - Option B: Move static pages like About Us to a separate layout that excludes
+ *             the Navbar and cart logic, and re-enable `export const dynamic = 'force-static'`
+ *             to benefit from full CDN caching.
+ *
+ * See: https://nextjs.org/docs/app/building-your-application/caching#automatic-caching
+ * See also: https://nextjs.org/docs/app/api-reference/functions/cookies#dynamic-rendering
  */
-
-export const dynamic = 'force-static';
 
 export default function About({ params: { locale } }: PageProps) {
   setRequestLocale(locale);

@@ -13,3 +13,4 @@ export * from './DropdownOption';
 export * from './CodedField';
 export * from './Country';
 export * from './Payment';
+export * from './User';

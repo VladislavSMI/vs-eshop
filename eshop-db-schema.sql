@@ -461,6 +461,21 @@ CREATE TABLE payment_logs (
 );
 
 -- -------------------------------------------------------------------
+-- Table: users
+-- -------------------------------------------------------------------
+-- User table for admin login and management.
+-- -------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS users (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- -------------------------------------------------------------------
 -- 2) Indexes
 -- -------------------------------------------------------------------
 -- Creates indexes on key columns to speed up searches, foreign key lookups, 
@@ -512,7 +527,8 @@ DECLARE
         'product_categories', 'sizes', 'product_images', 'products', 'product_variations', 
         'product_descriptions', 'tags', 'product_tags', 'reviews', 
         'product_related_products', 'discounts', 'carts', 'cart_items', 
-        'orders', 'order_items', 'payments', 'payment_logs'
+        'orders', 'order_items', 'payments', 'payment_logs',
+        'users', 'shipping_addresses'
     ];
 BEGIN
     FOR i IN 1..ARRAY_LENGTH(tables, 1) LOOP

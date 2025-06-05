@@ -28,6 +28,15 @@
       "redirecting": "Redirecting to checkout...",
       "proceedToPayment": "Proceed to Payment",
       "shippingAddress": "Shipping Address"
+    },
+    "signInForm": {
+      "description": "For testing purposes use following credentials:",
+      "email": "Email",
+      "password": "Password",
+      "invalidCredentials": "Invalid email or password. Please try again.",
+      "somethingWentWrong": "Something went wrong. Please try again later.",
+      "signIn": "Sign In",
+      "signingIn": "Signing in..."
     }
   },
   "pages": {
@@ -72,6 +81,14 @@
       },
       "unexpectedError": "An unexpected error occurred while processing your order. If your payment was successful, please contact support to confirm your order. Please note below your order details.",
       "contactSupport": "Contact Support"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "This will eventually be your personalized dashboard. If you are a regular user, you will find your orders, addresses, and settings here. If you are an admin, you will also get access to product and user management tools. Coming soon!"
+    },
+    "signOut": {
+      "title": "Sign Out",
+      "description": "You have successfully signed out. Thank you for visiting VS Skate Shop!"
     }
   },
   "sections": {

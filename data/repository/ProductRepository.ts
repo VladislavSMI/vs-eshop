@@ -1,20 +1,17 @@
 import { executeQuery } from '@/lib/db';
 import { log } from '@/lib/logging/log';
-import { Category, Product, ProductDetails } from '@/lib/types';
+import { Product, ProductDetails } from '@/lib/types';
 import { isMockEnabled } from '@/lib/utils/utils';
 import { ITEMS_PER_PAGE } from '@/lib/const';
-import {
-  mockCategories,
-  mockProducts,
-} from '@/__test__/mocks/ProductRepositoryMocks';
+import { mockProducts } from '@/__test__/mocks/ProductRepositoryMocks';
 import {
   buildProductQuery,
   buildProductSearchQuery,
 } from '../queries/productQueryBuilder';
-import { ProductRow, CategoryRow, ProductRowDetails } from '../QueryResults';
-import { CategoryMappers, ProductMappers } from '../mappers';
+import { ProductRow, ProductRowDetails } from '../QueryResults';
+import { ProductMappers } from '../mappers';
 
-// The `isMockEnabled` check enables testing without direct database access, which is
+// The `isMockEnabled` check enables e2e testing in CI without direct database access, which is
 // essential here due to calling this function directly from a server-side component.
 // This approach supports testing in CI/CD where a test DB may not be available, while
 // allowing a real DB connection in local development. Long-term, consider setting up
@@ -157,22 +154,5 @@ export async function getProductById(
   } catch (error) {
     log.error({ error }, 'Database Error');
     throw new Error('Failed to get product details.');
-  }
-}
-
-export async function getAllCategories(): Promise<Category[]> {
-  if (isMockEnabled()) {
-    return mockCategories;
-  }
-
-  try {
-    const data = await executeQuery<CategoryRow>({
-      query: `SELECT * FROM product_categories`,
-    });
-
-    return data.rows.map(CategoryMappers.base);
-  } catch (error) {
-    log.error({ error }, 'Database Error');
-    throw new Error('Failed to get all categories.');
   }
 }

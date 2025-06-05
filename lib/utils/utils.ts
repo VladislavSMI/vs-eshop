@@ -1,5 +1,5 @@
-import { CLOUD_CONFIG, CloudConfig } from '../cloud_storage/config';
-import { MISSING_IMAGE } from '../const';
+import { CLOUD_CONFIG, CloudConfig } from '../cloud-storage/config';
+import { LOCALES, MISSING_IMAGE, PROTECTED_PAGES } from '../const';
 
 export const formatDateToLocal = (
   dateStr: string,
@@ -118,3 +118,15 @@ export const generateRelativeImageUrl = ({
 };
 
 export const isServer = () => typeof window !== 'object';
+
+export const toRegexGroup = (values: readonly string[]): string =>
+  `(${values.map((v) => v.trim()).join('|')})`;
+
+export const isProtectedPath = (pathname: string): boolean => {
+  const localeGroup = toRegexGroup(LOCALES);
+  const pageGroup = toRegexGroup(PROTECTED_PAGES);
+
+  const protectedPageRegex = new RegExp(`^/${localeGroup}/${pageGroup}`);
+
+  return protectedPageRegex.test(pathname);
+};

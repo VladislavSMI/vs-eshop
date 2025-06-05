@@ -124,3 +124,12 @@ export type ReviewRow = {
   main_image_id: string;
   mime_type: string;
 };
+
+export type UserRow = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  created_at: string;
+  updated_at: string;
+};

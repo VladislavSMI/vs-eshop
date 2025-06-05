@@ -56,7 +56,7 @@ export const UserInfoCheckoutForm = ({
             type="email"
             id="email"
             name="email"
-            placeholder="Email Address*"
+            placeholder="Email*"
             error={errorFields?.email}
           />
           <InputField

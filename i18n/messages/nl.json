@@ -28,6 +28,15 @@
       "redirecting": "Doorverwijzen naar afrekenen...",
       "proceedToPayment": "Doorgaan naar Betaling",
       "shippingAddress": "Verzendadres"
+    },
+    "signInForm": {
+      "description": "Voor testdoeleinden gebruik de volgende inloggegevens:",
+      "email": "Email",
+      "password": "Wachtwoord",
+      "invalidCredentials": "Ongeldige e-mail of wachtwoord. Probeer het opnieuw.",
+      "somethingWentWrong": "Er is iets misgegaan. Probeer het later opnieuw.",
+      "signIn": "Inloggen",
+      "signingIn": "Inloggen..."
     }
   },
   "pages": {
@@ -72,6 +81,14 @@
       },
       "unexpectedError": "Er is een onverwachte fout opgetreden bij het verwerken van uw bestelling. Als uw betaling succesvol was, neem dan contact op met de klantenservice om uw bestelling te bevestigen. Hieronder vindt u uw bestelgegevens.",
       "contactSupport": "Neem contact op met de klantenservice"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Dit wordt uiteindelijk jouw gepersonaliseerd dashboard. Als je een reguliere gebruiker bent, vind je hier je bestellingen, adressen en instellingen. Als je een beheerder bent, krijg je ook toegang tot tools voor het beheren van producten en gebruikers. Binnenkort beschikbaar!"
+    },
+    "signOut": {
+      "title": "Uitloggen",
+      "description": "Je bent succesvol uitgelogd. Bedankt voor je bezoek aan VS Skate Shop!"
     }
   },
   "sections": {

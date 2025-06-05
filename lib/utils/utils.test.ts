@@ -16,7 +16,7 @@ import {
   generateRelativeImageUrl,
 } from './utils';
 
-import { CLOUD_CONFIG } from '../cloud_storage/config';
+import { CLOUD_CONFIG } from '../cloud-storage/config';
 import { MISSING_IMAGE } from '../const';
 
 describe('Utility Functions', () => {

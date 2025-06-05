@@ -1,20 +1,41 @@
-import createMiddleware from 'next-intl/middleware';
+import { withAuth } from 'next-auth/middleware';
+import createIntlMiddleware from 'next-intl/middleware';
 import { routing } from '@/i18n/routing';
-import { NextRequest } from 'next/server';
+import { isProtectedPath } from '@/lib/utils/utils';
 
-const intlMiddleware = createMiddleware(routing);
+const intlMiddleware = createIntlMiddleware(routing);
 
-export default function middleware(req: NextRequest) {
-  const response = intlMiddleware(req);
+const middleware = withAuth(
+  (req) => {
+    const pathname = req.nextUrl.pathname;
 
-  if (req.url.includes('/checkout/success')) {
-    response.cookies.set('vs_shop_cart_id', '', { path: '/', maxAge: 0 });
-  }
+    // i18n
+    const response = intlMiddleware(req);
 
-  return response;
-}
+    // clear cart cookie on checkout success
+    if (pathname.endsWith('/checkout/success')) {
+      response.cookies.set('vs_shop_cart_id', '', {
+        path: '/',
+        maxAge: 0,
+      });
+    }
+
+    return response;
+  },
+  {
+    callbacks: {
+      authorized: ({ token, req }) =>
+        isProtectedPath(req.nextUrl.pathname) ? token !== null : true,
+    },
+    pages: {
+      signIn: '/en/sign-in',
+      signOut: '/en/sign-out',
+    },
+  },
+);
+
+export default middleware;
 
 export const config = {
-  // Match only internationalized pathnames
-  matcher: ['/', '/(en|nl)/:path*', '/((?!api|_next|_vercel|.*\\..*).*)'],
+  matcher: ['/((?!api|_next|.*\\..*).*)'],
 };

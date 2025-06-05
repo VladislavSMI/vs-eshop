@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
+import { getServerSession } from 'next-auth';
 
 import { Link } from '@/i18n/routing';
 import { Search } from '@/components/search/Search';
@@ -8,11 +9,13 @@ import { Logo } from '@/components/icons/Logo';
 import { CartButton } from '@/components/layout/cart-button/CartButton';
 import { getAllCategoriesUseCase } from '@/use-cases/categories';
 import { CartButtonSkeleton } from '@/components/layout/cart-button/CartButtonSkeleton';
+import { auth } from '@/lib/auth/auth';
 import { MenuDropdown } from '../menu-dropdown/MenuDropdown';
 
 export const Navbar = async () => {
   const t = await getTranslations('navigation');
   const categories = await getAllCategoriesUseCase();
+  const session = await getServerSession(auth);
 
   return (
     <nav className="sticky top-0 z-50 flex w-full items-center justify-between bg-base-100 p-3 shadow-md">
@@ -21,6 +24,7 @@ export const Navbar = async () => {
           categories={categories}
           home={t('home')}
           allProducts={t('allProducts')}
+          isAuthenticated={!!session?.user?.email}
         />
         <Link
           href="/"

@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-export const Footer = () => {
-  const t = useTranslations('footer');
+export const Footer = async () => {
+  const t = await getTranslations('footer');
 
   return (
     <footer className="flex flex-col items-center p-5 text-base-content">

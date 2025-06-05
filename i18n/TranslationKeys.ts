@@ -62,6 +62,15 @@ export type Components = {
     proceedToPayment: string;
     shippingAddress: string;
   };
+  signInForm: {
+    description: string;
+    email: string;
+    password: string;
+    invalidCredentials: string;
+    somethingWentWrong: string;
+    signIn: string;
+    signingIn: string;
+  };
 };
 
 export type Pages = {
@@ -106,6 +115,14 @@ export type Pages = {
     };
     unexpectedError: string;
     contactSupport: string;
+  };
+  dashboard: {
+    title: string;
+    description: string;
+  };
+  signOut: {
+    title: string;
+    description: string;
   };
 };
 

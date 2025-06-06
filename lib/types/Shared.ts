@@ -1,4 +1,4 @@
-import { LOCALES, VALID_TAGS } from '@/lib/const';
+import { CONST } from '@/lib/const';
 
-export type Locale = (typeof LOCALES)[number];
-export type Tag = (typeof VALID_TAGS)[number];
+export type Locale = (typeof CONST.locales)[number];
+export type Tag = (typeof CONST.validTags)[number];

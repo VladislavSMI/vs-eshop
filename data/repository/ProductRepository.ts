@@ -2,7 +2,7 @@ import { executeQuery } from '@/lib/db';
 import { log } from '@/lib/logging/log';
 import { Product, ProductDetails } from '@/lib/types';
 import { isMockEnabled } from '@/lib/utils/utils';
-import { ITEMS_PER_PAGE } from '@/lib/const';
+import { CONST } from '@/lib/const';
 import { mockProducts } from '@/__test__/mocks/ProductRepositoryMocks';
 import {
   buildProductQuery,
@@ -85,7 +85,7 @@ export async function getProductSearch({
   orderBy = 'p.product_name',
   sort = 'ASC',
   offset = 0,
-  limit = ITEMS_PER_PAGE,
+  limit = CONST.itemsPerPage,
 }: {
   searchTerm?: string;
   categoryId?: number;

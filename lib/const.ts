@@ -1,16 +1,25 @@
-export const VALID_TAGS = ['On Sale', 'New', 'Last in Inventory'] as const;
-export const LOCALES = ['en', 'nl'] as const;
-export const PROTECTED_PAGES = ['dashboard'] as const;
-export const ITEMS_PER_PAGE = 8 as const;
-export const ORDER_STATES = [
-  'created',
-  'paid',
-  'shipped',
-  'cancelled',
-  'refunded',
-] as const;
+export const API_TOKENS = {
+  seed: 'hQ8ZcOc4mxCgLvJQwUw3am9DZH3xOcs6W4ONbPetmg',
+} as const;
 
-export const SUPPORT_EMAIL =
-  process.env.NEXT_PUBLIC_SUPPORT_EMAIL || ('support@vsskate.com' as const);
+export type ConfigConst = {
+  apiTokens: typeof API_TOKENS;
+  validTags: readonly string[];
+  locales: readonly string[];
+  protectedPages: readonly string[];
+  itemsPerPage: number;
+  orderStates: readonly string[];
+  supportEmail: string;
+  missingImage: string;
+};
 
-export const MISSING_IMAGE = '/assets/missing_image.webp' as const;
+export const CONST: ConfigConst = {
+  apiTokens: API_TOKENS,
+  validTags: ['On Sale', 'New', 'Last in Inventory'] as const,
+  locales: ['en', 'nl'] as const,
+  protectedPages: ['dashboard'] as const,
+  itemsPerPage: 8,
+  orderStates: ['created', 'paid', 'shipped', 'cancelled', 'refunded'] as const,
+  supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || 'support@vsskate.com',
+  missingImage: '/assets/missing_image.webp',
+};

@@ -5,7 +5,7 @@ import {
   getProductById,
   getProductSearch,
 } from '@/data/repository/ProductRepository';
-import { ITEMS_PER_PAGE } from '@/lib/const';
+import { CONST } from '@/lib/const';
 import { Locale, Product, ProductDetails, SearchParams } from '@/lib/types';
 
 export async function getProductByIdUseCase(
@@ -30,7 +30,7 @@ export async function getProductSearchUseCase({
     categoryId,
     tagNames,
     sort = 'ASC',
-    limit = ITEMS_PER_PAGE,
+    limit = CONST.itemsPerPage,
   } = searchParams ?? {};
 
   return getProductSearch({

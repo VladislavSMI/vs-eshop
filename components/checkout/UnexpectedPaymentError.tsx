@@ -1,4 +1,4 @@
-import { SUPPORT_EMAIL } from '@/lib/const';
+import { CONST } from '@/lib/const';
 import { UnexpectedError } from '../ui/UnexpectedError';
 
 interface UnexpectedErrorProps {
@@ -19,7 +19,7 @@ export const UnexpectedPaymentError = ({
   <UnexpectedError
     message={message}
     contactSupport={contactSupport}
-    mailto={`mailto:${SUPPORT_EMAIL}?subject=Payment%20Issue`}
+    mailto={`mailto:${CONST.supportEmail}?subject=Payment%20Issue`}
     returnHome={returnHome}
   >
     {orderId && (

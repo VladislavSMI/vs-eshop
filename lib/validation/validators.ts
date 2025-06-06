@@ -1,4 +1,4 @@
-import { createValidationMessage } from '@/lib/utils/createApiResponse';
+import { createValidationMessage } from '@/lib/utils/apiUtils/createApiResponse';
 import { z } from 'zod';
 
 const error = 'responseError.validation';

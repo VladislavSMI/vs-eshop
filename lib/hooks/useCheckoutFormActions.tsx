@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createOrderAndCheckoutSession } from '@/lib/actions/orderActions';
 import { ApiResponse } from '@/lib/types';
-import { handleApiResponse } from '@/lib/utils/handleApiResponse';
+import { handleApiResponse } from '@/lib/utils/apiUtils/handleApiResponse';
 import { getStripeClient } from '@/lib/stripe/stripeClient';
 import { useTranslations } from 'next-intl';
 

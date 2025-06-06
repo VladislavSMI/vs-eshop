@@ -17,7 +17,7 @@ import {
   createSuccessResponse,
   createValidationErrorResponse,
   createErrorResponse,
-} from '../utils/createApiResponse';
+} from '../utils/apiUtils/createApiResponse';
 
 export async function updateCartItem({
   cartItemSelection: { productId, sizeId, quantity },

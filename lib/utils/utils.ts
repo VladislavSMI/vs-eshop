@@ -1,5 +1,5 @@
 import { CLOUD_CONFIG, CloudConfig } from '../cloud-storage/config';
-import { LOCALES, MISSING_IMAGE, PROTECTED_PAGES } from '../const';
+import { CONST } from '../const';
 
 export const formatDateToLocal = (
   dateStr: string,
@@ -95,7 +95,7 @@ export const getPublicUrl = (
   config: Pick<CloudConfig, 'baseUrl' | 'folder'> = CLOUD_CONFIG,
 ): string => {
   if (!url || !config.baseUrl || !config.folder) {
-    return MISSING_IMAGE;
+    return CONST.missingImage;
   }
   return joinPathSegments([config.baseUrl, config.folder, url]);
 };
@@ -123,8 +123,8 @@ export const toRegexGroup = (values: readonly string[]): string =>
   `(${values.map((v) => v.trim()).join('|')})`;
 
 export const isProtectedPath = (pathname: string): boolean => {
-  const localeGroup = toRegexGroup(LOCALES);
-  const pageGroup = toRegexGroup(PROTECTED_PAGES);
+  const localeGroup = toRegexGroup(CONST.locales);
+  const pageGroup = toRegexGroup(CONST.protectedPages);
 
   const protectedPageRegex = new RegExp(`^/${localeGroup}/${pageGroup}`);
 

@@ -1,6 +1,6 @@
-import { ORDER_STATES } from '../const';
+import { CONST } from '../const';
 
-export type OrderState = (typeof ORDER_STATES)[number];
+export type OrderState = (typeof CONST.orderStates)[number];
 
 export type OrderItem = {
   orderItemId: string;

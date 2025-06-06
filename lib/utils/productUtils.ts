@@ -1,8 +1,8 @@
 import { ProductDetails, Product, Tag } from '@/lib/types';
-import { VALID_TAGS } from '@/lib/const';
+import { CONST } from '@/lib/const';
 
 export const isValidTag = (tag: string): tag is Tag =>
-  VALID_TAGS.includes(tag as Tag);
+  CONST.validTags.includes(tag as Tag);
 
 export const filterProductByTag = (products: Product[], tag: Tag) => {
   const filteredProducts = products.filter((product) =>

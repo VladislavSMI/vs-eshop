@@ -17,7 +17,7 @@ import {
 } from './utils';
 
 import { CLOUD_CONFIG } from '../cloud-storage/config';
-import { MISSING_IMAGE } from '../const';
+import { CONST } from '../const';
 
 describe('Utility Functions', () => {
   describe('formatDateToLocal', () => {
@@ -259,17 +259,17 @@ describe('getPublicUrl', () => {
   const defaultConfig = { baseUrl: 'http://example.com', folder: 'images' };
 
   it('returns MISSING_IMAGE if the provided url is null', () => {
-    expect(getPublicUrl(null, defaultConfig)).toBe(MISSING_IMAGE);
+    expect(getPublicUrl(null, defaultConfig)).toBe(CONST.missingImage);
   });
 
   it('returns MISSING_IMAGE if config.baseUrl is not set', () => {
     const config = { ...defaultConfig, baseUrl: '' };
-    expect(getPublicUrl('image.jpg', config)).toBe(MISSING_IMAGE);
+    expect(getPublicUrl('image.jpg', config)).toBe(CONST.missingImage);
   });
 
   it('returns MISSING_IMAGE if config.folder is not set', () => {
     const config = { ...defaultConfig, folder: '' };
-    expect(getPublicUrl('image.jpg', config)).toBe(MISSING_IMAGE);
+    expect(getPublicUrl('image.jpg', config)).toBe(CONST.missingImage);
   });
 
   it('returns a valid public URL when config is properly set', () => {

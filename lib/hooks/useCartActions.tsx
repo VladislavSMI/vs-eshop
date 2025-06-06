@@ -6,7 +6,7 @@ import {
 } from '@/lib/actions/cartActions';
 import { resetMessages } from '@/lib/utils/resetMessages';
 import { validateCartSelection } from '@/lib/utils/validateCartSelection';
-import { handleApiResponse } from '@/lib/utils/handleApiResponse';
+import { handleApiResponse } from '@/lib/utils/apiUtils/handleApiResponse';
 import { CartItem, CartItemSelection } from '../types';
 
 export const useCartActions = () => {

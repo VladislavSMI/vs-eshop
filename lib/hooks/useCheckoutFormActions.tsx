@@ -20,16 +20,16 @@ export const useCheckoutForm = (cartId: string) => {
     setErrorMessage(null);
     setErrorFields(null);
 
-    const response: ApiResponse<{ stripeSessionId: string } | null> =
+    const response: ApiResponse<{ checkoutSessionId: string } | null> =
       await createOrderAndCheckoutSession(cartId, formData);
 
-    if (response?.status === 'success' && response.data?.stripeSessionId) {
+    if (response?.status === 'success' && response.data?.checkoutSessionId) {
       const stripe = await getStripeClient();
 
       setIsSubmitting(false);
 
       await stripe?.redirectToCheckout({
-        sessionId: response.data.stripeSessionId,
+        sessionId: response.data.checkoutSessionId,
       });
     } else {
       handleApiResponse({

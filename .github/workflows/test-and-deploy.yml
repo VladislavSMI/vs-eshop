@@ -46,7 +46,7 @@ jobs:
 
       # Run Jest tests
       - name: Run Jest tests
-        run: npm run test:jest
+        run: npm run test:unit
 
       # Run TypeScript type checks
       - name: TypeScript Validation

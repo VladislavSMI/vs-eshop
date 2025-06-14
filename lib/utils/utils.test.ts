@@ -14,146 +14,145 @@ import {
   joinPathSegments,
   getPublicUrl,
   generateRelativeImageUrl,
+  isProtectedPath,
 } from './utils';
 
 import { CLOUD_CONFIG } from '../cloud-storage/config';
 import { CONST } from '../const';
 
-describe('Utility Functions', () => {
-  describe('formatDateToLocal', () => {
-    it('formats a valid date string correctly', () => {
-      expect(formatDateToLocal('2024-12-05')).toBe('Dec 5, 2024');
-    });
+describe('formatDateToLocal', () => {
+  it('formats a valid date string correctly', () => {
+    expect(formatDateToLocal('2024-12-05')).toBe('Dec 5, 2024');
+  });
 
-    it('handles an invalid date string', () => {
-      expect(formatDateToLocal('invalid-date')).toBe('Invalid Date');
-    });
+  it('handles an invalid date string', () => {
+    expect(formatDateToLocal('invalid-date')).toBe('Invalid Date');
+  });
 
-    it('formats a valid date with a custom locale', () => {
-      expect(formatDateToLocal('2024-12-05', 'de-DE')).toBe('5. Dez. 2024');
+  it('formats a valid date with a custom locale', () => {
+    expect(formatDateToLocal('2024-12-05', 'de-DE')).toBe('5. Dez. 2024');
+  });
+});
+
+describe('formatPrice', () => {
+  it('formats a price with default locale and currency', () => {
+    expect(formatPrice({ price: 12345, divisor: 100 })).toBe('€123.45');
+  });
+
+  it('formats a price with a custom locale and currency', () => {
+    expect(
+      formatPrice({
+        price: 12345,
+        locale: 'en-GB',
+        currencyCode: 'GBP',
+        divisor: 100,
+      }),
+    ).toBe('£123.45');
+  });
+
+  it('formats a price with a different currency display', () => {
+    expect(
+      formatPrice({
+        price: 12345,
+        currencyDisplay: 'code',
+        currencyCode: 'USD',
+        divisor: 100,
+      }),
+    ).toBe('USD 123.45');
+  });
+});
+
+describe('isProduction', () => {
+  let originalNodeEnv: string | undefined;
+
+  beforeEach(() => {
+    originalNodeEnv = process.env.NODE_ENV;
+  });
+
+  afterEach(() => {
+    Object.defineProperty(process.env, 'NODE_ENV', {
+      value: originalNodeEnv,
+      writable: true,
     });
   });
 
-  describe('formatPrice', () => {
-    it('formats a price with default locale and currency', () => {
-      expect(formatPrice({ price: 12345, divisor: 100 })).toBe('€123.45');
+  it('returns true if NODE_ENV is production', () => {
+    Object.defineProperty(process.env, 'NODE_ENV', {
+      value: 'production',
+      writable: true,
     });
+    expect(isProduction()).toBe(true);
+  });
 
-    it('formats a price with a custom locale and currency', () => {
-      expect(
-        formatPrice({
-          price: 12345,
-          locale: 'en-GB',
-          currencyCode: 'GBP',
-          divisor: 100,
-        }),
-      ).toBe('£123.45');
+  it('returns false if NODE_ENV is not production', () => {
+    Object.defineProperty(process.env, 'NODE_ENV', {
+      value: 'development',
+      writable: true,
     });
+    expect(isProduction()).toBe(false);
+  });
+});
 
-    it('formats a price with a different currency display', () => {
-      expect(
-        formatPrice({
-          price: 12345,
-          currencyDisplay: 'code',
-          currencyCode: 'USD',
-          divisor: 100,
-        }),
-      ).toBe('USD 123.45');
+describe('isBrowser', () => {
+  const originalWindow = global.window;
+
+  beforeEach(() => {
+    Object.defineProperty(global, 'window', {
+      value: originalWindow,
+      configurable: true,
     });
   });
 
-  describe('isProduction', () => {
-    let originalNodeEnv: string | undefined;
-
-    beforeEach(() => {
-      originalNodeEnv = process.env.NODE_ENV;
-    });
-
-    afterEach(() => {
-      Object.defineProperty(process.env, 'NODE_ENV', {
-        value: originalNodeEnv,
-        writable: true,
-      });
-    });
-
-    it('returns true if NODE_ENV is production', () => {
-      Object.defineProperty(process.env, 'NODE_ENV', {
-        value: 'production',
-        writable: true,
-      });
-      expect(isProduction()).toBe(true);
-    });
-
-    it('returns false if NODE_ENV is not production', () => {
-      Object.defineProperty(process.env, 'NODE_ENV', {
-        value: 'development',
-        writable: true,
-      });
-      expect(isProduction()).toBe(false);
+  afterEach(() => {
+    Object.defineProperty(global, 'window', {
+      value: originalWindow,
+      configurable: true,
     });
   });
 
-  describe('isBrowser', () => {
-    const originalWindow = global.window;
-
-    beforeEach(() => {
-      Object.defineProperty(global, 'window', {
-        value: originalWindow,
-        configurable: true,
-      });
-    });
-
-    afterEach(() => {
-      Object.defineProperty(global, 'window', {
-        value: originalWindow,
-        configurable: true,
-      });
-    });
-
-    it('returns true if running in a browser environment', () => {
-      expect(isBrowser()).toBe(true);
-    });
-
-    it('returns false if running in a Node.js environment', () => {
-      Object.defineProperty(global, 'window', {
-        value: undefined,
-        configurable: true,
-      });
-      expect(isBrowser()).toBe(false);
-    });
+  it('returns true if running in a browser environment', () => {
+    expect(isBrowser()).toBe(true);
   });
 
-  describe('isMockEnabled', () => {
-    it('returns true if MOCK_DB is set to true', () => {
-      process.env.MOCK_DB = 'true';
-      expect(isMockEnabled()).toBe(true);
+  it('returns false if running in a Node.js environment', () => {
+    Object.defineProperty(global, 'window', {
+      value: undefined,
+      configurable: true,
     });
+    expect(isBrowser()).toBe(false);
+  });
+});
 
-    it('returns false if MOCK_DB is not true', () => {
-      process.env.MOCK_DB = 'false';
-      expect(isMockEnabled()).toBe(false);
-    });
+describe('isMockEnabled', () => {
+  it('returns true if MOCK_DB is set to true', () => {
+    process.env.MOCK_DB = 'true';
+    expect(isMockEnabled()).toBe(true);
   });
 
-  describe('setCursor', () => {
-    it('sets the body cursor style', () => {
-      const bodyStyleSpy = jest.spyOn(document.body.style, 'cursor', 'set');
-      setCursor('grab');
-      expect(bodyStyleSpy).toHaveBeenCalledWith('grab');
-      setCursor('default');
-      expect(bodyStyleSpy).toHaveBeenCalledWith('default');
-    });
+  it('returns false if MOCK_DB is not true', () => {
+    process.env.MOCK_DB = 'false';
+    expect(isMockEnabled()).toBe(false);
   });
+});
 
-  describe('normalizeSQL', () => {
-    it('normalizes SQL by removing extra spaces and trimming', () => {
-      const sql = `
+describe('setCursor', () => {
+  it('sets the body cursor style', () => {
+    const bodyStyleSpy = jest.spyOn(document.body.style, 'cursor', 'set');
+    setCursor('grab');
+    expect(bodyStyleSpy).toHaveBeenCalledWith('grab');
+    setCursor('default');
+    expect(bodyStyleSpy).toHaveBeenCalledWith('default');
+  });
+});
+
+describe('normalizeSQL', () => {
+  it('normalizes SQL by removing extra spaces and trimming', () => {
+    const sql = `
         SELECT *
         FROM users
         WHERE id = 1
       `;
-      expect(normalizeSQL(sql)).toBe('SELECT * FROM users WHERE id = 1');
-    });
+    expect(normalizeSQL(sql)).toBe('SELECT * FROM users WHERE id = 1');
   });
 });
 
@@ -340,5 +339,63 @@ describe('generateRelativeImageUrl', () => {
       mimeType: 'invalid',
     });
     expect(result).toBeNull();
+  });
+});
+
+describe('isProtectedPath', () => {
+  it('returns true for base protected pages', () => {
+    expect(isProtectedPath('/dashboard')).toBe(true);
+    expect(isProtectedPath('/dashboard')).toBe(true);
+    expect(isProtectedPath('en/dashboard')).toBe(true);
+    expect(isProtectedPath('/nl/dashboard')).toBe(true);
+  });
+
+  it('returns true for nested paths under a protected page', () => {
+    expect(isProtectedPath('/dashboard/admin')).toBe(true);
+    expect(isProtectedPath('dashboard/settings/profile')).toBe(true);
+    expect(isProtectedPath('en/dashboard/admin/settings')).toBe(true);
+    expect(isProtectedPath('/nl/dashboard/extra/')).toBe(true);
+  });
+
+  it('returns false for non-protected pages and substrings', () => {
+    expect(isProtectedPath('/cart')).toBe(false);
+    expect(isProtectedPath('checkout')).toBe(false);
+    expect(isProtectedPath('/en/checkout/cancel')).toBe(false);
+    // substring “dashboardish” should not match
+    expect(isProtectedPath('/dashboardish')).toBe(false);
+    expect(isProtectedPath('en/dashboardish/foo')).toBe(false);
+  });
+
+  it('ignores query strings and fragments', () => {
+    expect(isProtectedPath('/dashboard?foo=1&bar=2')).toBe(true);
+    expect(isProtectedPath('/dashboard#section')).toBe(true);
+    expect(isProtectedPath('/dashboard?x=1#sec')).toBe(true);
+    expect(isProtectedPath('en/dashboard#sec?x=1')).toBe(true);
+    expect(isProtectedPath('/cart?redirect=/home')).toBe(false);
+    expect(isProtectedPath('/checkout#summary')).toBe(false);
+  });
+
+  it('collapses duplicate slashes before matching', () => {
+    expect(isProtectedPath('///dashboard//admin///')).toBe(true);
+    expect(isProtectedPath('//en///dashboard//')).toBe(true);
+    expect(isProtectedPath('///cart///')).toBe(false);
+  });
+
+  it('does not treat percent-encoded “?” or “#” as separators', () => {
+    expect(isProtectedPath('/%3Fdashboard')).toBe(false);
+    expect(isProtectedPath('/%23dashboard')).toBe(false);
+  });
+
+  it('returns false for empty, only-query, or only-fragment inputs', () => {
+    expect(isProtectedPath('')).toBe(false);
+    expect(isProtectedPath('?foo=1&bar=2')).toBe(false);
+    expect(isProtectedPath('#section')).toBe(false);
+  });
+
+  test('protectedPages config invariant: no leading or trailing slashes', () => {
+    CONST.protectedPages.forEach((p) => {
+      expect(p).not.toMatch(/^\//);
+      expect(p).not.toMatch(/\/$/);
+    });
   });
 });

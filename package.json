@@ -7,15 +7,15 @@
     "build": "next build",
     "start": "next start",
     "test:e2e": "playwright test",
-    "test:jest": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --coverageReporters='text-summary'",
-    "test": "npm run test:e2e && pnpm run test:jest",
+    "test:unit": "jest",
+    "test:unit:watch": "npm run test:unit -- --watch",
+    "test:unit:coverage": "npm run test:unit -- --coverage --coverageReporters='text-summary'",
+    "test": "npm run test:e2e && npm run test:unit",
     "lint": "next lint",
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
     "test:types": "tsc -p . --noEmit",
-    "validate": "npm run lint && npm run test:types && npm run prettier:check && npm run test:jest"
+    "validate": "npm run lint && npm run test:types && npm run prettier:check && npm run test"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
@@ -45,6 +45,7 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^29.5.14",
     "@types/node": "^20",
     "@types/pg": "^8.11.10",

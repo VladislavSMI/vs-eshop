@@ -51,10 +51,11 @@ export const CheckoutCartItem = ({ cartItem }: { cartItem: CartItem }) => {
             />
             <button
               type="button"
+              aria-label="Remove item"
               className="btn btn-ghost ml-2"
               onClick={() => deleteCartItem(cartItemId)}
             >
-              <TrashIcon className="h-5 w-5 text-primary" />
+              <TrashIcon data-testid="trash" className="h-5 w-5 text-primary" />
             </button>
           </div>
           <span className="text-sm">€{(price * quantity).toFixed(2)}</span>

@@ -5,7 +5,16 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   output: 'standalone',
   eslint: {
-    dirs: ['app', 'components', 'data', 'i18n', 'lib', 'styles', 'use-cases'],
+    dirs: [
+      'app',
+      'components',
+      'data',
+      'i18n',
+      'lib',
+      'styles',
+      'use-cases',
+      '__tests__',
+    ],
   },
   images: {
     remotePatterns: [

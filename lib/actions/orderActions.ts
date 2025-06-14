@@ -53,7 +53,7 @@ export async function createOrder(
 export async function createOrderAndCheckoutSession(
   cartId: string,
   formData: FormData,
-): Promise<ApiResponse<{ stripeSessionId: string } | null>> {
+): Promise<ApiResponse<{ checkoutSessionId: string } | null>> {
   // Step 1: Create the order
   const orderResponse = await createOrder(cartId, formData);
   const { status, data } = orderResponse;
@@ -64,27 +64,27 @@ export async function createOrderAndCheckoutSession(
   }
 
   try {
-    // Step 2: Create Stripe Checkout session
-    const { id: stripeSessionId } = await createOrderCheckoutSession(order);
+    // Step 2: Create Checkout session and get session ID
+    const { id } = await createOrderCheckoutSession(order);
 
-    log.info(
-      { stripeSessionId },
-      'Successfully created order and Stripe checkout session',
-    );
+    log.info({ id }, 'Successfully created order and checkout session');
 
     return createSuccessResponse({
       code: 'ORDER_AND_SESSION_CREATED',
       messageKey: 'responseSuccess.checkoutSuccess',
-      data: { stripeSessionId },
+      data: { checkoutSessionId: id },
     });
   } catch (err) {
-    log.error({ error: printException(err) }, 'Error creating Stripe session');
+    log.error(
+      { error: printException(err) },
+      'Error creating checkout session',
+    );
 
-    // Step 3: Cancel order if Stripe session creation fails
+    // Step 3: Cancel order if checkout session creation fails
     await cancelOrderUseCase(order.id).catch((cancelErr) => {
       log.error(
         { orderId: order.id, cancelErr },
-        'Failed to cancel order after Stripe session creation failure',
+        'Failed to cancel order after checkout session creation failure',
       );
     });
 

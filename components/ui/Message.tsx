@@ -21,6 +21,7 @@ export const Message = ({ message, type, className }: MessageProps) => {
         },
         className,
       )}
+      aria-label="message"
     >
       {message}
     </p>

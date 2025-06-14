@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { Category, SearchParams } from '@/lib/types';
 import { useRouter } from 'next/navigation';
-import { getCategoryName } from '@/lib/utils/getCategoryName';
+import { getCategoryName } from '@/lib/utils/productUtils';
 import { createCrumbs } from '../utils/createCrumbs';
 import { Crumbs } from '../Crumbs';
 

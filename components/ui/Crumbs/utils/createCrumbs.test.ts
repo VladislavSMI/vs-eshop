@@ -1,4 +1,4 @@
-import { getCategoryName } from '@/lib/utils/getCategoryName';
+import { getCategoryName } from '@/lib/utils/productUtils';
 import { mockCategories } from '@/__test__/mocks/ProductRepositoryMocks';
 import { createCrumbs } from './createCrumbs';
 

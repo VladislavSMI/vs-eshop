@@ -1,4 +1,4 @@
-import { ProductDetails, Product, Tag } from '@/lib/types';
+import { ProductDetails, Product, Tag, Category } from '@/lib/types';
 import { CONST } from '@/lib/const';
 
 export const isValidTag = (tag: string): tag is Tag =>
@@ -20,3 +20,7 @@ export function hasAvailableSizes(
 ): boolean {
   return variations.some((variation) => variation.stockQuantity);
 }
+
+export const getCategoryName = (id: number, categories: Category[]) =>
+  categories.find((category) => category.categoryId === id)?.categoryName ||
+  'Unknown';

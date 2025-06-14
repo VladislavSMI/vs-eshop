@@ -2,9 +2,19 @@ import { Order } from '@/lib/types';
 import { stripeServer } from '../stripeServer';
 import { createStripeCheckoutOrderParams } from './createStripeCheckoutOrderParams';
 
-export const createOrderCheckoutSession = async (order: Order) => {
+export interface CheckoutSession {
+  id: string;
+}
+
+export const createOrderCheckoutSession = async (
+  order: Order,
+): Promise<CheckoutSession> => {
   const stripeCheckoutOrderParams =
     await createStripeCheckoutOrderParams(order);
 
-  return stripeServer.checkout.sessions.create(stripeCheckoutOrderParams);
+  const session = await stripeServer.checkout.sessions.create(
+    stripeCheckoutOrderParams,
+  );
+
+  return { id: session.id };
 };

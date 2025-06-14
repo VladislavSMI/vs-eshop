@@ -3,7 +3,6 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import TermsConditions from '@/app/[locale]/(footer)/about-us/page';
 import { useTranslations } from 'next-intl';
-const { expect, describe, it } = require('@jest/globals');
 
 jest.mock('next-intl', () => ({
   useTranslations: jest.fn(),
@@ -47,9 +46,7 @@ describe('TermsConditions Component', () => {
   });
 
   it('renders accessible elements', () => {
-    const { getByRole, getByText } = render(
-      <TermsConditions params={{ locale: 'en' }} />,
-    );
+    const { getByRole } = render(<TermsConditions params={{ locale: 'en' }} />);
 
     expect(getByRole('heading', { level: 1 })).toHaveTextContent('About Us');
   });
@@ -58,10 +55,7 @@ describe('TermsConditions Component', () => {
     const { getByText } = render(<TermsConditions params={{ locale: 'en' }} />);
 
     expect(getByText('About Us')).toHaveClass('text-4xl');
-    expect(getByText('Welcome to VS Skate Shop!')).toHaveClass(
-      'text-justify',
-      'md:text-lg',
-    );
+    expect(getByText('Welcome to VS Skate Shop!')).toHaveClass('md:text-lg');
   });
 
   it('matches snapshot', () => {

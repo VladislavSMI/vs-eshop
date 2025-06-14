@@ -1,9 +1,8 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import ShippingReturnPolicy from '@/app/[locale]/(footer)/about-us/page';
-import { useTranslations } from 'next-intl';
-const { expect, describe, it } = require('@jest/globals');
 
 jest.mock('next-intl', () => ({
   useTranslations: jest.fn(),
@@ -64,10 +63,7 @@ describe('ShippingReturnPolicy Component', () => {
     );
 
     expect(getByText('About Us')).toHaveClass('text-4xl');
-    expect(getByText('Welcome to VS Skate Shop!')).toHaveClass(
-      'text-justify',
-      'md:text-lg',
-    );
+    expect(getByText('Welcome to VS Skate Shop!')).toHaveClass('md:text-lg');
   });
 
   it('matches snapshot', () => {

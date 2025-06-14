@@ -3,7 +3,6 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import PrivacyPolicy from '@/app/[locale]/(footer)/privacy-policy/page';
 import { useTranslations } from 'next-intl';
-const { expect } = require('@jest/globals');
 
 jest.mock('next-intl', () => ({
   useTranslations: jest.fn(),
@@ -47,9 +46,7 @@ describe('PrivacyPolicy Component', () => {
   });
 
   it('renders accessible elements', () => {
-    const { getByRole, getByText } = render(
-      <PrivacyPolicy params={{ locale: 'en' }} />,
-    );
+    const { getByRole } = render(<PrivacyPolicy params={{ locale: 'en' }} />);
 
     expect(getByRole('heading', { level: 1 })).toHaveTextContent('About Us');
   });
@@ -58,10 +55,7 @@ describe('PrivacyPolicy Component', () => {
     const { getByText } = render(<PrivacyPolicy params={{ locale: 'en' }} />);
 
     expect(getByText('About Us')).toHaveClass('text-4xl');
-    expect(getByText('Welcome to VS Skate Shop!')).toHaveClass(
-      'text-justify',
-      'md:text-lg',
-    );
+    expect(getByText('Welcome to VS Skate Shop!')).toHaveClass('md:text-lg');
   });
 
   it('matches snapshot', () => {

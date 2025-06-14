@@ -22,7 +22,13 @@
     ],
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["**/*.spec.{ts,tsx}", "test-utils/*"] }
+      {
+        "devDependencies": [
+          "**/*.spec.{ts,tsx}",
+          "**/*.test.{ts,tsx}",
+          "test-utils/*"
+        ]
+      }
     ]
   }
 }

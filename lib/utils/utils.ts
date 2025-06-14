@@ -119,14 +119,18 @@ export const generateRelativeImageUrl = ({
 
 export const isServer = () => typeof window !== 'object';
 
-export const toRegexGroup = (values: readonly string[]): string =>
-  `(${values.map((v) => v.trim()).join('|')})`;
+export function isProtectedPath(rawPath: string): boolean {
+  const [pathname] = rawPath.split(/[?#\\]/);
 
-export const isProtectedPath = (pathname: string): boolean => {
-  const localeGroup = toRegexGroup(CONST.locales);
-  const pageGroup = toRegexGroup(CONST.protectedPages);
+  const segments = pathname.split('/').filter(Boolean);
+  if (!segments.length) return false;
 
-  const protectedPageRegex = new RegExp(`^/${localeGroup}/${pageGroup}`);
+  // if first segment is a locale, page is second, otherwise it’s first
+  const maybeLocale = segments[0];
+  const page =
+    CONST.locales.includes(maybeLocale) && segments.length > 1
+      ? segments[1]
+      : segments[0];
 
-  return protectedPageRegex.test(pathname);
-};
+  return CONST.protectedPages.includes(page);
+}

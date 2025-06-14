@@ -16,7 +16,7 @@ export interface Cart {
 }
 
 export interface CartItemSelection {
-  productId: string | null;
+  productId: string;
   sizeId: number | null;
-  quantity: number | null;
+  quantity: number;
 }

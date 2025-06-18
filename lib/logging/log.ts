@@ -16,6 +16,7 @@ export const log = isBrowser()
       },
     })
   : pino({
+      base: { container: 'vs-eshop-app' },
       level: logLevel,
       timestamp: pino.stdTimeFunctions.isoTime,
       redact: ['name', 'email', 'password', 'profile.address', 'profile.phone'],

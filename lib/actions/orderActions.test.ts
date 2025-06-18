@@ -1,6 +1,6 @@
 import { ZodError } from 'zod';
 import { ShippingAddressSchema } from '@/lib/validation/schemas/shippingAddressSchema';
-import { findOrCreateShippingAddressUseCase } from '@/use-cases/address';
+import { upsertShippingAddressUseCase } from '@/use-cases/address';
 import { createOrderUseCase, cancelOrderUseCase } from '@/use-cases/order';
 import {
   createSuccessResponse,
@@ -44,9 +44,7 @@ jest.mock(
 
 // Typed mocks
 const mockShippingAddressSchema = jest.mocked(ShippingAddressSchema);
-const mockCreateShippingAddressUC = jest.mocked(
-  findOrCreateShippingAddressUseCase,
-);
+const mockCreateShippingAddressUC = jest.mocked(upsertShippingAddressUseCase);
 const mockOrderUC = {
   create: jest.mocked(createOrderUseCase),
   cancel: jest.mocked(cancelOrderUseCase),

@@ -1,7 +1,7 @@
 'use server';
 
 import { log } from '@/lib/logging/log';
-import { findOrCreateShippingAddressUseCase } from '@/use-cases/address';
+import { upsertShippingAddressUseCase } from '@/use-cases/address';
 import { cancelOrderUseCase, createOrderUseCase } from '@/use-cases/order';
 import { Address, ApiResponse, Order } from '../types';
 import { createOrderCheckoutSession } from '../stripe/utils/createOrderCheckoutSession';
@@ -33,7 +33,7 @@ export async function createOrder(
   }
 
   try {
-    const { id } = await findOrCreateShippingAddressUseCase(data as Address);
+    const { id } = await upsertShippingAddressUseCase(data as Address);
 
     const order = await createOrderUseCase({
       cartId,

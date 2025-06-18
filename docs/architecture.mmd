@@ -1,0 +1,11 @@
+flowchart LR
+  user[Shopper]
+  web[Next.js App<br/>Node 22 / RSC]
+  db[(PostgreSQL<br/>RDS Free-Tier)]
+  s3[(AWS S3<br/>Images & assets)]
+  api[(Stripe API<br/>Payments)]
+
+  user -->|HTTPS| web
+  web -->|pg / SQL| db
+  web -->|presigned GET| s3
+  web -->|HTTPS / REST| api

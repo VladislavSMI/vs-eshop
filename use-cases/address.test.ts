@@ -3,7 +3,7 @@ import { upsertShippingAddress } from '@/data/repository/AddressRepository';
 import { log } from '@/lib/logging/log';
 import { printException } from '@/lib/utils/utils';
 import { mockAddress } from '@/__test__/mocks/AddressRepositoryMocks';
-import { findOrCreateShippingAddressUseCase } from './address';
+import { upsertShippingAddressUseCase } from './address';
 
 jest.mock('@/lib/db', () => ({}));
 jest.mock('@/data/repository/AddressRepository');
@@ -14,13 +14,13 @@ const mockUpsert = jest.mocked(upsertShippingAddress);
 const mockLogError = jest.mocked(log.error);
 const mockPrintException = jest.mocked(printException);
 
-describe('findOrCreateShippingAddressUseCase()', () => {
+describe('upsertShippingAddressUseCase()', () => {
   beforeEach(() => jest.resetAllMocks());
 
   it('returns the saved / found address when the repository succeeds', async () => {
     mockUpsert.mockResolvedValue(mockAddress);
 
-    const result = await findOrCreateShippingAddressUseCase(mockAddress);
+    const result = await upsertShippingAddressUseCase(mockAddress);
 
     expect(mockUpsert).toHaveBeenCalledWith(mockAddress);
     expect(result).toBe(mockAddress);
@@ -32,7 +32,7 @@ describe('findOrCreateShippingAddressUseCase()', () => {
     mockPrintException.mockReturnValue('Error: DB connection lost');
 
     await expect(
-      findOrCreateShippingAddressUseCase(mockAddress),
+      upsertShippingAddressUseCase(mockAddress),
     ).rejects.toBeInstanceOf(PublicError);
 
     expect(mockLogError).toHaveBeenCalledWith(

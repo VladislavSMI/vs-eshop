@@ -44,3 +44,4 @@ next-env.d.ts
 coverage/
 __test__/coverage/
 __test__/e2e/playwright-report/
+perf/k6-run.json

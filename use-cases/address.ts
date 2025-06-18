@@ -6,7 +6,7 @@ import { log } from '@/lib/logging/log';
 import { printException } from '@/lib/utils/utils';
 import { PublicError } from '@/lib/errors/PublicError';
 
-export async function findOrCreateShippingAddressUseCase(
+export async function upsertShippingAddressUseCase(
   shippingAddress: Address,
 ): Promise<Address> {
   try {

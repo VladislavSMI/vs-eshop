@@ -1,4 +1,7 @@
-**🛠️ Author:** Designed, implemented, and operated 100 % of this codebase as a personal portfolio project and learning playground, exploring new framework features and patterns during free time.
+**🛠️ Author:** Designed, implemented, and operated 100% of this codebase as a personal portfolio project and learning playground, exploring new framework features and patterns.
+
+> **© 2025 Vladislav Smihula. All rights reserved.**  
+> This code is proprietary and may not be copied or reused without permission.
 
 # VS-eshop
 

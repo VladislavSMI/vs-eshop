@@ -1,5 +1,4 @@
-**🛠️ Author:** Designed, implemented and operated 100 % of this codebase.
-(Personal portfolio project)
+**🛠️ Author:** Designed, implemented, and operated 100 % of this codebase as a personal portfolio project and learning playground, exploring new framework features and patterns during free time.
 
 # VS-eshop
 

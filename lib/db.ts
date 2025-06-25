@@ -1,6 +1,8 @@
-import { Pool, PoolConfig, QueryResult, QueryResultRow } from 'pg';
+import { Pool, PoolClient, PoolConfig, QueryResult, QueryResultRow } from 'pg';
 import { log } from './logging/log';
-import { QueryParams } from './types';
+import { QueryParams, GenericError } from './types';
+import { CONST } from './const';
+import { sleep } from './utils/utils';
 
 /* eslint-disable no-underscore-dangle */
 declare const globalThis: typeof global & {
@@ -62,6 +64,65 @@ export async function executeQuery<T extends QueryResultRow>({
     );
     throw error;
   }
+}
+
+// Executes a single SERIALIZABLE transaction using the provided client action.
+async function executeSerializableTransaction<T>(
+  action: (client: PoolClient) => Promise<T>,
+) {
+  const client = await pool.connect();
+  try {
+    await client.query('BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE');
+    const result = await action(client);
+    await client.query('COMMIT');
+    return result;
+  } catch (error) {
+    await client.query('ROLLBACK');
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
+// runInSerializable: executes the given action in a SERIALIZABLE transaction
+// retries on SQLSTATE 40001 failures up to the specified number of times (default from CONST)
+// waits delayMs milliseconds between retries
+/* eslint-disable no-await-in-loop */
+// We need sequential retries (not parallel), so using await inside loop is required
+export async function runInSerializable<T>({
+  action,
+  retries = CONST.maxSerializableRetries,
+  delayMs = CONST.serializableBaseDelayMs,
+}: {
+  action: (client: PoolClient) => Promise<T>;
+  retries?: number;
+  delayMs?: number;
+}): Promise<T> {
+  for (let attempt = 1; attempt <= retries; attempt += 1) {
+    try {
+      // Execute the transaction attempt
+      return await executeSerializableTransaction(action);
+    } catch (error) {
+      // If serialization failure and retries remain, log and wait
+      if ((error as GenericError).code === '40001' && attempt < retries) {
+        log.warn(
+          {
+            attempt,
+            delayMs,
+            error,
+          },
+          `Serialization conflict on attempt ${attempt}, retrying in ${delayMs}ms`,
+        );
+        await sleep(delayMs);
+        // continue to next attempt
+      } else {
+        // Non-retryable error or no retries left
+        throw error;
+      }
+    }
+  }
+  // This should never be reached, but TypeScript requires a return
+  throw new Error('Exceeded max retries for serializable transaction');
 }
 
 // Graceful shutdown with error handling

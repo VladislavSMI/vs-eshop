@@ -134,3 +134,8 @@ export function isProtectedPath(rawPath: string): boolean {
 
   return CONST.protectedPages.includes(page);
 }
+
+export const sleep = (ms: number): Promise<void> =>
+  new Promise<void>((resolve) => {
+    setTimeout(resolve, ms);
+  });

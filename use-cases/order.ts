@@ -18,14 +18,14 @@ export async function createOrderUseCase({
 }): Promise<Order> {
   try {
     return await createOrderWithItems({ cartId, shippingAddressId });
-  } catch (err) {
+  } catch (error) {
     log.error(
-      { cartId, shippingAddressId, err: printException(err) },
+      { cartId, shippingAddressId, error: printException(error) },
       'Error occurred during order creation',
     );
 
-    if (err instanceof PublicError) {
-      throw err;
+    if (error instanceof PublicError) {
+      throw error;
     }
 
     throw new PublicError({
@@ -39,14 +39,14 @@ export async function createOrderUseCase({
 export async function cancelOrderUseCase(orderId: string): Promise<boolean> {
   try {
     return await cancelOrderWithItems(orderId);
-  } catch (err) {
+  } catch (error) {
     log.error(
-      { orderId, error: printException(err) },
+      { orderId, error: printException(error) },
       'Error while cancelling order',
     );
 
-    if (err instanceof PublicError) {
-      throw err;
+    if (error instanceof PublicError) {
+      throw error;
     }
 
     throw new PublicError({

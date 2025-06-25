@@ -1,4 +1,4 @@
-import { pool, executeQuery } from '@/lib/db';
+import { executeQuery, runInSerializable } from '@/lib/db';
 import { Order } from '@/lib/types';
 import { orderQueries } from '../queries/orderQueries';
 import { OrderMappers } from '../mappers/orderMappers';
@@ -11,58 +11,53 @@ export async function createOrderWithItems({
   cartId: string;
   shippingAddressId: string;
 }): Promise<Order> {
-  const client = await pool.connect();
+  return runInSerializable({
+    action: async (client) => {
+      const {
+        updateStock,
+        createOrder,
+        insertOrderItems,
+        getOrderById: getOrderByIdQuery,
+      } = orderQueries;
 
-  const {
-    updateStock,
-    createOrder,
-    insertOrderItems,
-    getOrderById: getOrderByIdQuery,
-  } = orderQueries;
+      // Step 1: Deduct stock
+      const stockResult = await client.query(updateStock, [cartId]);
+      if (stockResult.rowCount === 0) {
+        throw new Error('Insufficient stock for one or more items.');
+      }
 
-  try {
-    await client.query('BEGIN');
+      // Step 2: Create the order
+      const orderResult = await client.query(createOrder, [
+        cartId,
+        shippingAddressId,
+      ]);
+      if (orderResult.rows.length === 0) {
+        throw new Error('Failed to create order.');
+      }
 
-    // Step 1: Deduct stock
-    const stockResult = await client.query(updateStock, [cartId]);
-    if (stockResult.rowCount === 0) {
-      throw new Error('Insufficient stock for one or more items.');
-    }
+      const orderId = orderResult.rows[0].order_id;
 
-    // Step 2: Create the order
-    const orderResult = await client.query(createOrder, [
-      cartId,
-      shippingAddressId,
-    ]);
-    if (orderResult.rows.length === 0) {
-      throw new Error('Failed to create order.');
-    }
+      // Step 3: Insert order items
+      const itemsResult = await client.query(insertOrderItems, [
+        orderId,
+        cartId,
+      ]);
+      if (itemsResult.rowCount === 0) {
+        throw new Error('Failed to insert order items.');
+      }
 
-    const orderId = orderResult.rows[0].order_id;
+      // Step 4: Fetch and return the created order
+      const createdOrder = await client.query<OrderRow>(getOrderByIdQuery, [
+        orderId,
+      ]);
 
-    // Step 3: Insert order items
-    const itemsResult = await client.query(insertOrderItems, [orderId, cartId]);
-    if (itemsResult.rowCount === 0) {
-      throw new Error('Failed to insert order items.');
-    }
+      if (createdOrder.rows.length === 0) {
+        throw new Error('Failed to fetch created order.');
+      }
 
-    // Step 4: Fetch and return the created order
-    const createdOrder = await client.query<OrderRow>(getOrderByIdQuery, [
-      orderId,
-    ]);
-    if (createdOrder.rows.length === 0) {
-      throw new Error('Failed to fetch created order.');
-    }
-
-    await client.query('COMMIT');
-
-    return OrderMappers.mapOrder(createdOrder.rows);
-  } catch (error) {
-    await client.query('ROLLBACK');
-    throw error;
-  } finally {
-    client.release();
-  }
+      return OrderMappers.mapOrder(createdOrder.rows);
+    },
+  });
 }
 
 export async function getOrderById(orderId: string): Promise<Order | null> {
@@ -94,34 +89,26 @@ export async function updateOrderState({
 }
 
 export async function cancelOrderWithItems(orderId: string): Promise<boolean> {
-  const client = await pool.connect();
+  return runInSerializable({
+    action: async (client) => {
+      // Step 1: Update order status to 'cancelled'
+      const updateResult = await client.query(orderQueries.updateOrderState, [
+        'cancelled',
+        orderId,
+      ]);
+      if (updateResult.rowCount === 0) {
+        throw new Error('Failed to update order status to cancelled.');
+      }
 
-  try {
-    await client.query('BEGIN');
+      // Step 2: Restore stock for cancelled order items
+      const restoreStockResult = await client.query(orderQueries.restoreStock, [
+        orderId,
+      ]);
+      if (restoreStockResult.rowCount === 0) {
+        throw new Error('Failed to restore stock for cancelled order items.');
+      }
 
-    // Step 1: Update order status to 'cancelled'
-    const updateResult = await client.query(orderQueries.updateOrderState, [
-      'cancelled',
-      orderId,
-    ]);
-    if (updateResult.rowCount === 0) {
-      throw new Error('Failed to update order status to cancelled.');
-    }
-
-    // Step 2: Restore stock for cancelled order items
-    const restoreStockResult = await client.query(orderQueries.restoreStock, [
-      orderId,
-    ]);
-    if (restoreStockResult.rowCount === 0) {
-      throw new Error('Failed to restore stock for cancelled order items.');
-    }
-
-    await client.query('COMMIT');
-    return true;
-  } catch (error) {
-    await client.query('ROLLBACK');
-    throw error;
-  } finally {
-    client.release();
-  }
+      return true;
+    },
+  });
 }

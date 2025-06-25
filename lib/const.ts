@@ -11,6 +11,8 @@ export type ConfigConst = {
   orderStates: readonly string[];
   supportEmail: string;
   missingImage: string;
+  maxSerializableRetries: number;
+  serializableBaseDelayMs: number;
 };
 
 export const CONST: ConfigConst = {
@@ -22,4 +24,6 @@ export const CONST: ConfigConst = {
   orderStates: ['created', 'paid', 'shipped', 'cancelled', 'refunded'] as const,
   supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || 'support@vsskate.com',
   missingImage: '/assets/missing_image.webp',
+  maxSerializableRetries: 3,
+  serializableBaseDelayMs: 50,
 };

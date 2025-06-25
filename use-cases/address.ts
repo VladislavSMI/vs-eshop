@@ -11,9 +11,9 @@ export async function upsertShippingAddressUseCase(
 ): Promise<Address> {
   try {
     return await upsertShippingAddress(shippingAddress);
-  } catch (err) {
+  } catch (error) {
     log.error(
-      { shippingAddress, error: printException(err) },
+      { shippingAddress, error: printException(error) },
       'Error occurred while finding or creating shipping address',
     );
 
